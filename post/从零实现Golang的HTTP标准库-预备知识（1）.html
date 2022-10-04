@@ -39,11 +39,11 @@
 <meta property="og:title" content="从零实现Golang的HTTP标准库-预备知识（1）">
 <meta property="og:url" content="http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="1.概述​        在我们从零实现Golang的HTTP标准库之前，我们首先需要学习一些预备知识，学习了这些预备知识作为基础以后，我们才能更好的理解Golang的HTTTP标准库的代码，也有利于我们后面自己动手实现它。 ​        在预备知识中，我不会过多介绍关于Golang的HTTP标准库有关的内容，这一部分的介绍等我们学习完预备知识以后，会更新在后续的真正实现HTTP标准库的文章中">
+<meta property="og:description" content="1.概述在我们从零实现Golang的HTTP标准库之前，我们首先需要学习一些预备知识，学习了这些预备知识作为基础以后，我们才能更好的理解Golang的HTTTP标准库的代码，也有利于我们后面自己动手实现它。 在预备知识中，我不会过多介绍关于Golang的HTTP标准库有关的内容，这一部分的介绍等我们学习完预备知识以后，会更新在后续的真正实现HTTP标准库的文章中。 2.所需要的预备知识以及学习资源">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-09-25T14:09:40.000Z">
-<meta property="article:modified_time" content="2022-10-04T08:51:33.933Z">
+<meta property="article:modified_time" content="2022-10-04T10:32:00.663Z">
 <meta property="article:author" content="徐乔伟">
 <meta property="article:tag" content="基础知识">
 <meta name="twitter:card" content="summary">
@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1664877100571),
+    lastupdate: new Date(1664879534924),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2496,35 +2496,42 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>​        在我们从零实现Golang的HTTP标准库之前，我们首先需要学习一些预备知识，学习了这些预备知识作为基础以后，我们才能更好的理解Golang的HTTTP标准库的代码，也有利于我们后面自己动手实现它。</p>
-<p>​        在预备知识中，我不会过多介绍关于Golang的HTTP标准库有关的内容，这一部分的介绍等我们学习完预备知识以后，会更新在后续的真正实现HTTP标准库的文章中。</p>
+    <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在我们从零实现Golang的HTTP标准库之前，我们首先需要学习一些预备知识，学习了这些预备知识作为基础以后，我们才能更好的理解Golang的HTTTP标准库的代码，也有利于我们后面自己动手实现它。</p>
+<p>在预备知识中，我不会过多介绍关于Golang的HTTP标准库有关的内容，这一部分的介绍等我们学习完预备知识以后，会更新在后续的真正实现HTTP标准库的文章中。</p>
 <h2 id="2-所需要的预备知识以及学习资源推荐"><a href="#2-所需要的预备知识以及学习资源推荐" class="headerlink" title="2.所需要的预备知识以及学习资源推荐"></a>2.所需要的预备知识以及学习资源推荐</h2><ul>
 <li><p><strong>Golang的基本语法</strong></p>
-<p>因为我们是要实现Golang的HTTP标准库，所以首先我们需要了解Golang这门语言的基础语法。当然，我们不需要对Go语言有特别深入的了解，只需要掌握一些基础的部分，如：变量的定义、结构体的创建、给结构体绑定函数、接口的定义、接口的实现、for循环的写法、结构体对象的初始化等等，以上这些经常出现在标准库代码中。至于Go语言的一些深入特性，如闭包、管道、Groutine协程等的底层原理，在本系列中无需知晓，只需知道其作用即可。</p>
-<p>学习资源推荐：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ME411Y71o/?spm_id_from=333.337.search-card.all.click&vd_source=34d46c7893129380fdb18a7448b604f3">B站韩顺平的go语言基础课</a></li>
 <li>《go语言编程基础》 国内七牛云团队编写的书，国人编写，通俗易懂</li>
 <li>《go语言程序设计》 Go语言圣经，经典书籍但翻译略显晦涩</li>
 </ul>
 </li>
-<li><p><strong>计算机网络</strong></p>
-<p>​    这门课是计算机科学与技术专业或软件工程专业学生的必修专业课，要想知道什么是HTTP，自然离不开计算机网络的学习。你需要学习有关于传输层的知识，包括TCP等，以及什么是socket。力求对于计算机网络课程有一个大体的概念了解。</p>
-<p>学习资源推荐：</p>
+</ul>
+<p>因为我们是要实现Golang的HTTP标准库，所以首先我们需要了解Golang这门语言的基础语法。</p>
+<p>当然，我们不需要对Go语言有特别深入的了解，只需要掌握一些基础的部分，如：变量的定义、结构体的创建、给结构体绑定函数、接口的定义、接口的实现、for循环的写法、结构体对象的初始化等等，以上这些经常出现在标准库代码中。</p>
+<p>至于Go语言的一些深入特性，如闭包、管道、Groutine协程等的底层原理，在本系列中无需知晓，只需知道其作用即可。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JV411t7ow/?spm_id_from=333.337.search-card.all.click&vd_source=34d46c7893129380fdb18a7448b604f3">B站中科大计算机网络教程</a></li>
+<li><strong>计算机网络</strong><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JV411t7ow/?spm_id_from=333.337.search-card.all.click">B站中科大计算机网络教程</a></li>
 <li>《计算机网络自顶向下》 经典书籍，你只需学习书中的应用层和传输层即可，在传输层的结尾你会了解到传统socket的编程方式。</li>
 </ul>
 </li>
-<li><p><strong>go语言的socket编程</strong></p>
-<p> ​    在计算机网络课程中，你会了解到什么是socket，以及传统的socket编程方式流程步骤。但是在go语言中，有着自己的一套socket编程方法，但是大体的思路原理却是一致的，所以你仍需先学习计算机网络，了解传统的socket编程，在此基础上，学习go语言的socket编程将会事半功倍。<br>注意：我们需要学习的是有关于TCP的socket编程。<br>   学习资源推荐：</p>
+</ul>
+<p>这门课是计算机科学与技术专业或软件工程专业学生的必修专业课，要想知道什么是HTTP，自然离不开计算机网络的学习。</p>
+<p>你需要学习有关于传输层的知识，包括TCP等，以及什么是socket。力求对于计算机网络课程有一个大体的概念了解。</p>
 <ul>
+<li><strong>go语言的socket编程</strong><ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ME411Y71o/?spm_id_from=333.337.search-card.all.click&vd_source=34d46c7893129380fdb18a7448b604f3">B站韩顺平的go语言基础课网络编程部分</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>​        关于上述的三个知识点或者说三部分学习内容，难度不大，不需要花费你太多的精力。但是却是我们实现Golang的HTTP标准库的基础，所以需要认真学习对待。在接下来的文章中，我也会将其中一些重要部分单独梳理一遍。</p>
-<p>​        本篇到此结束，感谢你的阅读！</p>
+<p>在计算机网络课程中，你会了解到什么是socket，以及传统的socket编程方式流程步骤。</p>
+<p>但是在go语言中，有着自己的一套socket编程方法，但是大体的思路原理却是一致的，所以你仍需先学习计算机网络，了解传统的socket编程，在此基础上，学习go语言的socket编程将会事半功倍。</p>
+<p>注意：我们需要学习的是有关于TCP的socket编程。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>关于上述的三个知识点或者说三部分学习内容，难度不大，不需要花费你太多的精力。</p>
+<p>但是却是我们实现Golang的HTTP标准库的基础，所以需要认真学习对待。</p>
+<p>在接下来的文章中，我也会将其中一些重要部分单独梳理一遍。</p>
+<p>本篇到此结束，感谢你的阅读！</p>
 
   </div>
   
@@ -2549,7 +2556,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-04T16:51:33+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-04T18:32:00+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Oct 4, 2022</p>
@@ -3377,7 +3384,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-预备知识（1）.html","name":"从零实现Golang的HTTP标准库-预备知识（1）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-预备知识（1）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89.html","wordCount":0,"datePublished":"2022-09-25T14:09:40.000Z","dateModified":"2022-10-04T08:51:33.933Z","articleSection":"从零实现HTTP标准库","keywords":"基础知识","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-预备知识（1）.html","name":"从零实现Golang的HTTP标准库-预备知识（1）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-预备知识（1）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89.html","wordCount":0,"datePublished":"2022-09-25T14:09:40.000Z","dateModified":"2022-10-04T10:32:00.663Z","articleSection":"从零实现HTTP标准库","keywords":"基础知识","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
