@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="http://example.com/post/从零实现golang的http标准库-实现（1）.html"/>
+  <link rel="canonical" href="http://example.com/post/从零实现golang的http标准库-（1）.html"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,19 +31,19 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>从零实现Golang的HTTP标准库-实现（1） - 徐乔伟</title>
+  <title>从零实现Golang的HTTP标准库-（1） - 徐乔伟</title>
   <meta name="keywords" content="网络编程,null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零实现Golang的HTTP标准库-实现（1）">
-<meta property="og:url" content="http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E5%AE%9E%E7%8E%B0%EF%BC%881%EF%BC%89.html">
+<meta property="og:title" content="从零实现Golang的HTTP标准库-（1）">
+<meta property="og:url" content="http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html">
 <meta property="og:site_name" content="徐乔伟">
 <meta property="og:description" content="1.前言在正式开始我们对Golang的HTTP标准库的实现之前，我还是想先推荐几个学习资源！ 这几个学习资源不是我们实现HTTP标准库所需的必备知识，所以我没有将他们放在前文的预备知识篇中，但是这几个资料的实现过程都和HTTP标准库有着一定相同的地方。 但如果你能够提前对以下推荐的几个学习资源事先做了阅读与研究，那么在实现Golang的HTTP标准库的过程中一定会如鱼得水，得心应手。  B站韩顺平">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-10-05T02:21:31.000Z">
-<meta property="article:modified_time" content="2022-10-05T03:39:49.508Z">
+<meta property="article:modified_time" content="2022-10-05T10:45:43.134Z">
 <meta property="article:author" content="徐乔伟">
 <meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary">
@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1664941201553),
+    lastupdate: new Date(1664966757191),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2418,7 +2418,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 <div id="l_main" class=''>
   <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-实现（1）.html">
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（1）.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2439,7 +2439,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title" itemprop="name headline">
-        从零实现Golang的HTTP标准库-实现（1）
+        从零实现Golang的HTTP标准库-（1）
       </h1>
       <div class='new-meta-box'>
         
@@ -2506,7 +2506,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wE411d7th/?spm_id_from=333.337.search-card.all.click&vd_source=34d46c7893129380fdb18a7448b604f3">B站刘丹冰的Zinx轻量级TCP服务框架</a></p>
 <p> 这个课程的质量非常高，up主刘丹冰老师的讲课风格十分干练，直击重点。在这门课中，老师实现了一个TCP服务框架，其实非常类似于我们将要实现的HTTP标准库，有很多思路都是共通的。我强烈建议大家有空的时候先完成对这门课程的学习，一定能够在这门课程中提前学到HTTP标准库的一些难点。</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://gufeijun.com/page/2/">华科大佬的博客</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://gufeijun.com/page/2/">一位华科同学的博客</a></p>
 <p> 这个博客的博主是华中科技大学的一名计算机专业研究生，他在博客中记录了自己实现HTTP标准库的过程，其质量之高，让我收获良多。但由于博主计算机基础非常扎实，其语言风格比较干练，默认读者具有了一定的网络编程水平，故我在阅读的过程中对于一些细节之处难以理解，遇到了不少的阻碍。经过反复阅读与研究，我在阅读过程中做了不少的笔记，都是基于原博客写出来的，可以说，正是看了原博主的关于从零实现HTTP标准库的内容，让我萌发了对HTTP标准库研究的兴趣。所以，无论你之前是否有过网络编程基础，只要你想尝试研究实现HTTP标准库，你都应该或者说必须去看看这个博客。对于基础好的同学，我相信原博客内容已经能够满足你的需要；对于一些和我一样事先不太了解网络底层编程的同学，我觉得你仍需先看看原文的博客，当看到某处难以理解时，可以参考参考我博客中对应的地方，也许这处也是我当时疑惑的点。因此强烈建议各位去看看这个博客，我在此也对博主辜飞俊同学表示感谢！</p>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/417657">极客时间web框架教程</a></p>
@@ -2514,7 +2514,87 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 </ol>
 <p>以上四个内容都是我在学习过程中发现的优质资源，都对我有着比较大的帮助，所以也分享出来给大家学习。</p>
-<h2 id="2-概述"><a href="#2-概述" class="headerlink" title="2.概述"></a>2.概述</h2><p>Go语言的net&#x2F;HTTP标准库，</p>
+<h2 id="2-概述"><a href="#2-概述" class="headerlink" title="2.概述"></a>2.概述</h2><p>Go语言的官方net&#x2F;HTTP标准库，搭建一个webServer非常容易。因为这个搭建过程中所使用到的函数、方法、接口往往是标准库帮我们封装好了的，我们只需要根据现成的已有的工具即可完成搭建。而我们今天将要实现的自然并不是使用现成的工具，而是要钻进HTTP标准库源码中，看看这些工具是怎么设计、怎么封装的。</p>
+<h2 id="3-webServer"><a href="#3-webServer" class="headerlink" title="3.webServer"></a>3.webServer</h2><p>webServer在维基百科上的解释为：Web Server 是一个通过 HTTP 协议处理 Web 请求的计算机系统。</p>
+<p>HTTP 协议，在 OSI 网络体系结构中，是基于 TCP&#x2F;IP 之上第七层应用层的协议，全称叫做超文本传输协议。啥意思？就是说 HTTP 协议传输的都是文本字符，只是这些字符是有规则排列的。这些字符的排列规则，就是一种约定，也就是协议。这个协议还有一个专门的描述文档，就是<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc2616">RFC 2616</a>。</p>
+<p>对于 HTTP 协议，无论是请求还是响应，传输的消息体都可以分为两个部分：HTTP 头部和 HTTP Body 体。头部描述的一般是和业务无关但与传输相关的信息，比如请求地址、编码格式、缓存时长等；Body 里面主要描述的是与业务相关的信息。</p>
+<p><img src="https://s1.vika.cn/space/2022/10/05/10efc65ad204437ba086d52905fe4113" class="lazyload" data-srcset="https://s1.vika.cn/space/2022/10/05/10efc65ad204437ba086d52905fe4113" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>Web Server 的本质，实际上就是接收、解析 HTTP 请求传输的文本字符，理解这些文本字符的指令，然后进行计算，再将返回值组织成 HTTP 响应的文本字符，通过 TCP 网络传输回去。</p>
+<h2 id="4-标准库启动Web服务的示例"><a href="#4-标准库启动Web服务的示例" class="headerlink" title="4.标准库启动Web服务的示例"></a>4.标准库启动Web服务的示例</h2><p>用 net&#x2F;http 来创建一个 HTTP 服务，其实很简单，下面是官方文档里的例子。我做了些注释，帮你理解。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 创建一个Foo路由和处理函数</span></span><br><span class="line">http.Handle(<span class="string">&quot;/foo&quot;</span>, fooHandler)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个bar路由和处理函数</span></span><br><span class="line">http.HandleFunc(<span class="string">&quot;/bar&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">  fmt.Fprintf(w, <span class="string">&quot;Hello, %q&quot;</span>, html.EscapeString(r.URL.Path))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听8080端口</span></span><br><span class="line">log.Fatal(http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>, <span class="literal">nil</span>))</span><br></pre></td></tr></table></figure>
+
+<p>有基础的同学是可以看得懂上述代码的，无非是注册了两个路由，然后让服务器监听在8080端口上并运行。</p>
+<p>但是零基础的同学看着上述代码，那可就疑问多多了，Handle是啥？HandleFunc是啥？ListenAndServe又是啥？有什么作用呢？不要担心，我最开始也是这样。</p>
+<p>不要在意上面的代码细节，暂时有个印象，先继续往下看吧！</p>
+<h2 id="5-自编代码启动Web服务"><a href="#5-自编代码启动Web服务" class="headerlink" title="5.自编代码启动Web服务"></a>5.自编代码启动Web服务</h2><p>第4节中的代码是官方的写法，他其实已经是经过了一些封装和简化的，那我们现在就自己动手写一个启动Web服务的代码，没有封装、没有简化，从这个自编代码入手开始学习！</p>
+<p>注意：官方代码中前两个方法是注册路由，关于这一块我们目前无需涉及，所以我先将路由这部分省略！</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net/http&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(*myHandler)</span></span> ServeHTTP(w http.ResponseWriter,r *http.Request)&#123;</span><br><span class="line">	w.Write([]<span class="type">byte</span>(<span class="string">&quot;hello world!&quot;</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	svr:=&amp;http.Server&#123;</span><br><span class="line">		Addr: <span class="string">&quot;127.0.0.1:8080&quot;</span>,</span><br><span class="line">		Handler: <span class="built_in">new</span>(myHandler),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">panic</span>(svr.ListenAndServe())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来解析一下上述代码！解析过程并没有按照代码顺序，因为代码间存在先后因果的逻辑关系，需要仔细梳理！</p>
+<p>第1-3行为在main包下，引入“net&#x2F;http”库。</p>
+<p>在main函数中，第12行我们初始化了一个http.server的对象并对其进行属性进行赋值，起名叫svr。</p>
+<p>那么这个http.server是什么呢？它其实是一个结构体，代表了一个我们将要启动的服务器。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> Server <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 请求监听地址</span></span><br><span class="line">  Addr <span class="type">string</span></span><br><span class="line">    <span class="comment">// 请求核心处理函数</span></span><br><span class="line">  Handler Handler </span><br><span class="line">    <span class="comment">// 为了理解方便，其余非核心属性省略</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以看到这个server服务器结构体中有两个核心属性：</p>
+<ul>
+<li>一个是String类型的Addr，初始化server时给Addr赋值表示希望服务器监听哪个地址端口；</li>
+<li>一个是Handler类型的Handler，Handler是一个有ServeHTTP方法的接口，就好比一个拦截所有http请求的拦截器，告诉框架如何处理来自客户端的所有http请求。</li>
+</ul>
+<p>我们来重点解析一下这个Handler接口。它代表了一个抽象的业务处理逻辑。</p>
+<p>在自编代码中，我们在初始化服务器对象时，除了给Addr赋值，我们也给Handler属性进行了赋值，其值为myHandler。</p>
+<p>显而易见，这个myHandler是我们自己定义的一个结构体，它会去实现Handler接口，因而myHandler可以赋值给Handler。前面说了这个Handler代表了一个抽象的业务处理逻辑，我们自己写这个myHandler并赋值给Handler，目的就是我们想要自己定义这个处理逻辑。</p>
+<p>注意：</p>
+<ol>
+<li><p>不论是Handler还是myHandler，他们都是代表抽象的笼统的，请不要将myHandler理解为具体的业务处理方法。具体的处理方法是另一个东西叫serverHTTP方法，这个serverHTTP方法是Handler接口里的一个成员方法，而myHandler结构体实现了Handler里的这个成员方法，也即实现了Handler接口。</p>
+</li>
+<li><p>在初始化server时，也可以不给Handler进行赋值，也即我们不想要自定义处理方法，那么这时候标准库会启动自己的默认处理方式。</p>
+</li>
+</ol>
+<p><strong>在serverHTTP方法中我们才真正的去定义具体的业务请求处理方法。</strong></p>
+<p>比如在自编代码中，我们对业务请求的处理非常简单：直接输出“hello world!”</p>
+<p>关于这个serverHTTP方法的参数：</p>
+<ol>
+<li><p>w http.ResponseWriter  ：从名字你可以将它理解为“响应构造器”。当我们收到一个HTTP请求后，我们的框架会对这个请求进行处理。请求处理完毕后，肯定要往回发送一个响应。我们直接调用这个响应构造器w的write方法，即可完成响应的发送。</p>
+</li>
+<li><p>r *http.Request ：这个很简单，就是我们服务器或者框架从客户端收到的请求。这个请求的类型为Request，很显然，这个类型到时候是需要我们后面自己构建的。</p>
+</li>
+<li><p>其实，当客户端发来一个请求时，它的请求形式是一个HTTP请求报文的形式。而我们服务器对客户端的响应也是一个HTTP响应报文的形式。我们框架要做的就是当接收到HTTP报文后，我们对HTTP报文进行解析，获取关键信息并将其封装成一个Request结构体形式，代表一个请求。有了这个请求后，进行处理请求，通过响应构造器的write方法构建一个HTTP响应报文，再将其发送回去。</p>
+</li>
+</ol>
+<p>最后，关于ListenAndServe()函数，可以参照一下下面这幅图。</p>
+<p><img src="https://s1.vika.cn/space/2022/10/05/462bec12522f48a18f19a373c5a659f5" class="lazyload" data-srcset="https://s1.vika.cn/space/2022/10/05/462bec12522f48a18f19a373c5a659f5" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>这部分其实就和go的socket编程相关。</p>
+<p>如果你觉得层次比较多，对照着思维导图多看几遍就顺畅了。这里我也给你整理了一下逻辑线各层的关键结论：</p>
+<p>第一层，标准库创建 HTTP 服务是通过创建一个 Server 数据结构完成的；</p>
+<p>第二层，Server 数据结构在 for 循环中不断监听每一个连接；</p>
+<p>第三层，每个连接默认开启一个 Goroutine 为其服务；</p>
+<p>第四、五层，serverHandler 结构代表请求对应的处理逻辑，并且通过这个结构进行具体业务逻辑处理；</p>
+<p>第六层，Server 数据结构如果没有设置处理函数 Handler，默认使用 DefaultServerMux 处理请求；</p>
+<p>第七层，DefaultServerMux 是使用 map 结构来存储和查找路由规则。</p>
+<p>最后，再多说一句，这个Handler接口除了有自定义处理逻辑的功能外，还有着路由的功能。</p>
+<p>Handler的存在给框架的拓展带来了极大的灵活性，有了Handler，我们可以让任何一个HTTP请求以自己的规则映射到自己的路由。比如http标准库用ServeMux类型实现了Handler接口，从而实现了静态路由(将在本系列的末尾讨论)；gin的gin.Engine也是实现了自己的Handler，有了动态路由功能。</p>
+<p>路由部分我们最后再说。</p>
+<h2 id="6-自定义框架的需求分析"><a href="#6-自定义框架的需求分析" class="headerlink" title="6.自定义框架的需求分析"></a>6.自定义框架的需求分析</h2><p>从需求分析的角度出发，看看我们要实现的web框架大体上需要哪些功能：</p>
+<ul>
+<li>http协议的解析不应该由开发者完成，我们需要从tcp字节流中解析出http的报文。</li>
+<li>框架需要设置Request并为Request绑定易用API。</li>
+<li>框架需要设置Response并为Response绑定易用API。</li>
+</ul>
+<p>乍一看，我们需要给框架完成的功能甚少，但每一步都会有很多情况需要处理：</p>
+<ol>
+<li><p>比如对于http 1.1协议来说，因为支持长连接，一个tcp连接能发送多个http请求，如果框架未正确完成上一个请求的解析(如未将当前报文主体全部读完)，那么随之到来的下一个请求就无法正确解析。</p>
+</li>
+<li><p>客户端有时会以chunk方式传输报文主体，我们应该保证用户read到的只有有效载荷(playload)，而没有chunk协议里的控制信息。</p>
+</li>
+<li><p>前端提交上来的form表单有多种类型，最常见的如application&#x2F;x-www-form-urlencoded以及multipart&#x2F;form-data，我们框架应该予以区分并分别提供解析方法。</p>
+</li>
+<li><p>服务端发送的数据是放在http响应报文的响应体中，客户端怎么知道我们发送了多少数据呢？一般来说可以查看响应头中的Content-Length字段，从而知道响应体的长度。观察上述的代码的ServeHTTP方法，我们并没有显式为头部指定Content-Length，但客户端依旧可以完整的读取出数据，这就说明标准库帮助我们完成了相关的设置工作。</p>
+</li>
+<li><p>从可行性角度来说，框架为我们的每一次响应都自动正确设置Content-Length(以下简称CT)是不现实的，发送CT所在的响应头必须是先于发送响应报文主体的，如果框架要自动设置CT，也就意味着我们必须为用户Write的所有数据进行缓存，这对一定长度内的发送量还实用，但对于大响应主体来说绝对是不可行。所以我们的框架还需要在必要时刻转化为利用chunk方式传输数据，这一部分对用户来说必须是无感知的。</p>
+</li>
+</ol>
+<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7.总结"></a>7.总结</h2><p>本篇是从零实现Golang的HTTP标准库服务端部分的第一篇，开头给大家推荐了几个优秀的学习资源，然后介绍了webServer，标准库启动webServer的方法以及我们自定义启动webServer的方法并进行了详细的分析，最后给出了我们框架的需求以及难点。</p>
+<p>本篇到此结束，感谢你的阅读！</p>
 
   </div>
   
@@ -2539,7 +2619,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-05T11:39:49+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-05T18:45:43+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Oct 5, 2022</p>
@@ -2565,7 +2645,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E5%AE%9E%E7%8E%B0%EF%BC%881%EF%BC%89.html&title=从零实现Golang的HTTP标准库-实现（1） - 徐乔伟&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（1） - 徐乔伟&summary="
           
           >
           
@@ -2577,7 +2657,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E5%AE%9E%E7%8E%B0%EF%BC%881%EF%BC%89.html&title=从零实现Golang的HTTP标准库-实现（1） - 徐乔伟&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（1） - 徐乔伟&summary="
           
           >
           
@@ -2589,7 +2669,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E5%AE%9E%E7%8E%B0%EF%BC%881%EF%BC%89.html&title=从零实现Golang的HTTP标准库-实现（1） - 徐乔伟&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（1） - 徐乔伟&summary="
           
           >
           
@@ -2642,7 +2722,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="discussionUrl" content="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E5%AE%9E%E7%8E%B0%EF%BC%881%EF%BC%89.html#comments">
+      <meta itemprop="discussionUrl" content="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html#comments">
     </span>
     <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
@@ -2684,7 +2764,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%89%8D%E8%A8%80"><span class="toc-text">1.前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A6%82%E8%BF%B0"><span class="toc-text">2.概述</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%89%8D%E8%A8%80"><span class="toc-text">1.前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A6%82%E8%BF%B0"><span class="toc-text">2.概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-webServer"><span class="toc-text">3.webServer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%A0%87%E5%87%86%E5%BA%93%E5%90%AF%E5%8A%A8Web%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="toc-text">4.标准库启动Web服务的示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%87%AA%E7%BC%96%E4%BB%A3%E7%A0%81%E5%90%AF%E5%8A%A8Web%E6%9C%8D%E5%8A%A1"><span class="toc-text">5.自编代码启动Web服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A1%86%E6%9E%B6%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">6.自定义框架的需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%80%BB%E7%BB%93"><span class="toc-text">7.总结</span></a></li></ol>
     </div>
   </section>
 
@@ -3361,7 +3441,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-实现（1）.html","name":"从零实现Golang的HTTP标准库-实现（1）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-实现（1）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E5%AE%9E%E7%8E%B0%EF%BC%881%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E5%AE%9E%E7%8E%B0%EF%BC%881%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-05T02:21:31.000Z","dateModified":"2022-10-05T03:39:49.508Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-（1）.html","name":"从零实现Golang的HTTP标准库-（1）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-（1）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-05T02:21:31.000Z","dateModified":"2022-10-05T10:45:43.134Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
