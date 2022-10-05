@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.7.6">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="http://example.com/tags/标签1/"/>
+  
+  <link rel="canonical" href="http://example.com/post/从零实现golang的http标准库-（2）.html"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,18 +31,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Tag: 标签1 - 徐乔伟</title>
-  <meta name="keywords" content="null">
+  <title>从零实现Golang的HTTP标准库-（2） - 徐乔伟</title>
+  <meta name="keywords" content="网络编程,null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="徐乔伟">
-<meta property="og:url" content="http://example.com/tags/%E6%A0%87%E7%AD%BE1/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零实现Golang的HTTP标准库-（2）">
+<meta property="og:url" content="http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="徐乔伟的个人博客">
+<meta property="og:description" content="1.概述在上一篇中，我们介绍了如何启动一个Web服务， 在本篇中，我们主要构建框架的基本结构，即所需要的一些结构体。 我们暂时需要4个结构体：  ①  Server：代表WEB服务器，属性包含监听地址Addr以及Handler，负责服务器的启动逻辑。   ②  conn：代表HTTP连接，net.Conn表达能力过弱，故将其封装成conn。仅服务于框架内部，不应由用户使用，包内不可导出。   ③">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2022-10-05T14:20:00.000Z">
+<meta property="article:modified_time" content="2022-10-05T14:59:53.557Z">
 <meta property="article:author" content="徐乔伟">
+<meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1624,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1664966757191),
+    lastupdate: new Date(1664982095612),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2350,7 +2353,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper  search' style="display: none;">
+      <div id="none" class='cover-wrapper post search' style="display: none;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://s1.vika.cn/space/2022/09/25/ef48cd6971f14500a2d4cca1f847be62"></div>
 
@@ -2413,25 +2416,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/小戴小戴.html">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（2）.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2440,67 +2427,319 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="徐乔伟的个人博客">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E5%B0%8F%E6%88%B4%E5%B0%8F%E6%88%B4.html"  itemprop="url">
-        小戴小戴
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
-        小戴小戴，这里是小徐。
+    
+      <h1 class="title" itemprop="name headline">
+        从零实现Golang的HTTP标准库-（2）
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">请设置文章作者</p>
+  </a>
+</div>
 
-      
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+      </span>
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-09-25T14:19:54+08:00">2022-09-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%88%86%E7%B1%BB2/">分类2</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E5%88%86%E7%B1%BB2/" itemprop="url"><span itemprop="name">分类2</span></a>
-            </span>
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-10-05T22:20:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 5, 2022</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在上一篇中，我们介绍了如何启动一个Web服务，</p>
+<p>在本篇中，我们主要构建框架的基本结构，即所需要的一些结构体。</p>
+<p>我们暂时需要4个结构体：</p>
+<blockquote>
+<p>①  Server：代表WEB服务器，属性包含监听地址Addr以及Handler，负责服务器的启动逻辑。</p>
+</blockquote>
+<blockquote>
+<p>②  conn：代表HTTP连接，net.Conn表达能力过弱，故将其封装成conn。仅服务于框架内部，不应由用户使用，包内不可导出。</p>
+</blockquote>
+<blockquote>
+<p>③  Request：代表客户端的HTTP请求，由框架从字节流中解析http报文从而生成的结构。</p>
+</blockquote>
+<blockquote>
+<p>④  response：代表响应，实现了ResponseWriter接口。包内不可导出。</p>
+</blockquote>
+<h2 id="2-结构体构建"><a href="#2-结构体构建" class="headerlink" title="2.结构体构建"></a>2.结构体构建</h2><p>本节只为搭建框架的骨干，因此部分结构体内部暂时为空，部分函数也空实现，在随后的章节中我们一步步进行填充。</p>
+<p><strong>1.requset.go</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Request <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">readRequest</span><span class="params">(c *conn)</span></span>(*Request,<span class="type">error</span>)&#123;<span class="keyword">return</span> <span class="literal">nil</span>,<span class="literal">nil</span>&#125;		<span class="comment">//暂时空实现</span></span><br></pre></td></tr></table></figure>
+
+<p>Request结构体就代表了客户端提交的http请求，我们使用readRequest函数从http连接上解析出这个对象。</p>
+<p>它是http.Handler的ServeHTTP方法的第二个参数。</p>
+<p><strong>2.response.go</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> response <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ResponseWriter <span class="keyword">interface</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>response结构体就代表服务端的响应对象，我们后期会给其绑定些与客户端交互的方法，供用户使用。这里暂时让response和ResponseWriter都空实现。</p>
+<p>它是http.Handler的ServeHTTP方法的第一个参数。</p>
+<p><strong>3.server.go</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Handler <span class="keyword">interface</span> &#123;</span><br><span class="line">	ServeHTTP(w ResponseWriter,r *Request)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Server <span class="keyword">struct</span>&#123;</span><br><span class="line">	Addr <span class="type">string</span>		<span class="comment">//监听地址</span></span><br><span class="line">	Handler Handler	<span class="comment">//处理http请求的回调函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span></span> ListenAndServe()<span class="type">error</span>&#123;</span><br><span class="line">	l,err:=net.Listen(<span class="string">&quot;tcp&quot;</span>,s.Addr)</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		rwc,err:=l.Accept()</span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		conn:=newConn(rwc,s)</span><br><span class="line">		<span class="keyword">go</span> conn.serve()			<span class="comment">// 为每一个连接开启一个go程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>rwc是net包里的那个连接，此时还没有封装成代表http的连接。conn是封装好的连接对象。通过newConn（rwc）初始化出来。</p>
+<p>conn是封装好的连接对象，它隶属于一个conn结构体。这个conn结构体里面提供了一个serve方法。这个serve方法就是用来处理连接的。Serve方法主要干三件事：一个是从连接中解析出客户端的请求request，另一个是设置response。这是serverHTTP方法的两个参数。最后一个是调用serverHTTP方法。注意：这个serverHTTP方法是和具体的tcp连接绑在一起的，而不是和封装好的那个连接绑在一起的。</p>
+<p>上一节提到启动一个服务器其必须项只有Addr以及Handler，他们分别告诉了框架监听地址以及如何处理客户端的请求。事实上，Server结构体中还可以加入很多字段如读取或写入超时时间、能接受的最大报文大小等控制信息，但为了专注于一个框架最核心的实现，我们忽略这些细节内容。</p>
+<p>ListenAndServe方法中展现的是go语言socket编程的写法，其大致意思是在Addr上监听TCP连接，将得到的TCP连接rwc(ReadWriteCloser)以及s进行封装得到conn结构体。接着调用conn.serve()方法，开启goroutine处理请求。</p>
+<p>项目的开发尽量遵循模块分工原则，server.go只负责WEB服务器的启动逻辑，接下来的http协议的解析交给另一个模块conn.go进行。</p>
+<p><strong>4.conn.go</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> conn <span class="keyword">struct</span>&#123;</span><br><span class="line">	svr  *Server	<span class="comment">// 引用服务器对象</span></span><br><span class="line">    rwc	 net.Conn	<span class="comment">// 底层tcp连接</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newConn</span><span class="params">(rwc net.Conn,svr *Server)</span></span>*conn&#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;conn&#123;svr: svr, rwc: rwc&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> serve()&#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> err:=<span class="built_in">recover</span>();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;panic recoverred,err:%v\n&quot;</span>,err)</span><br><span class="line">		&#125;</span><br><span class="line">		c.<span class="built_in">close</span>()</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="comment">//http1.1支持keep-alive长连接，所以一个连接中可能读出个请求，因此实用for循环读取</span></span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		req,err:=c.readRequest()		<span class="comment">//解析出Request</span></span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			handleErr(err,c)			<span class="comment">//将错误单独交给handleErr处理</span></span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		res:=c.setupResponse()			<span class="comment">//设置response</span></span><br><span class="line">        </span><br><span class="line">       	<span class="comment">// 有了用户关心的Request和response之后，传入用户提供的回调函数即可</span></span><br><span class="line">		c.svr.Handler.ServeHTTP(res,req)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//暂时为空实现，后续小节再填充</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> readRequest()(*Request,<span class="type">error</span>)&#123;<span class="keyword">return</span> readRequest(c)&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> setupResponse()*response&#123;<span class="keyword">return</span> <span class="literal">nil</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> <span class="built_in">close</span>()&#123;c.rwc.Close()&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleErr</span><span class="params">(err <span class="type">error</span>,c *conn)</span></span>&#123;fmt.Println(err)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对conn结构体作了扩充：拥有服务器属性、tcp连接属性。</p>
+<p>在serve方法中，会分别调用readRequest以及setupResponse方法，从而得到<em>Request以及</em>response，随后将它们传入用户指定的Handler中，开启实际的请求处理过程。defer中使用recover，防止用户指定的Handler中存在逻辑错误导致发生panic。</p>
+<p>利用for循环读取的原因：</p>
+<blockquote>
+<p>对于HTTP 1.0来说，客户端为了获取服务端的每一个资源，都需要为每一个请求进行TCP连接的建立，因此每一个请求都需要等待2个RTT(三次握手+服务端的返回)的延时。而往往一个html网页中往往引用了多个css或者js文件，每一个请求都要经历TCP的三次握手，其带来的代价无疑是昂贵的。</p>
+</blockquote>
+<blockquote>
+<p>因此在HTTP 1.1中进行了巨大的改进，即如果将要请求的资源在同一台服务器上，则我只需要建立一个TCP连接，所有的HTTP请求都通过这个连接传输，平均下来可以减少一半的传播时延。</p>
+</blockquote>
+<blockquote>
+<p>如果客户端的请求头中包含connection: keep-alive字段，则我们的服务器应该有义务保证长连接的维持，并持续从中读取HTTP请求，因此这里我们使用for循环。</p>
+</blockquote>
+<p>将err交给handleErr函数处理的原因：</p>
+<blockquote>
+<p>eadRequest可能会出现各种错误，如用户连接的断开、请求报文格式错误、服务器系统故障、使用了不支持的http版本、使用了不支持的协议等等错误。</p>
+</blockquote>
+<blockquote>
+<p>对于有些错误如客户端连接断开或者使用了不支持的协议，我们服务端不应该进行回复。但对于一些错误如使用了不支持的http版本，我们应该返回505状态码；对于请求报文过大的错误，我们应该返回413状态码。因此在handleErr中，我们应该对err进行分类处理。</p>
+</blockquote>
+<h2 id="3-对conn结构体的改进"><a href="#3-对conn结构体的改进" class="headerlink" title="3.对conn结构体的改进"></a>3.对conn结构体的改进</h2><p>目前conn结构体很简单，我们在读写两个方面进行分别改进，抽象出两个结构成员，一个负责对tcp连接读的逻辑，一个负责写的逻辑。两个改进如下：</p>
+<p><strong>1.写的改进</strong></p>
+<p>写的改进比较简单，主要是从性能优化角度出发。以下面代码为例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++&#123;</span><br><span class="line">        io.WriteString(w,strconv.Itoa(i))</span><br><span class="line">    &#125;	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>100次循环每次写入1~2B的小片段，每一次写入都会进行一次系统调用、一次IO操作，这势必会极大降低应用程序的性能。很显然，可以对用户写入数据进行缓存，缓存不下时再发送就能较少IO次数，从而提升效率。</p>
+<p>go标准库提供了现有的工具，不需要重复造轮子。bufio.Writer可以解决我们的问题，它的底层会分配一个缓存切片，我们对这bufio.Writer写入时会优先往这个切片中写入，如果缓存满了，则将切片中缓存的数据发送到最底层的writer中，因此可以保证每次写入的大小都是大于或等于缓存切片的大小。在conn结构中引入bufw成员：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> conn <span class="keyword">struct</span>&#123;</span><br><span class="line">	svr  *Server</span><br><span class="line">	rwc  net.Conn</span><br><span class="line">	bufw *bufio.Writer		<span class="comment">//带缓存的writer</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newConn</span><span class="params">(rwc net.Conn,svr *Server)</span></span>*conn&#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;conn&#123;</span><br><span class="line">		svr: svr,</span><br><span class="line">		rwc: rwc,</span><br><span class="line">		bufw: bufio.NewWriterSize(rwc,<span class="number">4</span>&lt;&lt;<span class="number">10</span>), <span class="comment">//缓存大小4kB</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> serve()&#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> err:=<span class="built_in">recover</span>();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;panic recoverred,err:%v\n&quot;</span>,err)</span><br><span class="line">		&#125;</span><br><span class="line">		c.<span class="built_in">close</span>()</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="comment">//http1.1支持keep-alive长连接，所以一个连接中可能读出</span></span><br><span class="line">	<span class="comment">//多个请求，因此实用for循环读取</span></span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		req,err:=c.readRequest()</span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			handleErr(err,c)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		resp:=c.setupResponse()</span><br><span class="line">		c.svr.Handler.ServeHTTP(resp,req)</span><br><span class="line">		<span class="comment">//将缓存中的剩余的数据发送到rwc中</span></span><br><span class="line">		<span class="keyword">if</span> err=c.bufw.Flush();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			<span class="keyword">return</span>	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们给conn加入了bufw属性，以后的写入操作都将直接操纵bufw，其缓存的默认大小为4KB。同时在serve方法中，在一个请求处理结束后，bufw的缓存切片中还缓存有部分数据，我们需要调用Flush保证数据全部发送。</p>
+<p><strong>2.读的改进</strong></p>
+<p>对于HTTP协议来说，一个请求报文分为三部分：请求行、首部字段以及报文主体，一个post请求的报文如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/<span class="number">1.1</span>\r\n						   	#请求行</span><br><span class="line">Content-Type: text/plain\r\n				#<span class="number">2</span>~<span class="number">7</span>行首部字段，首部字段为k-v对</span><br><span class="line">User-Agent: PostmanRuntime/<span class="number">7.28</span><span class="number">.0</span>\r\n</span><br><span class="line">Host: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span>\r\n</span><br><span class="line">Accept-Encoding: gzip, deflate, br\r\n</span><br><span class="line">Connection: keep-alive\r\n</span><br><span class="line">Content-Length: <span class="number">18</span>\r\n</span><br><span class="line">\r\n</span><br><span class="line">hello,I am client!							#报文主体</span><br></pre></td></tr></table></figure>
+
+
+<p>其中首部字段部分是由一个个key-value对组成，每一对之间通过\r\n分割，首部字段与报文主体之间则是利用两个连续的CRLF即\r\n\r\n作为分界。首部字段到底有多少个key-value对于服务端程序来说是无法预知的，因此我们想正确解析出所有的首部字段，我们必须一直解析到出现两个连续的\r\n为止。</p>
+<p>对于一个正常的http请求报文，其首部字段总长度不会超过1MB，所以直接不加限制的读到空行完全可行，但问题是无法保证所有的客户端都没有恶意。</p>
+<p>他可能在阅读框架源码后发现对首部字段的读取未采取任何限制措施，于是发送了一个首部字段无限长的http请求，导致服务器无限解析最终用掉了所有内存直至程序崩溃。因此我们应该为我们的reader限制最大读取量，这是第一个改进，改进用到了标准库的io.LimitedReader。</p>
+<p>除此之外，首部字段的每个key-value都占用一行(\r\n是换行符)，为了方便解析，我们的reader应该有ReadLine方法。这是第二个改进，改进用到了标准库的bufio.Reader。</p>
+<p>代码变动如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> conn <span class="keyword">struct</span>&#123;</span><br><span class="line">	svr  *Server</span><br><span class="line">	rwc  net.Conn</span><br><span class="line">	lr   *io.LimitedReader</span><br><span class="line">	bufr *bufio.Reader		<span class="comment">//bufr是对lr的封装</span></span><br><span class="line">	bufw *bufio.Writer</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newConn</span><span class="params">(rwc net.Conn,svr *Server)</span></span>*conn&#123;</span><br><span class="line">	lr:=&amp;io.LimitedReader&#123;R: rwc, N: <span class="number">1</span>&lt;&lt;<span class="number">20</span>&#125;</span><br><span class="line">	<span class="keyword">return</span> &amp;conn&#123;</span><br><span class="line">		svr: svr,</span><br><span class="line">		rwc: rwc,</span><br><span class="line">		bufw: bufio.NewWriterSize(rwc,<span class="number">4</span>&lt;&lt;<span class="number">10</span>),</span><br><span class="line">		lr:lr,</span><br><span class="line">		bufr: bufio.NewReaderSize(lr,<span class="number">4</span>&lt;&lt;<span class="number">10</span>),</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一处改进：为conn增加了lr字段，它是一个io.LimitedReader，它包含一个属性N代表能够在这个reader上读取的最多字节数，如果在此reader上读取的总字节数超过了上限，则接下来对这个reader的读取都会返回io.EOF，从而有效终止读取过程，避免首部字段的无限读。</p>
+<p>第二处改进：为conn增加bufr字段，它是一个bufio.Reader，其底层的reader为上述的LimitedReader。对于一个io.Reader接口而言，它是无法提供ReadLine方法的，而将其封装程bufio.Reader后，就可以使用这个方法。</p>
+<blockquote>
+<p>bufio.Reader相较io.Reader来说多出了ReadLine方法的原因：</p>
+<p>io.Reader提供的Read方法需要传入一个切片，如果传入的切片太小了，可能导致一行未读完；如果传入的切片太大了，则可能导致读取超过了一行。首部字段中的任何一行其长度是不可预知的，所以单纯利用io.Reader的Read方法很难达成目的。当然你可以传入一个字节大小的切片，每次读取1B然后通过不断append的方式，但这样会带来多次的IO开销。</p>
+<p>bufio.Reader相较于io.Reader的改进就是，它会存在一个缓存切片，如果缓存切片中存在数据，我们对bufio.Reader进行Read优先会从这个缓存中取。我们平时会遇到一个使用场景就是，我们希望查看一下某个reader中的前多少B的数据，但又不希望我们这次查看之后后续的Read方法再也读不到这些数据，这时我们会将其转为一个bufio.Reader，通过其Peek方法就可以实现上述的要求。其原理就是Peek方法会将你peek出的数据暂存入切片缓存，尽管底层的reader流中不存在了这些数据，但对bufio.Reader进行Read会优先从缓存取，依旧可以将以前消费的数据读取出来。</p>
+<p>ReadLine方法就是借助了这个缓存，它会不断地读取数据，如果读取的数据不够一行，则会将这些数据暂存；如果读取的数据够了一行，则将这一行返回，并将剩余未够一行的数据继续缓存。这样不论是一次读多读少，都不会影响Read方法的调用，同时也能减少IO次数提升性能。具体实现可以查看标准库bufio.go源码。</p>
+</blockquote>
+<p>那么以后，我们直接操作的IO对象就是bufr和bufw：</p>
+<ul>
+<li><p>读数据时直接操作bufr，bufr进而读取io.LimitedReader，进而读取tcp连接。</p>
+</li>
+<li><p>写数据时直接操作bufw，bufw进而写入到tcp连接。</p>
+</li>
+</ul>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><p>编写main.go：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;example/httpd&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(*myHandler)</span></span> ServeHTTP(w httpd.ResponseWriter,r *httpd.Request)&#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;hello world&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	svr:=httpd.Server&#123;</span><br><span class="line">		Addr: <span class="string">&quot;127.0.0.1:8080&quot;</span>,</span><br><span class="line">		Handler:<span class="built_in">new</span>(myHandler),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">panic</span>(svr.ListenAndServe())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于目前未解析request以及response，所以无法去真正写我们的业务代码，但可以测试我们的Handler是否能被正常触发。执行curl命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 127.0.0.1:8080</span><br></pre></td></tr></table></figure>
+
+<p>测试的执行流程为：框架使用者先指定一个myhandler结构体，给结构体绑定一个serverhttp方法，自己自定义实现serverhttp（其实是继承handler并重写）。</p>
+<p>然后在main函数里面初始化一个server服务器对象svr，然后调用服务器对象的listenandserve方法，然后转进入到conn的serve方法，serve方法最后调用服务器对象的handler属性，handler是一个接口，里面有serverhttp方法但没有去实现，故handler可以调用serverhttp方法。</p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><p>这一章我们完成了httpd框架骨干的搭建，以及完成对conn的封装。下一章则正式开始HTTP协议的解析工作，我们将封装Request、完成请求行以及请求首部字段的解析。</p>
+<p>本篇到此结束，感谢你的阅读！</p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/post/%E5%B0%8F%E6%88%B4%E5%B0%8F%E6%88%B4.html' itemprop="url">
-            Read More
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-05T22:59:53+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 5, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>网络编程</p></a></div>
+  <span hidden itemprop="keywords">网络编程</span>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（2） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（2） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（2） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html'>
+          <p class='title'>从零实现Golang的HTTP标准库-（1）<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1.前言在正式开始我们对Golang的HTTP标准库的实现之前，我还是想先推荐几个学习资源！
+这几个学习资源不是我们实现HTTP标准库所需的必备知识，所以我没有将他们放在前文的预备知识篇中，但是...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
   
 
 
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-  
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2509,156 +2748,52 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
-<section class="widget blogger desktop mobile pjax">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://s1.vika.cn/space/2022/09/25/6fad662f39e8414598d593072ef746cb'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>徐乔伟</h2>
-        
-        
-          <p>个人学习记录</p>
-
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fa-solid fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:1511189367@qq.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/Xuqiaowei/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop pjax">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
-            active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
-            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%88%86%E7%B1%BB2/" href="/categories/%E5%88%86%E7%B1%BB2/"
-            active-action="action-categoriesE58886E7B1BB2"
-            ><div class='name'>分类2</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%9F%BA%E7%A1%80/" href="/categories/%E5%9F%BA%E7%A1%80/"
-            active-action="action-categoriesE59FBAE7A180"
-            ><div class='name'>基础</div><div class='badge'>(1)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile pjax">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 24px; color: #555">基础知识</a> <a href="/tags/%E6%A0%87%E7%AD%BE1/" style="font-size: 14px; color: #999">标签1</a> <a href="/tags/%E6%A0%87%E7%AD%BE2/" style="font-size: 14px; color: #999">标签2</a> <a href="/tags/%E6%A0%87%E7%AD%BE3/" style="font-size: 14px; color: #999">标签3</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 14px; color: #999">网络编程</a>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-<section class="widget text desktop pjax">
-  
-  <header>
-    
-      <a target="_blank" rel="noopener" href='https://github.com/Xuqiaowei/'><i class="fab fa-github fa-fw" aria-hidden="true"></i><span class='name'>点个赞吧</span></a>
-    
-  </header>
-
-
-  <div class='content'>
-    
-  </div>
-</section>
-
     
   
 
 
 <div class="widget-sticky pjax">
 
+  
+  
+
+
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1.概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BB%93%E6%9E%84%E4%BD%93%E6%9E%84%E5%BB%BA"><span class="toc-text">2.结构体构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AF%B9conn%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-text">3.对conn结构体的改进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95"><span class="toc-text">4.测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%80%BB%E7%BB%93"><span class="toc-text">5.总结</span></a></li></ol>
+    </div>
+  </section>
+
+  
+
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -2686,13 +2821,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3309,7 +3445,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/tags/标签1/","name":"标签1"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-（2）.html","name":"从零实现Golang的HTTP标准库-（2）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-（2）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-05T14:20:00.000Z","dateModified":"2022-10-05T14:59:53.557Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
