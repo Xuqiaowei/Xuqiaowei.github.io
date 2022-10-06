@@ -1624,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1665039141016),
+    lastupdate: new Date(1665049967794),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2444,9 +2444,142 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（6）.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html"  itemprop="url">
+        从零实现Golang的HTTP标准库-（6）
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        1.概述前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipart表单的解析。个人认为是整个框架最难实现部分，不过与chunkReader实现的思路类似，可以借鉴实现。
+2.两种form表单客户端提交的form表单是利用http请求的报文主体部分携带的，前文已经做...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-10-09T08:20:00+08:00">2022-10-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（5）.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html"  itemprop="url">
+        从零实现Golang的HTTP标准库-（5）
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        1.概述前文进行了Request首部字段的解析，已经完整的支持了GET请求。对于POST请求来说，其传送的表单数据在HTTP请求的报文主体body部分，服务端需要进一步IO操作才能读出，为了提高性能我们将POST表单的解析权交给用户，为此我们给Request结构体封装一个Body字段，作为IO的接口。
+2.如何知道报文主体的长度以下一段http协议post请求报文为例：
+1234567891...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-10-08T08:20:00+08:00">2022-10-08</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -3068,7 +3201,7 @@ titlel1 我是一级titlel2 我是二级titlel3 我是三级titlel4 我是四级
           <li><a class="flat-box"
             title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
             active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
-            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(8)</div></a></li>
         
       </ul>
     </div>

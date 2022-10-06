@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.7.6">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="http://example.com/tags/网络编程/"/>
+  
+  <link rel="canonical" href="http://example.com/post/从零实现golang的http标准库-（5）.html"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,18 +31,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Tag: 网络编程 - 徐乔伟</title>
-  <meta name="keywords" content="null">
+  <title>从零实现Golang的HTTP标准库-（5） - 徐乔伟</title>
+  <meta name="keywords" content="网络编程,null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="徐乔伟">
-<meta property="og:url" content="http://example.com/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零实现Golang的HTTP标准库-（5）">
+<meta property="og:url" content="http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="徐乔伟的个人博客">
+<meta property="og:description" content="1.概述前文进行了Request首部字段的解析，已经完整的支持了GET请求。对于POST请求来说，其传送的表单数据在HTTP请求的报文主体body部分，服务端需要进一步IO操作才能读出，为了提高性能我们将POST表单的解析权交给用户，为此我们给Request结构体封装一个Body字段，作为IO的接口。 2.如何知道报文主体的长度以下一段http协议post请求报文为例： 12345678910PO">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2022-10-08T00:20:00.000Z">
+<meta property="article:modified_time" content="2022-10-06T09:23:19.192Z">
 <meta property="article:author" content="徐乔伟">
+<meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2350,7 +2353,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper  search' style="display: none;">
+      <div id="none" class='cover-wrapper post search' style="display: none;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://s1.vika.cn/space/2022/09/25/ef48cd6971f14500a2d4cca1f847be62"></div>
 
@@ -2413,98 +2416,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（6）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（6）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipart表单的解析。个人认为是整个框架最难实现部分，不过与chunkReader实现的思路类似，可以借鉴实现。
-2.两种form表单客户端提交的form表单是利用http请求的报文主体部分携带的，前文已经做...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-09T08:20:00+08:00">2022-10-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（5）.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
@@ -2514,338 +2427,319 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="徐乔伟的个人博客">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html"  itemprop="url">
+    
+    
+      <h1 class="title" itemprop="name headline">
         从零实现Golang的HTTP标准库-（5）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">请设置文章作者</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
     
-      
-        1.概述前文进行了Request首部字段的解析，已经完整的支持了GET请求。对于POST请求来说，其传送的表单数据在HTTP请求的报文主体body部分，服务端需要进一步IO操作才能读出，为了提高性能我们将POST表单的解析权交给用户，为此我们给Request结构体封装一个Body字段，作为IO的接口。
-2.如何知道报文主体的长度以下一段http协议post请求报文为例：
-1234567891...
-      
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+      </span>
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-08T08:20:00+08:00">2022-10-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-10-08T08:20:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 8, 2022</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>前文进行了Request首部字段的解析，已经完整的支持了GET请求。对于POST请求来说，其传送的表单数据在HTTP请求的报文主体body部分，服务端需要进一步IO操作才能读出，为了提高性能我们将POST表单的解析权交给用户，为此我们给Request结构体封装一个Body字段，作为IO的接口。</p>
+<h2 id="2-如何知道报文主体的长度"><a href="#2-如何知道报文主体的长度" class="headerlink" title="2.如何知道报文主体的长度"></a>2.如何知道报文主体的长度</h2><p>以下一段http协议post请求报文为例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">POST /index?name=gu HTTP/<span class="number">1.1</span>\r\n			#请求行</span><br><span class="line">Content-Type: text/plain\r\n				#此处至报文主体为首部字段</span><br><span class="line">User-Agent: PostmanRuntime/<span class="number">7.28</span><span class="number">.0</span>\r\n</span><br><span class="line">Host: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span>\r\n</span><br><span class="line">Accept-Encoding: gzip, deflate, br\r\n</span><br><span class="line">Connection: keep-alive\r\n</span><br><span class="line">Cookie: uuid=<span class="number">12314753</span>; tid=<span class="number">1</span>BDB9E9; HOME=<span class="number">1</span>\r\n</span><br><span class="line">Content-Length: <span class="number">18</span>\r\n</span><br><span class="line">\r\n</span><br><span class="line">hello,I am client!							#报文主体</span><br></pre></td></tr></table></figure>
+
+<p>报文主体与首部字段之间通过两个\r\n(CRLF)为分隔。前文中我们框架已经解析出了首部字段，本文的任务就是解析报文主体部分。</p>
+<p>报文主体就是用于携带客户端的额外信息，Body报文主体部分只有post或者put请求才会有。由于报文主体中能包含任何信息，更是不限长度，所以http协议就不能像首部字段一样以某个字符如CRLF为边界，来标记报文主体的范围。那么客户端是怎么保证服务端能够完整的不多不少的读出报文主体数据呢？</p>
+<p>其实很简单，我们只要在首部字段中用一项标记报文主体长度，就解决了问题。就以上述报文为例，首部字段中包含一个Content-Length字段，其值为18，服务端随后从tcp连接中读取18个字节的数据，就正好把hello,I am client!这18B的数据读出，恰恰满足我们的需要。</p>
+<p>当然除了使用Content-Length之外，http还可以使用chunk编码的方式，这里先埋个伏笔。</p>
+<h2 id="3-需求分析"><a href="#3-需求分析" class="headerlink" title="3.需求分析"></a>3.需求分析</h2><p>还是得明确一点，http报文的头部部分很短，上一章中框架将这部分读取并解析后直接交给用户，既省时也省力。</p>
+<p>但问题是http的报文主体是不限长度的，框架无脑将这些字节数据读出来，是很糟糕的设计。</p>
+<p>最明智的做法是，将这个解析的主动权交给用户，框架只提供方便用户读取解析报文主体的接口而已。</p>
+<p>因此在上文中，Request中存在一个Body(io.Reader接口类型)字段，用户对Body的读取就正好能读出对应的报文主体。</p>
+<p>仅仅让Body能读取到报文主体还不行，为了防止读多或读少，用户还需要限定只读取上述的Content-Length的长度，让用户手动指定读取长度的方式很麻烦也极为出错，我们想要的是能够达到以下效果：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(*myHandler)</span></span> ServeHTTP(w httpd.ResponseWriter,r *httpd.Request)&#123;</span><br><span class="line">    <span class="comment">// 不需要指定长度就能将报文主体不多不少读出</span></span><br><span class="line">	buf,err:=ioutil.ReadAll(r.Body)	</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%s\n&quot;</span>,buf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要保证Body达到我们期望的行为，这就意味着Body提供的Read方法能够保证以下两点：</p>
+<ul>
+<li><p>对Body读取的这个指针一开始应该指向报文主体的开头，也就是说不能将报文主体前面的首部字段读出。规定了读取的起始。</p>
+</li>
+<li><p>多个http的请求相继在tcp连接上传输，当前http请求的Body就应该只能读取到当前请求的报文主体，即只能读取Content-Length长度的数据。规定了读取的结束。</p>
+</li>
+</ul>
+<p>如果单纯保证第一点，完全可以用上一文中conn结构体的bufr字段作为Body，因为我们已经将首部字段从bufr中读出，下一次对bufr的读取自然会从报文主体开始。</p>
+<p>但这样做，第二点就无法满足。在go语言中，对一个io.Reader的读取，如果返回io.EOF错误代表我们将这个Reader中的所有数据读取完了。ioutil.ReadAll就是利用了这个特点，如果不出现一些异常错误，它会不停的读取数据直至出现io.EOF。而一个网络连接net.Conn，只有在对端主动将连接关闭后，对net.Conn的Read才会返回io.EOF错误。所以就意味着如果服务端出现以下代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conn,_ := listener.Accept()</span><br><span class="line">ioutil.ReadAll(conn)</span><br></pre></td></tr></table></figure>
+
+<p>只要客户端不主动关闭连接，我们也不设置超时事件，我们会永久的阻塞在第二行处。</p>
+<p>将bufr设置成Body就有这个问题，对bufr的读取最终会落到底层tcp连接(net.Conn)的读取，就算我们把当前请求的报文主体读取出来了，只要客户端不关闭连接，我们会永久阻塞。要是客户端继续发送了下一个http请求，我们当前的body还会顺带把下一个请求报文读出来，这绝对是不满足我们的需求的。</p>
+<p>所以必须保证Body这个Reader在将报文主体读取完毕即读取Content-Length长的数据后，立即返回一个io.EOF错误，通知ReadAll函数我们已经读取完毕了！</p>
+<p>现在的任务就是好好思量，Body的Read方法该如何设置，从而达到想要的效果。</p>
+<h2 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4.代码实现"></a>4.代码实现</h2><p>思维敏锐的朋友可能已经有了解决方案，那就是用io.LimitReader！</p>
+<p>上文用它来解决无限解析首部字段的问题，这里又派上用场。我们只需要将N设置成Content-Length，在最多读取N字节的长度后，LimitReader就会返回io.EOF错误，问题也迎刃而解。</p>
+<p>在readRequest中有一个setupBody方法，其实readRequest方法就是从一个请求报文中读取数据从而创建一个request对象。所以setupBody方法其实就是从报文中解析报文主体部分来填充request对象的body属性。同时在解析出报文主体赋给body属性的同时，还规定了body的一些规则：比如规定body读取的起始以及结尾。</p>
+<p>更改request.go的setupBody方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span></span> setupBody() &#123;</span><br><span class="line">	<span class="keyword">if</span> r.Method != <span class="string">&quot;POST&quot;</span> &amp;&amp; r.Method != <span class="string">&quot;PUT&quot;</span> &#123;</span><br><span class="line">		r.Body = &amp;eofReader&#123;&#125; 			<span class="comment">//POST和PUT以外的方法不允许设置报文主体</span></span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> cl := r.Header.Get(<span class="string">&quot;Content-Length&quot;</span>); cl != <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">		<span class="comment">//如果设置了Content-Length</span></span><br><span class="line">		contentLength, err := strconv.ParseInt(cl, <span class="number">10</span>, <span class="number">64</span>)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			r.Body = &amp;eofReader&#123;&#125;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">// 允许Body最多读取contentLength的数据</span></span><br><span class="line">		r.Body = io.LimitReader(r.conn.bufr, contentLength)</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		r.Body = &amp;eofReader&#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于非PUT以及POST方法，按照http协议的规定是不允许设置报文主体的，所以我们将Body设置成eofReader就好，对它的Read只会返回io.EOF错误。</p>
+<h2 id="5-chunk"><a href="#5-chunk" class="headerlink" title="5.chunk"></a>5.chunk</h2><p>上面这种方法是针对客户端发请求过来，带有content-length的情况，还有一种情况不带content-length，而是采用chunk编码的方式分块传输。</p>
+<p>除了通过Content-Length通知对端报文主体的长度外，http1.1引入了新的编码方式——chunk编码(分块传输编码)，顾名思义就是会将报文主体分块后进行传输。</p>
+<p>利用Content-Length存在一个问题：我们需要事先知道待发送的报文主体长度，而有些时候我们是希望数据边产生边发送，根本无从知道将要发送多少的数据。因此http1.1相较http1.0除了长连接之外的另一大改进就是引入了chunk编码，客户端需要在请求头部设置Transfer-Encoding: chunked。</p>
+<p>chunk编码的示例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK\r\n</span><br><span class="line">Content-Type: text/plain\r\n</span><br><span class="line">Transfer-Encoding: chunked\r\n</span><br><span class="line">\r\n</span><br><span class="line"></span><br><span class="line"># 以下为body</span><br><span class="line"><span class="number">17</span>\r\n							#chunk size</span><br><span class="line">hello, this is chunked \r\n		#chunk data</span><br><span class="line">D\r\n							#chunk size</span><br><span class="line">data sent by \r\n				#chunk data</span><br><span class="line"><span class="number">7</span>\r\n							#chunk size</span><br><span class="line">client!\r\n						#chunk data</span><br><span class="line"><span class="number">0</span>\r\n\r\n						#end</span><br></pre></td></tr></table></figure>
+
+<p>每一分块中包含两部分：</p>
+<ul>
+<li><p>第一部分为chunk size，代表该块chunk data的长度，利用16进制表示。</p>
+</li>
+<li><p>第二部分为chunk data，该区域存储有效载荷，实际欲传输的数据存储在这部分。</p>
+</li>
+</ul>
+<p>chunk size与chunk data之间都利用\r\n作为分割，通过0\r\n\r\n来标记报文主体的结束。</p>
+<h2 id="6-chunkReader"><a href="#6-chunkReader" class="headerlink" title="6.chunkReader"></a>6.chunkReader</h2><p>这个时候body属性的赋值就不是像content-length那样了，而是给body赋值了一个chunkReader结构体对象。</p>
+<p>这个chunkreader结构体对象同样要规定body可读的开头和结尾。这个chunkreader结构体对象有一个read方法，调用read（）方法可以读取出chunk编码内的报文内容。</p>
+<p>在readRequest方法中的setupbody方法中，我们需要增加一个判断，判断当前请求是否采用了chunk编码方式，如果采用了chunk编码方式，就将chunkreader结构体对象赋值给body属性，否则还按content -length处理。</p>
+<p>显然，我们对Body的设置就需要分类讨论了！</p>
+<p>抽象出一个chunkReader结构体，当客户端利用chunk传输报文主体时，我们将Body设置成chunkReader即可。那么这个chunkReader需要满足什么功能呢？</p>
+<p>依旧是满足上述Body的两点：规定Body读取的起始以及结尾。起始已经满足，重点考虑结尾的设计，我们这就不能使用LimitReader了，既然chunk编码的结束标志是0\r\n\r\n，那么我们的Read方法在碰到0\r\n\r\n时返回io.EOF错误即可，不允许继续向下读，因为后续的字节数据是属于下一个http请求。</p>
+<p>如果仅做到将报文主体不多不少读出，但读取的数据包含chunk编码的控制信息(chunk size以及CRLF)，而我们只关心chunk data部分，还需要用户手动解码，这也是不可取的。</p>
+<p>所以我们的chunkReader还需要具有解码chunk的功能，保证用户调用到的Read方法只读到有效载荷(chunk data)：hello, this is chunked data sent by client!。</p>
+<p>新建chunk.go文件：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> chunkReader <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">//当前正在处理的块中还剩多少字节未读</span></span><br><span class="line">	n    <span class="type">int</span></span><br><span class="line">	bufr *bufio.Reader</span><br><span class="line">	<span class="comment">//利用done来记录报文主体是否读取完毕</span></span><br><span class="line">	done <span class="type">bool</span></span><br><span class="line">	crlf [<span class="number">2</span>]<span class="type">byte</span> <span class="comment">//用来读取\r\n</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cw *chunkReader)</span></span> Read(p []<span class="type">byte</span>) (n <span class="type">int</span>, err <span class="type">error</span>) &#123;</span><br><span class="line">    <span class="comment">// 报文主体读取完后，不允许再读</span></span><br><span class="line">	<span class="keyword">if</span> cw.done &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>, io.EOF</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 当前块没数据了，准备读取下一块</span></span><br><span class="line">	<span class="keyword">if</span> cw.n == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="comment">// 先获取chunk Size</span></span><br><span class="line">		cw.n, err = cw.getChunkSize()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 获取到的chunkSize为0，说明读到了chunk报文结尾</span></span><br><span class="line">	<span class="keyword">if</span> cw.n == <span class="number">0</span> &#123;</span><br><span class="line">		cw.done = <span class="literal">true</span></span><br><span class="line">        <span class="comment">//将最后的CRLF消费掉，防止影响下一个http报文的解析</span></span><br><span class="line">		err = cw.discardCRLF()	</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//如果当前块剩余的数据大于欲读取的长度</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(p) &lt;= cw.n &#123;</span><br><span class="line">		n, err = cw.bufr.Read(p)</span><br><span class="line">		cw.n -= n</span><br><span class="line">		<span class="keyword">return</span> n, err</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//如果当前块剩余的数据不够欲读取的长度，将剩余的数据全部取出返回</span></span><br><span class="line">	n, _ = io.ReadFull(cw.bufr, p[:cw.n])</span><br><span class="line">	cw.n = <span class="number">0</span></span><br><span class="line">	<span class="comment">//记得把每个chunkData后的\r\n消费掉</span></span><br><span class="line">	<span class="keyword">if</span> err = cw.discardCRLF(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cw *chunkReader)</span></span> discardCRLF() (err <span class="type">error</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> _, err = io.ReadFull(cw.bufr, cw.crlf[:]); err == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> cw.crlf[<span class="number">0</span>] != <span class="string">&#x27;\r&#x27;</span> || cw.crlf[<span class="number">1</span>] != <span class="string">&#x27;\n&#x27;</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> errors.New(<span class="string">&quot;unsupported encoding format of chunk&quot;</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cw *chunkReader)</span></span> getChunkSize() (chunkSize <span class="type">int</span>, err <span class="type">error</span>) &#123;</span><br><span class="line">	line, err := readLine(cw.bufr)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//将16进制换算成10进制</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(line); i++ &#123;</span><br><span class="line">		<span class="keyword">switch</span> &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span> &lt;= line[i] &amp;&amp; line[i] &lt;= <span class="string">&#x27;f&#x27;</span>:</span><br><span class="line">			chunkSize = chunkSize*<span class="number">16</span> + <span class="type">int</span>(line[i]-<span class="string">&#x27;a&#x27;</span>) + <span class="number">10</span></span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27;A&#x27;</span> &lt;= line[i] &amp;&amp; line[i] &lt;= <span class="string">&#x27;F&#x27;</span>:</span><br><span class="line">			chunkSize = chunkSize*<span class="number">16</span> + <span class="type">int</span>(line[i]-<span class="string">&#x27;A&#x27;</span>) + <span class="number">10</span></span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27;0&#x27;</span> &lt;= line[i] &amp;&amp; line[i] &lt;= <span class="string">&#x27;9&#x27;</span>:</span><br><span class="line">			chunkSize = chunkSize*<span class="number">16</span> + <span class="type">int</span>(line[i]-<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>, errors.New(<span class="string">&quot;illegal hex number&quot;</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们用一个结构体成员n来记录当前块剩余未处理的的chunk data长度，一旦该块的数据读取完毕后就通过chunk size获取下一块的长度。</p>
+<p>chunk编码的控制信息全部在Read方法内部消费掉了，外界能读取的仅仅只有chunk data。</p>
+<blockquote>
+<p><strong>详解chunk.go</strong></p>
+<p>首先我们定义一个chunkReader的结构体，这个结构体如果被赋值给请求对象的body属性，就代表我们将采用chunk编码的方式来读取报文主体。body属性的类型是io.reader，所以这个chunkReader类型也是reader类型的，这个结构体里面有几个属性，n代表当前正在读取的chunk块还剩多少字节未读。bufr是一个bufio.reader类型的对象，等于是这个reader里面封装了一个bufio.reader，主要是用这个bufr来读。一个bool类型的done表示所有的块是否被读完，也即报文主体是否被读完。最后有一个切片名叫crlf，用来读取换行符。</p>
+<p><strong>详解chunkReader的read（）方法</strong></p>
+<p>cw是chunkReader结构体的对象，若发现cw的done属性为true，说明报文主体全部读取完毕，返回io.eof错误停止读。如果发现cw的n属性为0，说明当前读取的chunk块读完了，应当读取下一个chunk块。所以调用getchunksize方法获取下一个chunk块的长度赋值给n，代表下一个chunk块还有n<br>长度未读。如果此时发现n还是为0，说明读完了，将done设置为true，将最后的crlf消费掉，防止影响下一个http报文的解析。<br>如果发现切片p的长度&lt;当前chunk中未读取的长度，说明一次读不完，要分几次来读。所以我们先调用那个bufio类型的reader里面的那个read方法，这个read方法可以看下面的蓝色链接，这个read方法返回的是已经读取的字节数，所以我们调用这个read先读取一部分数据进入p中，并获取了已经读取的字节数，再让当前cw属性的n（代表未读数）减去已经读取的字节数，就是还剩下的未读数。调用bufio.reader的目的就是为了让块剩余未读数量小于切片p的长度。如果发现切片p的长度&gt;当前chunk中未读取的长度，说明可以一次读完，直接将块中剩下的数据全部读到切片p中，这里用的方法是io.readfull，这个方法应该就会在将数据放入p的同时将p中读到的数据上传上去。将cw的n属性设为0。消费crlf。read方法至此详解结束。</p>
+</blockquote>
+<p>别忘了更改request.go中的setupBody方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对端是否使用了chunk编码</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span></span> chunked() <span class="type">bool</span> &#123;</span><br><span class="line">	te := r.Header.Get(<span class="string">&quot;Transfer-Encoding&quot;</span>)</span><br><span class="line">	<span class="keyword">return</span> te == <span class="string">&quot;chunked&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span></span> setupBody() &#123;</span><br><span class="line">	<span class="keyword">if</span> r.Method != <span class="string">&quot;POST&quot;</span> &amp;&amp; r.Method != <span class="string">&quot;PUT&quot;</span> &#123;</span><br><span class="line">		r.Body = &amp;eofReader&#123;&#125; <span class="comment">//POST和PUT以外的方法不允许设置报文主体</span></span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span> r.chunked()&#123;</span><br><span class="line">		r.Body = &amp;chunkReader&#123;bufr: r.conn.bufr&#125;</span><br><span class="line">		r.fixExpectContinueReader()	<span class="comment">//见下文</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> cl := r.Header.Get(<span class="string">&quot;Content-Length&quot;</span>); cl != <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">		<span class="comment">//如果设置了Content-Length</span></span><br><span class="line">		contentLength, err := strconv.ParseInt(cl, <span class="number">10</span>, <span class="number">64</span>)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			r.Body = &amp;eofReader&#123;&#125;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		r.Body = io.LimitReader(r.conn.bufr, contentLength)</span><br><span class="line">        r.fixExpectContinueReader()</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		r.Body = &amp;eofReader&#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>做到这一点后，不论客户端时使用Content-Length还是chunk编码，用户看到的Body这个Reader都具有一样的行为即不多不少读到有效载荷，用户不需要自己手动分类处理，这就是封装的思想以及go语言接口的妙用。</p>
+<p>注意：这里其实只是对body属性赋值了chunkreader对象，而没有去调用chunkreader的read方法，那是在哪里去调用的这个read方法呢？其实是在main文件测试中，调用listenandserve方法，然后进去调用serve方法，再调用serveHTTP方法，在serveHTTP方法中，我们调用ioutil.readAll方法来读取请求的body属性，在这个底层才调用了read方法，将读到的内容存入buf中，然后再利用serveHTTP方法的第一个参数：这个ResponseWriter类型的w，来往w里面写入buf，相当于将读到的报文主体内容原封不动写回去来构造一个回显响应。这个serveHTTP方法的第一个参数我原来一直以为就是响应，其实不是，它是一个用来写响应的输入器。</p>
+<p>细心的你应该发现了我们多出了一个fixExpectContinueReader方法。这是因为为了防止资源的浪费，有些客户端在发送完http首部之后，发送body数据前，会先通过发送Expect: 100-continue查询服务端是否希望接受body数据，服务端只有回复了HTTP&#x2F;1.1 100 Continue客户端才会再次发送body。因此我们也要处理这种情况：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> expectContinueReader <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="comment">// 是否已经发送过100 continue</span></span><br><span class="line">	wroteContinue <span class="type">bool</span></span><br><span class="line">	r io.Reader</span><br><span class="line">	w *bufio.Writer</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(er *expectContinueReader)</span></span> Read(p []<span class="type">byte</span>)(n <span class="type">int</span>,err <span class="type">error</span>)&#123;</span><br><span class="line">    <span class="comment">//第一次读取前发送100 continue</span></span><br><span class="line">	<span class="keyword">if</span> !er.wroteContinue&#123;</span><br><span class="line">		er.w.WriteString(<span class="string">&quot;HTTP/1.1 100 Continue\r\n\r\n&quot;</span>)</span><br><span class="line">		er.w.Flush()</span><br><span class="line">		er.wroteContinue = <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> er.r.Read(p)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span></span> fixExpectContinueReader() &#123;</span><br><span class="line">	<span class="keyword">if</span> r.Header.Get(<span class="string">&quot;Expect&quot;</span>) != <span class="string">&quot;100-continue&quot;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	r.Body = &amp;expectContinueReader&#123;</span><br><span class="line">		r: r.Body,</span><br><span class="line">		w:r.conn.bufw,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现也很简单，一旦发现客户端的请求报文的首部中存在Expect: 100-continue，那么我们在第一次读取body时，也就意味希望接受报文主体，expectContinueReader会自动发送HTTP&#x2F;1.1 100 Continue。</p>
+<p>我们的框架目前依旧存在一个问题，如果用户在Handler的回调函数中没有去读取Body的数据，就意味着处理同一个socket连接上的下一个http报文时，Body未消费的数据会干扰下一个http报文的解析。所以我们的框架还需要在Handler结束后，将当前http请求的数据给消费掉。给Request增加一个finishRequest方法，以后的一些善尾工作都将交给它：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span></span> finishRequest() (err <span class="type">error</span>)&#123;</span><br><span class="line">	<span class="comment">//将缓存中的剩余的数据发送到rwc中</span></span><br><span class="line">	<span class="keyword">if</span> err=r.conn.bufw.Flush();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//消费掉剩余的数据</span></span><br><span class="line">	_,err = io.Copy(ioutil.Discard,r.Body)</span><br><span class="line">	<span class="keyword">return</span> err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在conn.go的serve方法中调用finishRequest：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> serve()&#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> err:=<span class="built_in">recover</span>();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;panic recoverred,err:%v\n&quot;</span>,err)</span><br><span class="line">		&#125;</span><br><span class="line">		c.<span class="built_in">close</span>()</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="comment">//http1.1支持keep-alive长连接，所以一个连接中可能读出</span></span><br><span class="line">	<span class="comment">//多个请求，因此实用for循环读取</span></span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		req,err:=c.readRequest()</span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			handleErr(err,c)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		res:=c.setupResponse()</span><br><span class="line">		c.svr.Handler.ServeHTTP(res,req)</span><br><span class="line">		<span class="keyword">if</span> err=req.finishRequest();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-测试"><a href="#7-测试" class="headerlink" title="7.测试"></a>7.测试</h2><p>目前已经可以很方便的解析报文主体了，我们的测试代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;example/httpd&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;io&quot;</span></span><br><span class="line">	<span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// echo回显服务器，将客户端的报文主体原封不动返回</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(*myHandler)</span></span> ServeHTTP(w httpd.ResponseWriter, r *httpd.Request) &#123;</span><br><span class="line">	buf, err := ioutil.ReadAll(r.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">const</span> prefix = <span class="string">&quot;your message:&quot;</span></span><br><span class="line">	io.WriteString(w, <span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>)</span><br><span class="line">	io.WriteString(w, fmt.Sprintf(<span class="string">&quot;Content-Length: %d\r\n&quot;</span>, <span class="built_in">len</span>(buf)+<span class="built_in">len</span>(prefix)))</span><br><span class="line">	io.WriteString(w, <span class="string">&quot;\r\n&quot;</span>)</span><br><span class="line">	io.WriteString(w, prefix)</span><br><span class="line">	w.Write(buf)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	svr := &amp;httpd.Server&#123;</span><br><span class="line">		Addr:    <span class="string">&quot;127.0.0.1:80&quot;</span>,</span><br><span class="line">		Handler: <span class="built_in">new</span>(myHandler),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">panic</span>(svr.ListenAndServe())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用curl测试，使用Content-Type方式：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># -d用于加上报文主体</span><br><span class="line">curl -d <span class="string">&quot;hello, this is chunked message from client!&quot;</span> http:<span class="comment">//127.0.0.1 -i</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-Length: <span class="number">56</span></span><br><span class="line"></span><br><span class="line">your message:hello, this is chunked message from client!</span><br></pre></td></tr></table></figure>
+
+<p>使用chunk编码的方式：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ curl -H <span class="string">&quot;Transfer-Encoding: chunked&quot;</span> -d <span class="string">&quot;hello, this is chunked message from client!&quot;</span> http:<span class="comment">//127.0.0.1 -i</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-Length: <span class="number">56</span></span><br><span class="line"></span><br><span class="line">your message:hello, this is chunked message from client!</span><br></pre></td></tr></table></figure>
+
+<p>不论是用哪一种方法传输报文主体，服务端都能够正确的解析。</p>
+<p>客户端的Form表单以报文主体为载体，所以Body的设置是解析Form表单的基础，下一文将对两种表单：application&#x2F;x-www-form-urlencoded以及multipart&#x2F;form-data进行解析。</p>
+<h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8.总结"></a>8.总结</h2><p>这章整体的一个逻辑是：request结构体对象c会绑定一个readRequest方法，这个readRequest方法是用来构造serveHTTP方法的第二个参数的req的，而这个readRequest方法内部会解析请求行，解析首部字段，这两个都是上一章的内容。同时readRequest方法内部还会调用setupBody方法，这个就是解析报文主体，就是我们这一章的内容。setupBody里面会判断是采用chunk方法还是采用content-length方法，然后分别构造body。其中若采用chunk方法，就会给body属性赋值chunkReader对象。</p>
+<p>本篇到此结束，感谢你的阅读！</p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-06T17:23:19+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 6, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（4）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>网络编程</p></a></div>
+  <span hidden itemprop="keywords">网络编程</span>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（5） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（5） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（5） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
   
   
+
   
+    <div class="prev-next">
+      
+        <a class='prev' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>从零实现Golang的HTTP标准库-（6）</p>
+          <p class='content'>1.概述前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipar...</p>
+        </a>
+      
+      
+        <a class='next' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%884%EF%BC%89.html'>
+          <p class='title'>从零实现Golang的HTTP标准库-（4）<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1.概述本文将正式开始HTTP协议的解析，主要完成Request结构体的属性组成，HTTP请求报文首部字段以及请求行的解析。
+2.项目结构因为在这一章中，我们会完成客户端请求报文中首部字段的解析...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
+
+  <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+      <meta itemprop="discussionUrl" content="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html#comments">
     </span>
-  
-  
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%884%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（4）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述本文将正式开始HTTP协议的解析，主要完成Request结构体的属性组成，HTTP请求报文首部字段以及请求行的解析。
-2.项目结构因为在这一章中，我们会完成客户端请求报文中首部字段的解析，首部字段为一个个键值对，显而易见的是使用map结构进行一个存储，所以增加header.go文件，其中存在Header结构体，专门用于存放请求报文中请求行的键值对。此处并非重点也极为简单，所以直接从标...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-07T08:20:00+08:00">2022-10-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%884%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
 
-</div>
+    <div id="layoutHelper-comments"></div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（3）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（3）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述在正式开始HTTP协议的解析之前，我们先对几个包进行整理。
-在上一篇中，我们对conn结构体进行了改进。
-其中，提到了有关于标准库的bufio包的内容，包括bufio.Reader以及bufio.Writer等。
-在上一篇中，对于这部分内容只是做了一个简单的介绍，在本篇中，我将单独对这部分内容进行一个梳理，并额外扩充了ioutil包以及io包等相关的内容。
-这部分内容并不难，通常只是...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-06T08:20:00+08:00">2022-10-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（2）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（2）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述在上一篇中，我们介绍了如何启动一个Web服务，
-在本篇中，我们主要构建框架的基本结构，即所需要的一些结构体。
-我们暂时需要4个结构体：
-
-①  Server：代表WEB服务器，属性包含监听地址Addr以及Handler，负责服务器的启动逻辑。
+  </article>
 
 
-②  conn：代表HTTP连接，net.Conn表达能力过弱，故将其封装成conn。仅服务于框架内部，不应由用户使用，包内不可导出。
-
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-05T22:20:00+08:00">2022-10-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（1）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（1）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.前言在正式开始我们对Golang的HTTP标准库的实现之前，我还是想先推荐几个学习资源！
-这几个学习资源不是我们实现HTTP标准库所需的必备知识，所以我没有将他们放在前文的预备知识篇中，但是这几个资料的实现过程都和HTTP标准库有着一定相同的地方。
-但如果你能够提前对以下推荐的几个学习资源事先做了阅读与研究，那么在实现Golang的HTTP标准库的过程中一定会如鱼得水，得心应手。
-
-B站...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-05T10:21:31+08:00">2022-10-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
 
 
-    
-  
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2854,151 +2748,52 @@ B站...
     
     
       
-<section class="widget blogger desktop mobile pjax">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://s1.vika.cn/space/2022/09/25/6fad662f39e8414598d593072ef746cb'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>徐乔伟</h2>
-        
-        
-          <p>个人学习记录</p>
-
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fa-solid fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:1511189367@qq.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/Xuqiaowei/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop pjax">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Markdown/" href="/categories/Markdown/"
-            active-action="action-categoriesMarkdown"
-            ><div class='name'>Markdown</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
-            active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
-            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(8)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile pjax">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 19px; color: #777">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-<section class="widget text desktop pjax">
-  
-  <header>
-    
-      <a target="_blank" rel="noopener" href='https://github.com/Xuqiaowei/'><i class="fab fa-github fa-fw" aria-hidden="true"></i><span class='name'>点个赞吧</span></a>
-    
-  </header>
-
-
-  <div class='content'>
-    
-  </div>
-</section>
-
     
   
 
 
 <div class="widget-sticky pjax">
 
+  
+  
+
+
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1.概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%8A%A5%E6%96%87%E4%B8%BB%E4%BD%93%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-text">2.如何知道报文主体的长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">3.需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4.代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-chunk"><span class="toc-text">5.chunk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-chunkReader"><span class="toc-text">6.chunkReader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B5%8B%E8%AF%95"><span class="toc-text">7.测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%80%BB%E7%BB%93"><span class="toc-text">8.总结</span></a></li></ol>
+    </div>
+  </section>
+
+  
+
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -3026,13 +2821,14 @@ B站...
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3649,7 +3445,7 @@ B站...
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/tags/网络编程/","name":"网络编程"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-（5）.html","name":"从零实现Golang的HTTP标准库-（5）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-（5）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-08T00:20:00.000Z","dateModified":"2022-10-06T09:23:19.192Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

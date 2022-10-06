@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.7.6">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="http://example.com/tags/网络编程/"/>
+  
+  <link rel="canonical" href="http://example.com/post/从零实现golang的http标准库-（6）.html"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,18 +31,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Tag: 网络编程 - 徐乔伟</title>
-  <meta name="keywords" content="null">
+  <title>从零实现Golang的HTTP标准库-（6） - 徐乔伟</title>
+  <meta name="keywords" content="网络编程,null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="徐乔伟">
-<meta property="og:url" content="http://example.com/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零实现Golang的HTTP标准库-（6）">
+<meta property="og:url" content="http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="徐乔伟的个人博客">
+<meta property="og:description" content="1.概述前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipart表单的解析。个人认为是整个框架最难实现部分，不过与chunkReader实现的思路类似，可以借鉴实现。 2.两种form表单客户端提交的form表单是利用http请求的报文主体部分携带的，前文已经做到了去">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2022-10-09T00:20:00.000Z">
+<meta property="article:modified_time" content="2022-10-06T09:52:24.105Z">
 <meta property="article:author" content="徐乔伟">
+<meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2350,7 +2353,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper  search' style="display: none;">
+      <div id="none" class='cover-wrapper post search' style="display: none;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://s1.vika.cn/space/2022/09/25/ef48cd6971f14500a2d4cca1f847be62"></div>
 
@@ -2413,34 +2416,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
   <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（6）.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
@@ -2450,402 +2427,342 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="徐乔伟的个人博客">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html"  itemprop="url">
+    
+    
+      <h1 class="title" itemprop="name headline">
         从零实现Golang的HTTP标准库-（6）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">请设置文章作者</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
     
-      
-        1.概述前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipart表单的解析。个人认为是整个框架最难实现部分，不过与chunkReader实现的思路类似，可以借鉴实现。
-2.两种form表单客户端提交的form表单是利用http请求的报文主体部分携带的，前文已经做...
-      
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+      </span>
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-09T08:20:00+08:00">2022-10-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-10-09T08:20:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 9, 2022</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipart表单的解析。个人认为是整个框架最难实现部分，不过与chunkReader实现的思路类似，可以借鉴实现。</p>
+<h2 id="2-两种form表单"><a href="#2-两种form表单" class="headerlink" title="2.两种form表单"></a>2.两种form表单</h2><p>客户端提交的form表单是利用http请求的报文主体部分携带的，前文已经做到了去轻松读取报文主体的字节数据，今天的任务就是从字节流中解析出表单内容。</p>
+<p>按照RFC标准而言，POST请求存在两种表单：</p>
+<ol>
+<li>application&#x2F;x-www-form-urlencoded。只能用来提交纯文本请求参数，与url的queryString字段起一样的作用，例前端的用户名和密码一般通过这个表单传递给后端。</li>
+</ol>
+<p>前端通过以下代码发起该form请求：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/login&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">”application/x-www-form-urlencoded”</span>&gt;</span>  </span><br><span class="line">    name:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>  </span><br><span class="line">     password:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;login&quot;</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>转化为的报文大致如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /login HTTP/<span class="number">1.1</span>\r\n</span><br><span class="line"># 通过Content-Type告知对端传输的是哪种表单</span><br><span class="line">Content-Type: application/x-www-form-urlencoded	</span><br><span class="line">Content-Length: <span class="number">20</span>\r\n</span><br><span class="line">#other unconcerned headers</span><br><span class="line">\r\n</span><br><span class="line">name=gu&amp;password=<span class="number">123</span>	#报文主体</span><br></pre></td></tr></table></figure>
+
+<p>form表单会出现在报文主体部分，以&#x3D;拼接key、value，以&amp;拼接每一项，与queryString如出一辙。其解析很简单，相信读者坚持到这里后能够自行完成解析，用一个map保存KV即可，我们在下一讲中简要介绍。</p>
+<ol start="2">
+<li>multipart&#x2F;form-data。这个表单的功能比上一个表单强大许多，不仅可以发送文本请求，还可以发送任意数量的文件，当然功能强大的同时会增加解析的复杂度。</li>
+</ol>
+<p>前端通过以下代码发起multipartForm请求：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/login&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span>  </span><br><span class="line">    username:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>  </span><br><span class="line">    password:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>  </span><br><span class="line">    uploadFile:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file1&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    uploadFile:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file2&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;login&quot;</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>上述代码除了传输username和password文本信息外，还额外上传两个文件。</p>
+<p>顾名思义，multipart表单会以一块(part)一块的方式传输上面的四部分。转化为的报文如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">POST /login HTTP/<span class="number">1.1</span>\r\n</span><br><span class="line">[[ Less interesting headers ... ]]</span><br><span class="line">Content-Type: multipart/form-data; boundary=--------------------------<span class="number">-735323031399963166993862150</span>\r\n</span><br><span class="line">Content-Length: <span class="number">414</span>\r\n</span><br><span class="line">\r\n</span><br><span class="line">----------------------------<span class="number">-735323031399963166993862150</span>\r\n		#--boundary，注意比上面的boundary多了两个-</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">&quot;username&quot;</span>\r\n					#第一部分，username</span><br><span class="line">\r\n</span><br><span class="line">gu\r\n</span><br><span class="line">----------------------------<span class="number">-735323031399963166993862150</span>\r\n		#--boundary</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">&quot;password&quot;</span>\r\n					#第二部分，password</span><br><span class="line">\r\n</span><br><span class="line"><span class="number">123</span>\r\n</span><br><span class="line">----------------------------<span class="number">-735323031399963166993862150</span>\r\n		#--boundary</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">&quot;file1&quot;</span>; filename=<span class="string">&quot;1.txt&quot;</span>\r\n	#第三部分，文件<span class="number">1</span></span><br><span class="line">Content-Type: text/plain\r\n</span><br><span class="line">\r\n</span><br><span class="line">Content of <span class="number">1.</span>txt.\r\n</span><br><span class="line">----------------------------<span class="number">-735323031399963166993862150</span>\r\n		#--boundary</span><br><span class="line">Content-Disposition: form-data; name=<span class="string">&quot;file2&quot;</span>; filename=<span class="string">&quot;2.html&quot;</span>\r\n	#第四部分，文件<span class="number">2</span></span><br><span class="line">Content-Type: text/html\r\n</span><br><span class="line">\r\n</span><br><span class="line">&lt;!DOCTYPE html&gt;&lt;title&gt;Content of <span class="number">2.</span>html.&lt;/title&gt;\r\n</span><br><span class="line">----------------------------<span class="number">-735323031399963166993862150</span>--\r\n		#--bounadry--标识表单结束</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-multipart表单详解"><a href="#3-multipart表单详解" class="headerlink" title="3.multipart表单详解"></a>3.multipart表单详解</h2><p>以上面的报文为例，1<del>5行为报文首部，6</del>24行为报文主体用于存储表单。</p>
+<p>上述表单总共被划分为4个部分，正好对应于html代码中的四项，每一部分之间以\r\n–boundary作为分隔符(delimiter)，其中boundary在首部的第3行给出，服务端知道boundary之后就可以区分不同的part。表单的末尾是以\r\n–boundary–为结束。要注意的是分隔符是\r\n–boundary，相较于boundary前面多了两个-(dash)。</p>
+<p>multipart表单转化为报文分为几个部分，有些是文本，有些是文件。文件部分的头部比文本部分的头部多一个filename。各个部分之间通过\r\n–boundary来区分。Boundary在最开始设置，是一串随机数字。</p>
+<p>但事实上很多客户端的实现都不会有这些空格，同时为了让代码更紧凑，我们将不考虑出现空格的情况，因此我们的框架并没有严格按照标准，读者须知。</p>
+<p>每一个part中又分为两部分，第一个部分为头部信息，第二个部分为消息主体，头部信息遵循MIME标准，头部信息与消息主体之间通过两个CRLF分隔。如果该part用于传输文件，则在头部信息中还会多出filename字段。</p>
+<h2 id="4-解析思路"><a href="#4-解析思路" class="headerlink" title="4.解析思路"></a>4.解析思路</h2><p>先看看标准库的是如何解析multipart的，我们要做的就是模仿它的API(代码忽略了所有err)：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleUpload</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 生成一个MultipartReader</span></span><br><span class="line">	mr, _ := r.MultipartReader()</span><br><span class="line">    <span class="comment">// 通过NextPart就可以获取每一个part</span></span><br><span class="line">	part, _ := mr.NextPart()	<span class="comment">// 如果没有了下一个part，err会返回io.EOF</span></span><br><span class="line">    <span class="comment">// 对part读取就能不多不少获取属于该part的消息主体(没有头部信息)</span></span><br><span class="line">	data, _ := ioutil.ReadAll(part)</span><br><span class="line">    <span class="comment">// FileName不为空，则这part承载的是文件</span></span><br><span class="line">	<span class="keyword">if</span> part.FileName() != <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;filename=%s, data:\n%s\n&quot;</span>, part.FileName(), data)</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> part.FormName() != <span class="string">&quot;&quot;</span> &#123;	<span class="comment">// 否则是文本信息</span></span><br><span class="line">		fmt.Printf(<span class="string">&quot;formname=%s, data:\n%s\n&quot;</span>, part.FormName(), data)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先通过r.MultipartReader创建了一个<em>multipart.Reader，multipartReader的NextPart方法作为迭代器，不停调用能够得到一个个part(我们演示里只调用了一次)，这个part是</em>multipart.Part类型，实现了Reader接口，我们可以通过调用Read方法读取属于该part的内容。如果NextPart返回io.EOF错误，则代表没有下一个part了，表单处理完毕。part通过判断filename是否为空来判断这个part是传输文件还是文本。</p>
+<p>API的使用非常的清晰简单，以part为单位依次处理，也很符合我们的逻辑。</p>
+<p>尽管用户使用方便，但标准库肯定把解析的复杂性封装到了内部，可以推测标准库底层做了哪些工作以及存在哪些难点：</p>
+<ul>
+<li><p>前文讲到每个part报文是分头部和消息主体两部分的，但上述代码中对part的读取只能读取消息主体部分，说明了头部信息已经被mr.NextPart()消费、预解析后存取在了part结构体的成员中。</p>
+</li>
+<li><p>part的Read方法只能读取属于该part的消息主体数据，所以必须得规定读取的结束，不能让其无限制对Body随意读从而将下一个part数据读出。每个part是以boundary为分割，所以只要发现boundary就说明该part数据读取完毕了，应该让Read方法返回io.EOF。</p>
+</li>
+<li><p>问题就出现在将不同的part区分开并不是很容易。对于chunk编码来说，是利用chunk size来标记这一块的长度，因此很轻松就可以区分不同的块。但对于multipart来说，是利用一特殊字符串标记范围的方式，我们需要进行数据的比对，找到boundary的出现位置。</p>
+</li>
+<li><p>如果我们能一开始把整个http报文主体先读完然后缓存起来，那么找出所有boundary的位置会简单许多，但这显然不现实。我们只能通过开辟固定大小缓存的方式，通过滑动窗口解决问题。</p>
+</li>
+</ul>
+<p>part的Read方法实现的大致思路：</p>
+<blockquote>
+<p>注意：我们会利用bufio.Reader的缓存功能完成我们的需求，能完成下面代码的前提是您能完全了解bufio.Reader，熟悉它的Read以及Peek的原理。</p>
+</blockquote>
+<p>此处确实需要很强的抽象思维，我尽量讲述清楚，读者如果心有困惑可以结合后续代码查看。</p>
+<p>我们对上文实现的Body分配4KB的缓存形成一个bufio.Reader，以这个缓存作为滑动窗口，每次从Body中peek出4KB的数据(peek的目的就是预查看)，然后检测这4KB数据中是否出现分隔符\r\n–boundary，通过分隔符就可以确立两个part之间的交界，从而就能知道当前part应该读到哪就停止。</p>
+<ul>
+<li><p>如果没有出现分隔符，则代表peek预查看的数据就属于当前的part，我们将这4KB的数据放心读出即可。</p>
+</li>
+<li><p>如果出现了分隔符，分隔符之前的数据属于该part，分隔符之后的数据属于下一个part，那么这个part只允许将分隔符之前的数据读出，剩下数据等待用户调用mr.NextPart切换到下一个part后读取。</p>
+</li>
+</ul>
+<p>事实上，对于第一种情况就算没有出现分隔符，我们也不能将这4KB全部当作该part数据读出，因为分隔符并不是一个字符，而是一个字符串，如果这个字符串前一半出现在这4KB数据的末尾，还有一半还在IO流中待读出，我们将这前一半也当作part数据读走后，multipart的解析绝对会出现问题，因此我们一次最多只能读取4KB-len(\r\n–boundary)+1的数据。</p>
+<h2 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5.代码实现"></a>5.代码实现</h2><p>先介绍几个结构体的意义：</p>
+<p><strong>MultipartReader结构体</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bufSize = <span class="number">4096</span>	<span class="comment">// 滑动窗口大小</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MultipartReader <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// bufr是对Body的封装，方便我们预查看Body上的数据，从而确定part之间边界</span></span><br><span class="line">    <span class="comment">// 每个part共享这个bufr，但只有Body的读取指针指向哪个part的报文，</span></span><br><span class="line">    <span class="comment">// 哪个part才能在bufr上读取数据，此时其他part是无效的</span></span><br><span class="line">	bufr                 *bufio.Reader		</span><br><span class="line">    <span class="comment">// 记录bufr的读取过程中是否出现io.EOF错误，如果发生了这个错误，</span></span><br><span class="line">    <span class="comment">// 说明Body数据消费完毕，表单报文也消费完，不需要再产生下一个part</span></span><br><span class="line">	occurEofErr          <span class="type">bool</span></span><br><span class="line">	crlfDashBoundaryDash []<span class="type">byte</span>				<span class="comment">//\r\n--boundary--</span></span><br><span class="line">	crlfDashBoundary     []<span class="type">byte</span>				<span class="comment">//\r\n--boundary，分隔符</span></span><br><span class="line">	dashBoundary         []<span class="type">byte</span>				<span class="comment">//--boundary</span></span><br><span class="line">	dashBoundaryDash     []<span class="type">byte</span>				<span class="comment">//--boundary--</span></span><br><span class="line">	curPart              *Part				<span class="comment">//当前解析到了哪个part</span></span><br><span class="line">	crlf                 [<span class="number">2</span>]<span class="type">byte</span>			<span class="comment">//用于消费掉\r\n</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//传入的r将是Request的Body，boundary会在http首部解析时就得到</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewMultipartReader</span><span class="params">(r io.Reader, boundary <span class="type">string</span>)</span></span> *MultipartReader &#123;</span><br><span class="line">	b := []<span class="type">byte</span>(<span class="string">&quot;\r\n--&quot;</span> + boundary + <span class="string">&quot;--&quot;</span>)</span><br><span class="line">	<span class="keyword">return</span> &amp;MultipartReader&#123;</span><br><span class="line">		bufr:                 bufio.NewReaderSize(r, bufSize),	<span class="comment">//将io.Reader封装成bufio.Reader</span></span><br><span class="line">		crlfDashBoundaryDash: b,</span><br><span class="line">		crlfDashBoundary:     b[:<span class="built_in">len</span>(b)<span class="number">-2</span>],</span><br><span class="line">		dashBoundary:         b[<span class="number">2</span> : <span class="built_in">len</span>(b)<span class="number">-2</span>],</span><br><span class="line">		dashBoundaryDash:     b[<span class="number">2</span>:],</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>multipartReader结构体对象：这个结构体对象代表读取某个multipart表单对应的请求报文结构中某一个部分part，它的属性都是和读取multipart表单该部分part相关的，所绑定的方法是获取multipart表单相关的方法。比如获取下一个部分的方法nextpart（），这个方法返回一个part结构体对象，part结构体介绍在下面。</p>
+<p>multipartReader结构体绑定了初始化方法NewmultipartReader，初始化bufr时，调用bufio包下的newReader方法，传入底层的io.reader以及缓存切片的容量即可初始化，因为bufio.reader的底层其实就是io.reader加上一个缓存切片。</p>
+<p>因为所有Part都会在bufr上读取数据，前面part将属于它的数据消费掉之后，后续的part才能读取自己的数据。因此我们用curPart记录当前是哪个part占有了bufr，方便我们对其管理。</p>
+<p>我们的滑动窗口大小为4KB，每次peek固定4KB大小的数据，也就意味着我们可能从bufr的底层Reader中一次最多读出4KB的数据，用来填充缓冲区。既然会对底层的Reader读取，就可能产生错误，对于非io.EOF错误，我们直接返回即可。但对于io.EOF错误，只是意味着bufr底层的Reader流中没有了数据，并不意味着bufr的缓存中没数据，因此我们需要记录是否出现了io.EOF错误，如果出现了这个错误，我们只需要将bufr缓存里的数据处理完即可。</p>
+<p><strong>NextPart()方法</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://www.gufeijun.com</span></span><br><span class="line"><span class="comment">// 生成下一个part Reader</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mr *MultipartReader)</span></span> NextPart() (p *Part, err <span class="type">error</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> mr.curPart != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="comment">// 将当前的Part关闭掉，即消费掉当前part数据，好让body的读取指针指向下一个part</span></span><br><span class="line">        <span class="comment">// 具体实现见后文</span></span><br><span class="line">		<span class="keyword">if</span> err = mr.curPart.Close(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> err = mr.discardCRLF(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 下一行就应该是boundary分割</span></span><br><span class="line">	line, err := mr.readLine()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 到multipart报文的结尾了，直接返回</span></span><br><span class="line">	<span class="keyword">if</span> bytes.Equal(line, mr.dashBoundaryDash) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, io.EOF</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> !bytes.Equal(line, mr.dashBoundary) &#123;</span><br><span class="line">		err = fmt.Errorf(<span class="string">&quot;want delimiter %s, but got %s&quot;</span>, mr.dashBoundary, line)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 这时Body已经指向了下一个part的报文</span></span><br><span class="line">	p = <span class="built_in">new</span>(Part)</span><br><span class="line">	p.mr = mr</span><br><span class="line">    <span class="comment">// 前文讲到要将part的首部信息预解析，好让part指向消息主体，具体实现见后文</span></span><br><span class="line">	<span class="keyword">if</span> err = p.readHeader(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	mr.curPart = p</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消费掉\r\n</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mr *MultipartReader)</span></span> discardCRLF() (err <span class="type">error</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> _, err = io.ReadFull(mr.bufr, mr.crlf[:]); err == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> mr.crlf[<span class="number">0</span>] != <span class="string">&#x27;\r&#x27;</span> &amp;&amp; mr.crlf[<span class="number">1</span>] != <span class="string">&#x27;\n&#x27;</span> &#123;</span><br><span class="line">			err = fmt.Errorf(<span class="string">&quot;expect crlf, but got %s&quot;</span>, mr.crlf)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读一行</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(mr *MultipartReader)</span></span> readLine() ([]<span class="type">byte</span>, <span class="type">error</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> readLine(mr.bufr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接利用了解析http报文首部的函数readHeader，很简单</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Part)</span></span> readHeader() (err <span class="type">error</span>) &#123;</span><br><span class="line">	p.Header, err = readHeader(p.mr.bufr)</span><br><span class="line">	<span class="keyword">return</span> err</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将当前part剩余的数据消费掉，防止其报文残存在Reader上影响下一个part</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Part)</span></span> Close() <span class="type">error</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> p.closed &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	_, err := io.Copy(ioutil.Discard, p)</span><br><span class="line">    p.closed = <span class="literal">true</span>	<span class="comment">//标记状态为关闭</span></span><br><span class="line">	<span class="keyword">return</span> err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现很简单，NextPart首先会将当前的Part关闭，Close方法会将当前Part中用户未消费的数据给消费掉，防止影响下一个Part的读取。接着就是读取一行，将boundary读出，切换到下一个part，并将该part的Header解析，readHeader是往期文章的辅助函数。这时bufr的读取指针自然指向了part的消息主体部分，解决了part的读取指针初始指向的问题。</p>
+<blockquote>
+<p><strong>解析一下NextPart方法</strong></p>
+<p>这个方法也是绑定在multipart结构体上的，它的作用是返回下一个part结构体对象。如果curpart不为空，而我们此时要获取下一个part，所以要先将当前的part关闭，即消费掉当前part的数据。关闭后，读取一行数据，读到的应该就是分隔符。如果发现是表单结尾的分割符，说明表单读取结束了。如果既不是表单结尾分隔符，也不是中间分隔符，说明出错了，返回错误。此时读指针应该正好指向下一个part了，新建一个part结构体，赋值给p。p就代表下一个part，让这个p的mr属性等于当前的multipartReader结构体对象mr，代表这个part是从这个表单上读的。此时，读指针应该是指向表单中这个part的头部信息，而我们需要的是这个part的消息主体信息，所以调用readHeader方法预解析头部信息，预解析后读指针就刚好指向了这个新part的消息主体。然后将当前的multipartReader对象的curpart设定为当前这个新part，结束。nextPart方法就解析完了。</p>
+<p>下面的重头戏就是Part结构的Read方法如何保证读取的结束了。</p>
+</blockquote>
+<p><strong>part结构体</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Part <span class="keyword">struct</span> &#123;</span><br><span class="line">	Header           Header			<span class="comment">// 存取当前part的首部</span></span><br><span class="line">	mr               *MultipartReader</span><br><span class="line">    <span class="comment">// 下两者见前面的part报文</span></span><br><span class="line">	formName         <span class="type">string</span></span><br><span class="line">	fileName         <span class="type">string</span>			<span class="comment">// 当该part传输文件时，fileName不为空</span></span><br><span class="line">	closed           <span class="type">bool</span>			<span class="comment">// part是否关闭</span></span><br><span class="line">	substituteReader io.Reader		<span class="comment">// 替补Reader</span></span><br><span class="line">	parsed           <span class="type">bool</span>			<span class="comment">// 是否已经解析过formName以及fileName</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Part结构体对象：这个结构体对象实际上就是对应了multipart表单某个部分的映射。注意：上面那个对象实际上是一个读取相关的，而这里的part对象则是具体的一个部分实例。这个part结构体内部嵌套了multipartReader结构体对象这个属性。主要讲讲substituteReader，如果它不为空，我们对Part的Read则优先交给substituteReader处理，主要是为了方便引入io.LimiteReader来凝练我们的代码。substituteReader不为nil的时机，就是已经能够确定这个part还剩下多少数据可读了。这个见下面read代码就很容易理解。</p>
+<p><strong>part的read（）方法</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://www.gufeijun.com</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Part)</span></span> Read(buf []<span class="type">byte</span>) (n <span class="type">int</span>, err <span class="type">error</span>) &#123;</span><br><span class="line">    <span class="comment">// part已经关闭后，直接返回io.EOF错误</span></span><br><span class="line">	<span class="keyword">if</span> p.closed &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>, io.EOF</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 不为nil时，优先让substituteReader读取</span></span><br><span class="line">	<span class="keyword">if</span> p.substituteReader != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> p.substituteReader.Read(buf)</span><br><span class="line">	&#125;</span><br><span class="line">	bufr := p.mr.bufr</span><br><span class="line">	<span class="keyword">var</span> peek []<span class="type">byte</span></span><br><span class="line">    <span class="comment">//如果已经出现EOF错误，说明Body没数据了，这时只需要关心bufr还剩余已缓存的数据</span></span><br><span class="line">	<span class="keyword">if</span> p.mr.occurEofErr &#123;	</span><br><span class="line">		peek, _ = bufr.Peek(bufr.Buffered())	<span class="comment">// 将最后缓存数据取出</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//bufSize即bufr的缓存大小，强制触发Body的io，填满bufr缓存</span></span><br><span class="line">		peek, err = bufr.Peek(bufSize)</span><br><span class="line">        <span class="comment">//出现EOF错误，代表Body数据读完了，我们利用递归跳转到另一个if分支</span></span><br><span class="line">		<span class="keyword">if</span> err == io.EOF &#123;</span><br><span class="line">			p.mr.occurEofErr = <span class="literal">true</span></span><br><span class="line">			<span class="keyword">return</span> p.Read(buf)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>, err</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//在peek出的数据中找boundary</span></span><br><span class="line">	index := bytes.Index(peek, p.mr.crlfDashBoundary)</span><br><span class="line">    <span class="comment">//两种情况：</span></span><br><span class="line">    <span class="comment">//1.即||前的条件，index!=-1代表在peek出的数据中找到分隔符，也就代表顺利找到了该part的Read指针终点，</span></span><br><span class="line">    <span class="comment">//	给该part限制读取长度即可。</span></span><br><span class="line">    <span class="comment">//2.即||后的条件，在前文的multipart报文，是需要boudary来标识报文结尾，然后已经出现EOF错误,</span></span><br><span class="line">    <span class="comment">//  即在没有多余报文的情况下，还没有发现结尾标识，说明客户端没有将报文发送完整，就关闭了链接，</span></span><br><span class="line">    <span class="comment">//  这时让substituteReader = io.LimitReader(-1)，逻辑上等价于eofReader即可</span></span><br><span class="line">	<span class="keyword">if</span> index != <span class="number">-1</span> || (index == <span class="number">-1</span> &amp;&amp; p.mr.occurEofErr) &#123;</span><br><span class="line">		p.substituteReader = io.LimitReader(bufr, <span class="type">int64</span>(index))</span><br><span class="line">		<span class="keyword">return</span> p.substituteReader.Read(buf)</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//以下则是在peek出的数据中没有找到分隔符的情况，说明peek出的数据属于当前的part</span></span><br><span class="line">    <span class="comment">//见上文讲解，不能一次把所有的bufSize都当作消息主体读出，还需要减去分隔符的最长子串的长度。</span></span><br><span class="line">	maxRead := bufSize - <span class="built_in">len</span>(p.mr.crlfDashBoundary) + <span class="number">1</span></span><br><span class="line">	<span class="keyword">if</span> maxRead &gt; <span class="built_in">len</span>(buf) &#123;</span><br><span class="line">		maxRead = <span class="built_in">len</span>(buf)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> bufr.Read(buf[:maxRead])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个part结构体绑定了一个read()方法，这个read方法实现了对这个multipart表单的这个部分的内容的正确读取。这里的read方法的作用其实就类似于上一章中从报文主体中读取chunk编码方式的内容，只不过现在是从报文主体中读取mutipart表单的内容。</p>
+<p>Body中有数据，我们就每次取固定bufSize滑动窗口大小的数据进行处理；如果表单报文读完、没有数据了即出现io.EOF错误，我们只需要将bufr最后的缓存处理完毕即可。对应于代码的if else分支。</p>
+<p>Peek方法出现io.EOF错误有两种情况：①一种异常：客户端主动关闭连接，提前终止。②Body的数据我们正常消费完毕了。不管是那种情况，Body都不能再读取，我们接下来只需要关注已经缓存且未处理的内容，通过bufr.Peek(bufr.Buffered())将最后缓存取出。因为第一种情况是我们不希望看到的(报文没发送完整)，第二种情况是正常情况，我们需要区分是那种原因导致了io.EOF，解决办法就是查看最后缓存中是否存在boundary(正常的multipart报文会以boundary标识结束)，存在则说明报文发送完整了，是第二种情况。</p>
+<p>Part的Read指针应该终止在哪，也对应两种情况，一种是正常碰到该part与下一个part的分隔符，另一种是出现异常错误比如客户端主动断开连接提前终止。对于第一种情况，当前part最多能读取index个字节的数据，即将分隔符前的数据读完，对于第二种情况我们不能再读取即最多能读0B的数据，也就是说不管是哪一种情况，我们都知道这个Read方法最多还能读多少字节，从而比较巧妙地用io.LimitReader进行统一处理，代码优雅许多。对应代码的36~39行。</p>
+<p>代码已经写了详细的注释，强烈建议读者自行思考实现一遍，才能真正理会这个解析过程。</p>
+<blockquote>
+<p><strong>再次梳理流程</strong></p>
+<p>是这样的，在文章（4）中，我们知道requset结构体中有一个属性叫作body，它是一个reader类型的属性，其实这个就是用来读取请求报文的报文主体的，但是要注意不要误认为body是用来存放报文主体的内容的，body实际上是一个接口，可以理解为他只是用来读取报文主体内容的一个方法。再回到第三章，这个chunkReader结构体实际上也是一个读取报文主体内容的接口，所以可以赋值给body。在这个chunkReader结构体内部，实际上是封装了一个属性，也即bufio包的reader，它是利用bufio包下的reader来实现读取内容的。我们知道bufio.reader里面有一个bufr切片，他其实是一个缓存切片。我们现在要干什么事呢？其实就是现在报文主体的内容不是和第三章一样那么简单了，现在报文主体内容中携带有mutipart表单了，以前读取简单的内容，现在我们读取复杂的内容，也就是利用bufio.reader从mutipart表单中读取内容，但是这个表单的内容部分分为了好几个part，不同part之间用分隔符标识。所以我们重新自定义一个切片叫peek，这个切片的大小是预先设定好了的，比如我们给它分配4kb，利用bufio.reader里面自带的缓存切片bufr的peek方法去从bufr里面预加载设定好的容量也即4kb到这个新切片peek中。此时，我们观察这个新切片peek，去看这个切片里是否含有分割符。注意：这里实际上有两个切片，一个是bufio.reader自带的切片bufr，它的作用是bufio.reader在读数据时先缓存进这个切片bufr当中。而我们自定义的新切片peek是用来存从bufr已缓存的内容中预加载的东西。bufr容量更大，peek容量设定好为4kb，每次从bufr中取出4kb放进peek。整体逻辑是bufio.reader先读，缓存进切片，然后再分情况是用io.reader的read读，还是就用bufio.reader的read方法读。如下。</p>
+<p>如果发现切片peek中含有了分隔符，说明我们找到了part与part之间的临界点，切片中临界点后面的数据不属于当前part，此时我们规定读取的范围就到这个临界点，也就是说读取出数据，读到这个临界点时就正好把其中一个part不多不少的取出来了，但是这里并不是从切片中读。<br>那么从哪里读取出来呢？它调用了substituReader，这个其实是一个io.reader类型的东西，io.reader是个什么东西呢？实际上io.reader就是对底层文件直接操作读取的意思，而bufr.reader就是先将底层文件预加载缓存到切片中，可以减少直接对底层文件的IO操作。所以io.reader实际上就是直接对底层文件读取，这里也就是直接对报文中body的某个part部分的读取，直接读取到临界点（通过limitreader方法限制范围）。</p>
+</blockquote>
+<blockquote>
+<p>如果切片中没有发现分隔符，但是body数据已经读完了，此时也是直接调用io.reader来对底层数据直接读取。</p>
+</blockquote>
+<blockquote>
+<p>如果切片中没有分隔符，也没有数据读完的报警，理论上说明此时切片中的数据就是当前part的数据，这时候我们读取数据是直接从切片中读取，而不是从底层读取。但是此时我们并不能安心的把切片中所有数据作为当前part的数据，因为有可能出现一种意外情况，就是分隔符还挺长的，如果一半出现则切片中，另一半还在底层文件，此时切片中也没有发现分隔符，但实际上切片中存在一半的分隔符，这部分内容不属于当前part的数据，需要剔除。这种情况无法针对性解决。只能从整体上防止这种情况的发生。通过设置从切片中读取的范围来防止这种情况，设置的读取长度length&#x3D;切片的容量减去分隔符的长度，这样可以始终保证切片从0到length范围内在这种情况下一定是当前part的数据，从length到切片结尾这段无法保证，就不读它，留着下一段缓存进来的时候再判断，这是因为切片有一个机制，你如果切片里内容没读完的话，本轮结束时它会清空内容，将剩余内容返回到底层body中去，这样即使没读完，下一轮预加载同样也可以接着上一轮的结尾了（这个设定在nextpart方法中，当前part结束时，会关闭当前part，并消费剩余内容）。</p>
+<p>注意：这种情况下，我们读数据直接调用切片的read方法，即bufio.reader类型对象的read方法。<br>Part的read方法到此结束。</p>
+</blockquote>
+<blockquote>
+<p><strong>再详解一下part的read方法具体代码</strong></p>
+<p>若发现当前part已被关闭，则不能再读，直接返回读取0字节和错误。如果发现substitueReader属性不为空，说明这个属性被赋过值了，这个属性的类型是io.reader类型的，上面我们提到如果发现切片含有分割符，我们要用io.reader直接从底层读取，因为这样可以用limitreader方法来保证恰好读取到分隔符。所以如果发现substitureader不为空，说明找到了分割符，我们就直接用substitureader的read方法读取。将当前part的所属表单的读接口bufr赋值给bufr，自定义了一个缓存切片叫peek。如果发现occurEofErr为true，说明读不到数据了，也即这个part的内容读完了，而我们一开始都是用bufio.reader将数据全部装入缓存切片中的，所以此时我们只需要将缓存切片中的剩余内容全部提取出来装进peek切片即可。如果没有错误，说明part的内容还没读完，我们只需要从缓存切片中提取4kb内容放进peek切片即可。也有可能缓存切片此时没有4kb的内容，报错了，但是此时occurEofErr还是false，所以我们将它设定为true，重新递归调用part的read方法，这样就会走上面那个将缓存切片剩余内容提取。<br>此时peek中已有数据，我们在里面找分隔符的索引。如果发现索引不等于-1，说明在peek里面找到了分隔符，此时要用io的Limitreader来读到索引为止。或者没有找到分隔符，但是却出现了eof错误，说明客户端没有将报文发送完整，就关闭了连接，此时也用Limitreader来读到-1。<br>若没有找到分隔符，如上，不能一次读完。</p>
+</blockquote>
+<p>关于Part最硬核的操作已经完成，下面就是简单的工作。</p>
+<p>为part提供获取formName以及fileName的方法，和http解析首部极为类似，就是简单的字符串处理，对比上述的part首部字段报文自行观看：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取FormName</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Part)</span></span> FormName() <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> !p.parsed &#123;</span><br><span class="line">		p.parseFormData()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p.formName</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取FileName</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Part)</span></span> FileName() <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> !p.parsed &#123;</span><br><span class="line">		p.parseFormData()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p.fileName</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Part)</span></span> parseFormData() &#123;</span><br><span class="line">	p.parsed = <span class="literal">true</span></span><br><span class="line">	cd := p.Header.Get(<span class="string">&quot;Content-Disposition&quot;</span>)</span><br><span class="line">	ss := strings.Split(cd, <span class="string">&quot;;&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(ss) == <span class="number">1</span> || strings.ToLower(ss[<span class="number">0</span>]) != <span class="string">&quot;form-data&quot;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, s := <span class="keyword">range</span> ss &#123;</span><br><span class="line">		key, value := getKV(s)</span><br><span class="line">		<span class="keyword">switch</span> key &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&quot;name&quot;</span>:</span><br><span class="line">			p.formName = value</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&quot;filename&quot;</span>:</span><br><span class="line">			p.fileName = value</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getKV</span><span class="params">(s <span class="type">string</span>)</span></span> (key <span class="type">string</span>, value <span class="type">string</span>) &#123;</span><br><span class="line">	ss := strings.Split(s, <span class="string">&quot;=&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(ss) != <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> strings.TrimSpace(ss[<span class="number">0</span>]), strings.Trim(ss[<span class="number">1</span>], <span class="string">`&quot;`</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比较简单，不再赘述。</p>
+<p><strong>request.go</strong></p>
+<p>MultipartReader已经搞定，万事具备，只欠东风。下面要做的就是从http协议的首部字段中解析出boundary，然后交给MultipartReader即可。</p>
+<p>在request.go中增加如下方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Request <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 本章给Request新增的属性</span></span><br><span class="line">	contentType    <span class="type">string</span></span><br><span class="line">	boundary       <span class="type">string</span></span><br><span class="line">    <span class="comment">// ....</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">readRequest</span><span class="params">(c *conn)</span></span> (r *Request, err <span class="type">error</span>) &#123;</span><br><span class="line">	<span class="comment">// ....</span></span><br><span class="line">    <span class="comment">// 记得在readRequest中调用parseContentType</span></span><br><span class="line">	r.parseContentType()</span><br><span class="line">	<span class="keyword">return</span> r, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// boundary是存取在Content-Type字段中</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span></span> parseContentType() &#123;</span><br><span class="line">	ct := r.Header.Get(<span class="string">&quot;Content-Type&quot;</span>)</span><br><span class="line">	<span class="comment">//Content-Type: multipart/form-data; boundary=------974767299852498929531610575</span></span><br><span class="line">    <span class="comment">//Content-Type: multipart/form-data; boundary=&quot;&quot;------974767299852498929531610575&quot;</span></span><br><span class="line">	<span class="comment">//Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line">	index := strings.IndexByte(ct, <span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">	<span class="keyword">if</span> index == <span class="number">-1</span> &#123;</span><br><span class="line">		r.contentType = ct</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> index == <span class="built_in">len</span>(ct)<span class="number">-1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	ss := strings.Split(ct[index+<span class="number">1</span>:], <span class="string">&quot;=&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(ss) &lt; <span class="number">2</span> || strings.TrimSpace(ss[<span class="number">0</span>]) != <span class="string">&quot;boundary&quot;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 将解析到的CT和boundary保存在Request中</span></span><br><span class="line">	r.contentType, r.boundary = ct[:index], strings.Trim(ss[<span class="number">1</span>],<span class="string">`&quot;`</span>)</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 得到一个MultipartReader</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r *Request)</span></span> MultipartReader()(*MultipartReader,<span class="type">error</span>)&#123;</span><br><span class="line">	<span class="keyword">if</span> r.boundary==<span class="string">&quot;&quot;</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>,errors.New(<span class="string">&quot;no boundary detected&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> NewMultipartReader(r.Body,r.boundary),<span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前面我们定义了multipartReader结构体，他其实对应了读取一个表单的结构体。里面有一个分隔符boundary属性，这个属性需要从http请求的表单中解析出来才能拿到。解析表单分隔符的工作在readRequest方法中调用。</p>
+<p>ParsecontentType方法解析出分隔符。</p>
+<p>解析出来以后赋值给request结构体的分隔符属性。另外，这个multipartreader结构体里面还有一个bufio.reader属性，这个应该就是和chunkReader结构体里面一样的，因为这两个结构体的意义其实是一样的嘛，都是用来读取报文主体内容的。</p>
+<h2 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a>6.测试</h2><p>测试很简单，对于前段传输的multipart表单，如果part传输的是文本，我们将其输出到中断，如果是文件，我们对文件保存到硬盘上。</p>
+<p>main.go代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;example/httpd&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;io&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;os&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(*myHandler)</span></span> ServeHTTP(w httpd.ResponseWriter, r *httpd.Request) &#123;</span><br><span class="line">	mr, err := r.MultipartReader()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> part *httpd.Part</span><br><span class="line">label:</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		part, err = mr.NextPart()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">// 判断是文本part还是文件part</span></span><br><span class="line">		<span class="keyword">switch</span> part.FileName() &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&quot;&quot;</span>:	<span class="comment">//文本</span></span><br><span class="line">			fmt.Printf(<span class="string">&quot;FormName=%s, FormData:\n&quot;</span>, part.FormName())</span><br><span class="line">            <span class="comment">// 输出到终端</span></span><br><span class="line">			<span class="keyword">if</span> _, err = io.Copy(os.Stdout, part); err != <span class="literal">nil</span> &#123;</span><br><span class="line">				<span class="keyword">break</span> label</span><br><span class="line">			&#125;</span><br><span class="line">			fmt.Println()</span><br><span class="line">		<span class="keyword">default</span>:	<span class="comment">//文件</span></span><br><span class="line">            <span class="comment">// 打印文件信息</span></span><br><span class="line">			fmt.Printf(<span class="string">&quot;FormName=%s, FileName=%s\n&quot;</span>, part.FormName(), part.FileName())</span><br><span class="line">			<span class="keyword">var</span> file *os.File</span><br><span class="line">			<span class="keyword">if</span> file, err = os.Create(part.FileName()); err != <span class="literal">nil</span> &#123;</span><br><span class="line">				<span class="keyword">break</span> label</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> _, err = io.Copy(file, part); err != <span class="literal">nil</span> &#123;</span><br><span class="line">				file.Close()</span><br><span class="line">				<span class="keyword">break</span> label</span><br><span class="line">			&#125;</span><br><span class="line">			file.Close()</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err != io.EOF &#123;</span><br><span class="line">		fmt.Println(err)</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 发送响应报文</span></span><br><span class="line">	io.WriteString(w, <span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>)</span><br><span class="line">	io.WriteString(w, fmt.Sprintf(<span class="string">&quot;Content-Length: %d\r\n&quot;</span>, <span class="number">0</span>))</span><br><span class="line">	io.WriteString(w, <span class="string">&quot;\r\n&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	svr := &amp;httpd.Server&#123;</span><br><span class="line">		Addr:    <span class="string">&quot;127.0.0.1:80&quot;</span>,</span><br><span class="line">		Handler: <span class="built_in">new</span>(myHandler),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">panic</span>(svr.ListenAndServe())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用curl测试我们的接口：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#发送两个文本，上传两个文件：<span class="number">1.</span>md以及<span class="number">2.</span>md</span><br><span class="line">$ curl -F <span class="string">&quot;username=gu&quot;</span> -F <span class="string">&quot;password=123&quot;</span> -F <span class="string">&quot;file1=@1.md&quot;</span> -F <span class="string">&quot;file2=@2.md&quot;</span> http:<span class="comment">//127.0.0.1</span></span><br></pre></td></tr></table></figure>
+
+<p>服务端输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FormName=username, FormData:</span><br><span class="line">gu</span><br><span class="line">FormName=password, FormData:</span><br><span class="line">123</span><br><span class="line">FormName=file1, FileName=1.md</span><br><span class="line">FormName=file2, FileName=2.md</span><br></pre></td></tr></table></figure>
+
+<p>查看服务端程序所在目录，正确保存了1.md以及2.md文件，且保存的文件hash值与原文件相同。</p>
+<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7.总结"></a>7.总结</h2><p>本文完成了multipart&#x2F;form-data表单的解析，难度比较高，需要多加理解。但我们提供的解析表单API依旧比较繁琐，下一文会在今天的基础上，再做封装。</p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-06T17:52:24+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 6, 2022</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（5）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>网络编程</p></a></div>
+  <span hidden itemprop="keywords">网络编程</span>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（6） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（6） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（6） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
   
   
+
   
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html'>
+          <p class='title'>从零实现Golang的HTTP标准库-（5）<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1.概述前文进行了Request首部字段的解析，已经完整的支持了GET请求。对于POST请求来说，其传送的表单数据在HTTP请求的报文主体body部分，服务端需要进一步IO操作才能读出，为了提高...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
+
+  <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+      <meta itemprop="discussionUrl" content="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html#comments">
     </span>
-  
-  
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（5）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述前文进行了Request首部字段的解析，已经完整的支持了GET请求。对于POST请求来说，其传送的表单数据在HTTP请求的报文主体body部分，服务端需要进一步IO操作才能读出，为了提高性能我们将POST表单的解析权交给用户，为此我们给Request结构体封装一个Body字段，作为IO的接口。
-2.如何知道报文主体的长度以下一段http协议post请求报文为例：
-1234567891...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-08T08:20:00+08:00">2022-10-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
 
-</div>
+    <div id="layoutHelper-comments"></div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（4）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%884%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（4）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述本文将正式开始HTTP协议的解析，主要完成Request结构体的属性组成，HTTP请求报文首部字段以及请求行的解析。
-2.项目结构因为在这一章中，我们会完成客户端请求报文中首部字段的解析，首部字段为一个个键值对，显而易见的是使用map结构进行一个存储，所以增加header.go文件，其中存在Header结构体，专门用于存放请求报文中请求行的键值对。此处并非重点也极为简单，所以直接从标...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-07T08:20:00+08:00">2022-10-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%884%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（3）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（3）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述在正式开始HTTP协议的解析之前，我们先对几个包进行整理。
-在上一篇中，我们对conn结构体进行了改进。
-其中，提到了有关于标准库的bufio包的内容，包括bufio.Reader以及bufio.Writer等。
-在上一篇中，对于这部分内容只是做了一个简单的介绍，在本篇中，我将单独对这部分内容进行一个梳理，并额外扩充了ioutil包以及io包等相关的内容。
-这部分内容并不难，通常只是...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-06T08:20:00+08:00">2022-10-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（2）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（2）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述在上一篇中，我们介绍了如何启动一个Web服务，
-在本篇中，我们主要构建框架的基本结构，即所需要的一些结构体。
-我们暂时需要4个结构体：
-
-①  Server：代表WEB服务器，属性包含监听地址Addr以及Handler，负责服务器的启动逻辑。
+  </article>
 
 
-②  conn：代表HTTP连接，net.Conn表达能力过弱，故将其封装成conn。仅服务于框架内部，不应由用户使用，包内不可导出。
-
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-05T22:20:00+08:00">2022-10-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（1）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（1）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.前言在正式开始我们对Golang的HTTP标准库的实现之前，我还是想先推荐几个学习资源！
-这几个学习资源不是我们实现HTTP标准库所需的必备知识，所以我没有将他们放在前文的预备知识篇中，但是这几个资料的实现过程都和HTTP标准库有着一定相同的地方。
-但如果你能够提前对以下推荐的几个学习资源事先做了阅读与研究，那么在实现Golang的HTTP标准库的过程中一定会如鱼得水，得心应手。
-
-B站...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-05T10:21:31+08:00">2022-10-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
 
 
-    
-  
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2854,151 +2771,52 @@ B站...
     
     
       
-<section class="widget blogger desktop mobile pjax">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://s1.vika.cn/space/2022/09/25/6fad662f39e8414598d593072ef746cb'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>徐乔伟</h2>
-        
-        
-          <p>个人学习记录</p>
-
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fa-solid fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:1511189367@qq.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/Xuqiaowei/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop pjax">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Markdown/" href="/categories/Markdown/"
-            active-action="action-categoriesMarkdown"
-            ><div class='name'>Markdown</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
-            active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
-            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(8)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile pjax">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 19px; color: #777">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-<section class="widget text desktop pjax">
-  
-  <header>
-    
-      <a target="_blank" rel="noopener" href='https://github.com/Xuqiaowei/'><i class="fab fa-github fa-fw" aria-hidden="true"></i><span class='name'>点个赞吧</span></a>
-    
-  </header>
-
-
-  <div class='content'>
-    
-  </div>
-</section>
-
     
   
 
 
 <div class="widget-sticky pjax">
 
+  
+  
+
+
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1.概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%A4%E7%A7%8Dform%E8%A1%A8%E5%8D%95"><span class="toc-text">2.两种form表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-multipart%E8%A1%A8%E5%8D%95%E8%AF%A6%E8%A7%A3"><span class="toc-text">3.multipart表单详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF"><span class="toc-text">4.解析思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">5.代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%B5%8B%E8%AF%95"><span class="toc-text">6.测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%80%BB%E7%BB%93"><span class="toc-text">7.总结</span></a></li></ol>
+    </div>
+  </section>
+
+  
+
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -3026,13 +2844,14 @@ B站...
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3649,7 +3468,7 @@ B站...
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/tags/网络编程/","name":"网络编程"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-（6）.html","name":"从零实现Golang的HTTP标准库-（6）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-（6）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-09T00:20:00.000Z","dateModified":"2022-10-06T09:52:24.105Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
