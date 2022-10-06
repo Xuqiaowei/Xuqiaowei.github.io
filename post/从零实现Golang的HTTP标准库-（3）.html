@@ -43,7 +43,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-10-06T00:20:00.000Z">
-<meta property="article:modified_time" content="2022-10-05T16:41:35.579Z">
+<meta property="article:modified_time" content="2022-10-06T03:54:59.765Z">
 <meta property="article:author" content="徐乔伟">
 <meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary">
@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1664988114118),
+    lastupdate: new Date(1665028595957),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2510,6 +2510,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li><p>返回值：本次读取的字节数 n，以及遇到的错误 err</p>
 </li>
+<li><p><strong>io.Reader是一个接口，任何实现了Read()函数的对象，都可以作为Reader来使用</strong></p>
+</li>
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Reader <span class="keyword">interface</span> &#123;</span><br><span class="line"> Read(p []<span class="type">byte</span>) (n <span class="type">int</span>, err <span class="type">error</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -2545,12 +2547,136 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><p>方法一定不能修改字节数组 p，即使是临时修改也不被允许</p>
 </li>
 </ol>
+<p><strong>io.LimitedReader</strong></p>
+<p>它包含一个属性N代表能够在这个LimitReader上读取的最多字节数，如果在此LimitReader上读取的总字节数超过了上限，则接下来对这个LimitReader的读取都会返回io.EOF，从而有效终止读取过程，避免首部字段的无限读。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> LimitedReader <span class="keyword">struct</span> &#123;</span><br><span class="line">	R Reader <span class="comment">// underlying reader</span></span><br><span class="line">	N <span class="type">int64</span>  <span class="comment">// max bytes remaining</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>io.copy(dst,src)</strong>  </p>
+<p>从src读,写入dst中.，复制文件</p>
 <blockquote>
 <p>总结</p>
-<p>io.Reader : 读取底层文件中的数据到字节数组中<br>io.Writer : 将字节数组的数据写入到底层文件中</p>
+<p>io.Reader : 读取底层文件中的数据到字节数组p中<br>io.Writer : 将字节数组p的数据写入到底层文件中</p>
 <p>可以看到 Reader 和 Writer 接口中定义的方法中，都有字节数组p，而底层要操作的文件在方法中却没有体现出来,我们只需要知道底层文件会通过p被read和write操作即可。</p>
 <p>Read方法是将文件的数据读入字节数组p，Write 是将字节数组p的数据写入文件，这一点不要记混。</p>
 </blockquote>
+<p><strong>2.ioutil包</strong></p>
+<p>Go语言 ioutil包中提供了一些常用、方便的IO操作函数，我们在平时的时候中可以直接拿来使用。对于IO读操作来说，比较适用于读小文件，因为相关方法都是一次性将内容读入内存，文件太大内存吃不消。</p>
+<p><strong>readAll</strong></p>
+<p>readAll 是一个内部方法，从入参 io.reader 中读取全部数据，然后返回读取到的数据以及产生的 error，主要是调用 butes.Buffer 的 ReadFrom 方法（读取完数据产生的EOF error 在这里不算做 error，因为目的就是读取完数据）。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// io.Reader r : 保存着底层数据，数据从 r 中读取</span></span><br><span class="line"><span class="comment">// capacity： 用于设置保存数据的字节缓冲区的初始容量，但是在读取过程中会自动扩容的</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">readAll</span><span class="params">(r io.Reader, capacity <span class="type">int64</span>)</span></span> (b []<span class="type">byte</span>, err <span class="type">error</span>) &#123;</span><br><span class="line"> <span class="keyword">var</span> buf bytes.Buffer</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 如果字节缓冲区在读取过程中一直扩容，最终超出了系统设置的最大容量，会产生 ErrTooLarge panic，在这里捕获，改为返回一个 error</span></span><br><span class="line"> <span class="comment">// 如果是其他类型的 panic，保持 panic</span></span><br><span class="line"> <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">  e := <span class="built_in">recover</span>()</span><br><span class="line">  <span class="keyword">if</span> e == <span class="literal">nil</span> &#123;</span><br><span class="line">   <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> panicErr, ok := e.(<span class="type">error</span>); ok &amp;&amp; panicErr == bytes.ErrTooLarge &#123;</span><br><span class="line">   err = panicErr</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="built_in">panic</span>(e)</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;()</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 设置默认容量</span></span><br><span class="line"> <span class="keyword">if</span> <span class="type">int64</span>(<span class="type">int</span>(capacity)) == capacity &#123;</span><br><span class="line">  buf.Grow(<span class="type">int</span>(capacity))</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 读取数据</span></span><br><span class="line"> _, err = buf.ReadFrom(r)</span><br><span class="line"> <span class="keyword">return</span> buf.Bytes(), err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>ioutil.Readfile</strong></p>
+<p>ioutil.ReadFile 读取文件只需要传入一个文件名做为 参数，读取成功，会将文件的内容做为一个字节数组返回，如果读取错误，将返回 error 信息。</p>
+<p>使用 ReadFile 读取文件，不需要手动 打开与关闭文件，打开与关闭文件的动作，系统自动帮我们完成。同时，使用 ReadFile 读取文件时，只适合读取小文件，不适合读取大文件。</p>
+<blockquote>
+<p>总结</p>
+<p>ReadAll 方法，我们比较常用的工具类方法，一次性读取文件的所有内容并返回，适用于读取小文件，如果文件太大会占用太多内存。调用 ReadAll 方法成功，会读取 io.Reader r 的所有内容，返回的 err &#x3D;&#x3D; nil，而不是 err &#x3D;&#x3D; EOF，因为读取完所有数据了，完成了我们的任务，此时 EOF 不应当是 error。</p>
+</blockquote>
+<p><strong>3.bufio包</strong></p>
+<p><strong>bufio.reader</strong></p>
+<p>我们都知道，对底层文件的IO操作，是比较费时的。如果每操作一次数据就要读取一下底层文件，IO操作是非常多的。那么如何提高效率呢？可以考虑预加载，读取数据的时候，提前加载部分数据到缓冲区中，如果缓冲区长度大于每次要操作的数据长度，这样就减少了 IO 次数；同样，对于写底入层文件，我们可以先将要写入的数据存入缓冲区，然后一次性将数据写入底层文件。</p>
+<p>bufio包 基于缓冲区，提供了便捷的对底层文件IO操作方法，并利用缓冲区减少了IO次数，本篇文章就先来学习文件读取相关结构 bufio.Reader。</p>
+<p>bufio.Reader 利用一个缓冲区，在底层文件读取器和读操作方法间架起了桥梁。底层文件读取器就是初始化 Reader 的时候需要传入的io.Reader。有这样一个缓冲区的好处是，每次我们想读取底层文件内容时，会首先从缓冲区读取，提高了读取速度，也避免了频繁的 底层文件IO，同时必要时会利用底层文件读取器io.Reader提前加载部分数据到缓冲区中，做到未雨绸缪。</p>
+<p>有这样一个缓冲区的好处是，可以在大多数的时候降低读取方法的执行时间。虽然，读取方法有时还要负责填充缓冲区，但从总体来看，读取方法的平均执行时间一般都会因此有大幅度的缩短。</p>
+<p>bufio.Reader 的结构如下：</p>
+<p><img src="https://s1.vika.cn/space/2022/10/06/afe50b9c73ec493dbde7db7e77ff7f22" class="lazyload" data-srcset="https://s1.vika.cn/space/2022/10/06/afe50b9c73ec493dbde7db7e77ff7f22" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<center>bufio.Reader结构</center>
+
+<p>bufio.Reader中的 r、w 分别代表当前读取和写入的位置，读写都是针对缓存切片 buf 来说的。io.Reader rd 是用来写入数据到 buf 的，因此当写入了部分字节，w 会增大相应的写入字节数；而当从 buf 中读出数据后，r 会增大，被读取过的数据就是无用数据了。始终 w&gt;&#x3D;r，当 w&#x3D;&#x3D;r 时，说明写入的数据都被读取过了，没有有效数据可读了。</p>
+<ul>
+<li><p>buf：用作缓冲区的字节切片，虽然是切片类型，但是一旦初始化完成之后，长度不会改变</p>
+</li>
+<li><p>rd：初始化时传入的io.Reader，用于读取底层文件数据，然后写入到缓冲区 buf 中</p>
+</li>
+<li><p>r：下一次读取缓冲区 buf 时的起始位置，即 r 之前的数据都是被读取过的，下次读取会从 r 位置开始，我们称之为已读计数</p>
+</li>
+<li><p>w：下一次写入缓冲区 buf 时的起始位置，即 w 之前都是之前写过的数据，下次写入从 w 位置开始，我们称之为已写计数</p>
+</li>
+<li><p>err：记录 rd 读取数据时产生的 error，err 在被读取或忽略之后，会被置为nil</p>
+</li>
+<li><p>lastByte：保存上一次读取的最后一个字节的位置，用于回退一个字节；-1 表示无效值，不能回退</p>
+</li>
+<li><p>lastRuneSize：保存上一次读取的 rune 的位置，用于回退一个rune；-1 表示无效值，不能回退</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Reader <span class="keyword">struct</span> &#123;</span><br><span class="line"> buf          []<span class="type">byte</span></span><br><span class="line"> rd           io.Reader <span class="comment">// reader provided by the client</span></span><br><span class="line"> r, w         <span class="type">int</span>       <span class="comment">// buf read and write positions</span></span><br><span class="line"> err          <span class="type">error</span></span><br><span class="line"> lastByte     <span class="type">int</span> <span class="comment">// last byte read for UnreadByte; -1 means invalid</span></span><br><span class="line"> lastRuneSize <span class="type">int</span> <span class="comment">// size of last rune read for UnreadRune; -1 means invalid</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Buffered()</strong></p>
+<p>Buffered方法返回当前缓冲的字节数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(b *Reader)</span></span> Buffered() <span class="type">int</span> &#123; <span class="keyword">return</span> b.w - b.r &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>peek()</strong></p>
+<p>peek方法用于查看未读数据的前n个字节，该方法并不会更改 bufio.Reader 的状态，不会更新已读计数，同时该方法不属于读取操作，不能用于后续的回退操作。</p>
+<p>需要注意的是，该方法返回的是缓冲区的切片，可能造成数据泄露的风险，因为调用者可以通过返回的切片直接修改缓冲区的值；其次，返回数据的有效期是在下次数据读取之前，因为下次读取数据可能会数据压缩平移，导致当前数据的位置被改变。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(b *Reader)</span></span> Peek(n <span class="type">int</span>) ([]<span class="type">byte</span>, <span class="type">error</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Discard()</strong></p>
+<p>Discard方法 会丢弃缓冲区的n个字节，最后返回实际丢弃的字节数和产生的 error。</p>
+<p>对于合法参数 n，方法使用 for 循环不断装填数据，来尽量满足丢弃 n 个字节。即如果有效数据长度小于 n 的话，丢弃现有数据后，再重新调用fill 方法，填充新的数据用于丢弃，如果在这个过程中遇到err，方法就终止，最终返回实际丢弃的字节数和遇到的error。如果 buf 可丢弃的有效字节数大于 n，丢弃部分字节即可。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(b *Reader)</span></span> Discard(n <span class="type">int</span>) (discarded <span class="type">int</span>, err <span class="type">error</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Read()</strong></p>
+<p>Read 方法读取数据到 字节切片 p 中，返回读取的字节数和产生的 error。</p>
+<ul>
+<li><p>当缓冲区有效数据不为空时，直接将缓冲区的有效数据复制到字节切片p中，有多少就写入多少，不会再读取底层数据填充，因此如果当前缓冲区的有效数据长度小于传入字节切片 p 的长度，读取的字节数 n &lt; len(p)；</p>
+</li>
+<li><p>当缓冲区有效数据为空时，从底层文件读取数据，填充字节切片p。</p>
+<ul>
+<li>当 p 的长度小于缓冲区长度时，从底层读取 一次 数据到缓冲区，然后将缓冲区的数据复制到 p 中</li>
+<li>当 p 的长度大于缓冲区长度时，有一个优化，不会先写入缓冲区再复制到 p，这种方式不仅多复制一次，读取的数据还少于想要的数据长度，而是直接读取底层数据到 p 中，简单高效。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(b *Reader)</span></span> Read(p []<span class="type">byte</span>) (n <span class="type">int</span>, err <span class="type">error</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>ReadLine()</strong></p>
+<p>ReadLine方法 用于读取一行数据，且不会包含回车符和换行符(“\r\n” 或者 “\n”)。该方法是 low-level 的，如果想要读取一行数据，应该尽量用 ReadBytes(‘\n’) 或者 ReadString(‘\n’) 来代替该方法。</p>
+<p>在读取过程中，如果一行数据过长，超过了缓冲区长度，那么只会返回缓冲数组中的全部数据，并将 isPrefix 设置为 true，剩余的数据只会在后续再次调用 ReadLine方法 返回。如果正确返回一行数据，isPrefix&#x3D;false。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(b *Reader)</span></span> ReadLine() (line []<span class="type">byte</span>, isPrefix <span class="type">bool</span>, err <span class="type">error</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结</p>
+<p>我们可以看到在bufio包下的read（）方法中只出现了字节切片p，也没有出现底层文件，这和io包下是一致的，我们只需知道底层文件确实被操作过了即可。</p>
+<p><strong>另外，bufio包的read机制需要熟记：</strong><br>首先切片p的含义是：要将底层文件的数据读取到p中<br>当缓存切片bufr中有内容时，会优先从缓存切片中读内容到切片p中，并清空缓存切片bufr。<br>当缓存切片bufr中没有内容时，会进行判断：<br>当len(p) &gt; len(bufr)，即想要读取的内容比缓存切片bufr要大，直接去底层文件读取即可。<br>当len(p) &lt; len(buf)，即想要读取的内容比缓存切片bufr小，先从底层文件读取内容充满缓存切片bufr，并将p填满，此时缓存切片bufr有剩余内容。再次读取时缓存切片bufr有内容，则将缓存区内容全部填入p并清空缓存切片bufr。</p>
+</blockquote>
+<blockquote>
+<p>当缓存区中有内容时，程序的读取会从缓存区读而不会发生文件I&#x2F;O。只有当缓存区为空时才会发生文件I&#x2F;O</p>
+</blockquote>
+<blockquote>
+<p>若缓存区的大小足够则启用缓存读，先会将内容载入填满缓存区，程序再从缓存区中读取。若缓存区过小则会直接从文件中读取而不使用缓存读</p>
+</blockquote>
+<p><strong>bufio.writer</strong></p>
+<blockquote>
+<p>write机制：<br>首先切片p的含义是：要将p中的数据写入到底层文件中<br>当len(p) &gt; len(bufr)，即想要写入的内容比缓存切片bufr要大，直接往底层文件写入即可。<br>当len(p) &lt; len(buf)，即想要写入的内容比缓存切片bufr小，先将p中的数据copy到缓存切片中去，再从缓存切片中将所有数据写入到底层文件中去。</p>
+</blockquote>
+<p><strong>flush（）方法</strong></p>
+<blockquote>
+<p>bufio.writer的flush方法，代表将缓存切片中剩余的数据一次性写入到底层文件中并清空缓存切片。</p>
+</blockquote>
+<p><strong>其他</strong></p>
+<p>操作终端相关文件句柄常量：</p>
+<ul>
+<li><p>os.Stdin ：   标准输入</p>
+</li>
+<li><p>os.Stdout ： 标准输出</p>
+</li>
+<li><p>os.Stderr ：  标准错误</p>
+</li>
+<li><p>os.Open :      打开文件</p>
+</li>
+<li><p>os.OpenFile ：写入文件</p>
+</li>
+<li><p>WriteString()函数用于将字符串“s”的内容写入到写入器“w”, “w”是Writer类型的写入器，而“s”是写入写入器的字符串。</p>
+</li>
+<li><p>fmt.Printf，是把格式字符串输出到标准输出（一般是屏幕）。</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Printf</span><span class="params">(format <span class="type">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span></span> (n <span class="type">int</span>, err <span class="type">error</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fmt.Fprintf， 是把格式字符串输出到指定文件设备中，所以参数笔printf多一个文件指针FILE*。它返回已写入的字节数以及遇到的任何写入错误。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fprintf</span><span class="params">(w io.Writer, format <span class="type">string</span>, a ...<span class="keyword">interface</span>&#123;&#125;)</span></span> (n <span class="type">int</span>, err <span class="type">error</span>)</span><br></pre></td></tr></table></figure>
 
   </div>
   
@@ -2575,7 +2701,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-06T00:41:35+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-06T11:54:59+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Oct 6, 2022</p>
@@ -3400,7 +3526,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-（3）.html","name":"从零实现Golang的HTTP标准库-（3）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-（3）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-06T00:20:00.000Z","dateModified":"2022-10-05T16:41:35.579Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-（3）.html","name":"从零实现Golang的HTTP标准库-（3）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-（3）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-06T00:20:00.000Z","dateModified":"2022-10-06T03:54:59.765Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
