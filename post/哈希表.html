@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="http://example.com/post/从零实现golang的http标准库-（2）.html"/>
+  <link rel="canonical" href="http://example.com/post/哈希表.html"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,21 +31,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>从零实现Golang的HTTP标准库-（2） - 徐乔伟</title>
-  <meta name="keywords" content="网络编程,null">
+  <title>哈希表原理 - 徐乔伟</title>
+  <meta name="keywords" content="Map,null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零实现Golang的HTTP标准库-（2）">
-<meta property="og:url" content="http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html">
+<meta property="og:title" content="哈希表原理">
+<meta property="og:url" content="http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="1.概述在上一篇中，我们介绍了如何启动一个Web服务， 在本篇中，我们主要构建框架的基本结构，即所需要的一些结构体。 我们暂时需要4个结构体：  ①  Server：代表WEB服务器，属性包含监听地址Addr以及Handler，负责服务器的启动逻辑。   ②  conn：代表HTTP连接，net.Conn表达能力过弱，故将其封装成conn。仅服务于框架内部，不应由用户使用，包内不可导出。   ③">
+<meta property="og:description" content="map映射结构频繁地运用在日常的开发之中，因此成为了面试中的高频考点，本系列将从map的两种实现(hash以及红黑树)出发，再详解go语言的map，最后讨论如何实现高性能的并发安全map，彻底搞懂map结构的奥秘。 什么是map维基百科的定义：  In computer science, an associative array, map, symbol table, or dictionary">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2022-10-05T14:20:00.000Z">
-<meta property="article:modified_time" content="2022-10-06T06:49:43.529Z">
+<meta property="article:published_time" content="2022-12-01T00:20:00.000Z">
+<meta property="article:modified_time" content="2022-12-16T08:42:07.667Z">
 <meta property="article:author" content="徐乔伟">
-<meta property="article:tag" content="网络编程">
+<meta property="article:tag" content="Map">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2418,7 +2418,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 <div id="l_main" class=''>
   <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（2）.html">
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/哈希表.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2439,7 +2439,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title" itemprop="name headline">
-        从零实现Golang的HTTP标准库-（2）
+        哈希表原理
       </h1>
       <div class='new-meta-box'>
         
@@ -2458,10 +2458,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
   <div class='new-meta-item category'>
     <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
+    <a class="category-link" href="/categories/Map/">Map</a>
     
       <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+        <a href="/categories/Map/" itemprop="url"><span itemprop="name">Map</span></a>
       </span>
     
   </div>
@@ -2470,10 +2470,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-10-05T22:20:00+08:00">
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-12-01T08:20:00+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 5, 2022</p>
+    <p>发布于：Dec 1, 2022</p>
   </a>
 </div>
 
@@ -2496,109 +2496,71 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>在上一篇中，我们介绍了如何启动一个Web服务，</p>
-<p>在本篇中，我们主要构建框架的基本结构，即所需要的一些结构体。</p>
-<p>我们暂时需要4个结构体：</p>
+    <p>map映射结构频繁地运用在日常的开发之中，因此成为了面试中的高频考点，本系列将从map的两种实现(hash以及红黑树)出发，再详解go语言的map，最后讨论如何实现高性能的并发安全map，彻底搞懂map结构的奥秘。</p>
+<h2 id="什么是map"><a href="#什么是map" class="headerlink" title="什么是map"></a>什么是map</h2><p>维基百科的定义：</p>
 <blockquote>
-<p>①  Server：代表WEB服务器，属性包含监听地址Addr以及Handler，负责服务器的启动逻辑。</p>
+<p>In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears at most once in the collection.</p>
 </blockquote>
-<blockquote>
-<p>②  conn：代表HTTP连接，net.Conn表达能力过弱，故将其封装成conn。仅服务于框架内部，不应由用户使用，包内不可导出。</p>
-</blockquote>
-<blockquote>
-<p>③  Request：代表客户端的HTTP请求，由框架从字节流中解析http报文从而生成的结构。</p>
-</blockquote>
-<blockquote>
-<p>④  response：代表响应，实现了ResponseWriter接口。包内不可导出。</p>
-</blockquote>
-<h2 id="2-结构体构建"><a href="#2-结构体构建" class="headerlink" title="2.结构体构建"></a>2.结构体构建</h2><p>本节只为搭建框架的骨干，因此部分结构体内部暂时为空，部分函数也空实现，在随后的章节中我们一步步进行填充。</p>
-<p><strong>1.request.go</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Request <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">readRequest</span><span class="params">(c *conn)</span></span>(*Request,<span class="type">error</span>)&#123;<span class="keyword">return</span> <span class="literal">nil</span>,<span class="literal">nil</span>&#125;		<span class="comment">//暂时空实现</span></span><br></pre></td></tr></table></figure>
-
-<p>Request结构体就代表了客户端提交的http请求，我们使用readRequest函数从http连接上解析出这个对象。</p>
-<p>它是http.Handler的ServeHTTP方法的第二个参数。</p>
-<p><strong>2.response.go</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> response <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ResponseWriter <span class="keyword">interface</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>response结构体就代表服务端的响应对象，我们后期会给其绑定些与客户端交互的方法，供用户使用。这里暂时让response和ResponseWriter都空实现。</p>
-<p>它是http.Handler的ServeHTTP方法的第一个参数。</p>
-<p><strong>3.server.go</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Handler <span class="keyword">interface</span> &#123;</span><br><span class="line">	ServeHTTP(w ResponseWriter,r *Request)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Server <span class="keyword">struct</span>&#123;</span><br><span class="line">	Addr <span class="type">string</span>		<span class="comment">//监听地址</span></span><br><span class="line">	Handler Handler	<span class="comment">//处理http请求的回调函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Server)</span></span> ListenAndServe()<span class="type">error</span>&#123;</span><br><span class="line">	l,err:=net.Listen(<span class="string">&quot;tcp&quot;</span>,s.Addr)</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		rwc,err:=l.Accept()</span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		conn:=newConn(rwc,s)</span><br><span class="line">		<span class="keyword">go</span> conn.serve()			<span class="comment">// 为每一个连接开启一个go程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>rwc是net包里的那个连接，此时还没有封装成代表http的连接。conn是封装好的连接对象。通过newConn（rwc）初始化出来。</p>
-<p>conn是封装好的连接对象，它隶属于一个conn结构体。这个conn结构体里面提供了一个serve方法。这个serve方法就是用来处理连接的。Serve方法主要干三件事：一个是从连接中解析出客户端的请求request，另一个是设置response。这是serverHTTP方法的两个参数。最后一个是调用serverHTTP方法。注意：这个serverHTTP方法是和具体的tcp连接绑在一起的，而不是和封装好的那个连接绑在一起的。</p>
-<p>上一节提到启动一个服务器其必须项只有Addr以及Handler，他们分别告诉了框架监听地址以及如何处理客户端的请求。事实上，Server结构体中还可以加入很多字段如读取或写入超时时间、能接受的最大报文大小等控制信息，但为了专注于一个框架最核心的实现，我们忽略这些细节内容。</p>
-<p>ListenAndServe方法中展现的是go语言socket编程的写法，其大致意思是在Addr上监听TCP连接，将得到的TCP连接rwc(ReadWriteCloser)以及s进行封装得到conn结构体。接着调用conn.serve()方法，开启goroutine处理请求。</p>
-<p>项目的开发尽量遵循模块分工原则，server.go只负责WEB服务器的启动逻辑，接下来的http协议的解析交给另一个模块conn.go进行。</p>
-<p><strong>4.conn.go</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> conn <span class="keyword">struct</span>&#123;</span><br><span class="line">	svr  *Server	<span class="comment">// 引用服务器对象</span></span><br><span class="line">    rwc	 net.Conn	<span class="comment">// 底层tcp连接</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newConn</span><span class="params">(rwc net.Conn,svr *Server)</span></span>*conn&#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;conn&#123;svr: svr, rwc: rwc&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> serve()&#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> err:=<span class="built_in">recover</span>();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;panic recoverred,err:%v\n&quot;</span>,err)</span><br><span class="line">		&#125;</span><br><span class="line">		c.<span class="built_in">close</span>()</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="comment">//http1.1支持keep-alive长连接，所以一个连接中可能读出个请求，因此实用for循环读取</span></span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		req,err:=c.readRequest()		<span class="comment">//解析出Request</span></span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			handleErr(err,c)			<span class="comment">//将错误单独交给handleErr处理</span></span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		res:=c.setupResponse()			<span class="comment">//设置response</span></span><br><span class="line">        </span><br><span class="line">       	<span class="comment">// 有了用户关心的Request和response之后，传入用户提供的回调函数即可</span></span><br><span class="line">		c.svr.Handler.ServeHTTP(res,req)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//暂时为空实现，后续小节再填充</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> readRequest()(*Request,<span class="type">error</span>)&#123;<span class="keyword">return</span> readRequest(c)&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> setupResponse()*response&#123;<span class="keyword">return</span> <span class="literal">nil</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> <span class="built_in">close</span>()&#123;c.rwc.Close()&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleErr</span><span class="params">(err <span class="type">error</span>,c *conn)</span></span>&#123;fmt.Println(err)&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对conn结构体作了扩充：拥有服务器属性、tcp连接属性。</p>
-<p>在serve方法中，会分别调用readRequest以及setupResponse方法，从而得到<em>Request以及</em>response，随后将它们传入用户指定的Handler中，开启实际的请求处理过程。defer中使用recover，防止用户指定的Handler中存在逻辑错误导致发生panic。</p>
-<p>利用for循环读取的原因：</p>
-<blockquote>
-<p>对于HTTP 1.0来说，客户端为了获取服务端的每一个资源，都需要为每一个请求进行TCP连接的建立，因此每一个请求都需要等待2个RTT(三次握手+服务端的返回)的延时。而往往一个html网页中往往引用了多个css或者js文件，每一个请求都要经历TCP的三次握手，其带来的代价无疑是昂贵的。</p>
-</blockquote>
-<blockquote>
-<p>因此在HTTP 1.1中进行了巨大的改进，即如果将要请求的资源在同一台服务器上，则我只需要建立一个TCP连接，所有的HTTP请求都通过这个连接传输，平均下来可以减少一半的传播时延。</p>
-</blockquote>
-<blockquote>
-<p>如果客户端的请求头中包含connection: keep-alive字段，则我们的服务器应该有义务保证长连接的维持，并持续从中读取HTTP请求，因此这里我们使用for循环。</p>
-</blockquote>
-<p>将err交给handleErr函数处理的原因：</p>
-<blockquote>
-<p>eadRequest可能会出现各种错误，如用户连接的断开、请求报文格式错误、服务器系统故障、使用了不支持的http版本、使用了不支持的协议等等错误。</p>
-</blockquote>
-<blockquote>
-<p>对于有些错误如客户端连接断开或者使用了不支持的协议，我们服务端不应该进行回复。但对于一些错误如使用了不支持的http版本，我们应该返回505状态码；对于请求报文过大的错误，我们应该返回413状态码。因此在handleErr中，我们应该对err进行分类处理。</p>
-</blockquote>
-<h2 id="3-对conn结构体的改进"><a href="#3-对conn结构体的改进" class="headerlink" title="3.对conn结构体的改进"></a>3.对conn结构体的改进</h2><p>目前conn结构体很简单，我们在读写两个方面进行分别改进，抽象出两个结构成员，一个负责对tcp连接读的逻辑，一个负责写的逻辑。两个改进如下：</p>
-<p><strong>1.写的改进</strong></p>
-<p>写的改进比较简单，主要是从性能优化角度出发。以下面代码为例：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++&#123;</span><br><span class="line">        io.WriteString(w,strconv.Itoa(i))</span><br><span class="line">    &#125;	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>100次循环每次写入1~2B的小片段，每一次写入都会进行一次系统调用、一次IO操作，这势必会极大降低应用程序的性能。很显然，可以对用户写入数据进行缓存，缓存不下时再发送就能较少IO次数，从而提升效率。</p>
-<p>go标准库提供了现有的工具，不需要重复造轮子。bufio.Writer可以解决我们的问题，它的底层会分配一个缓存切片，我们对这bufio.Writer写入时会优先往这个切片中写入，如果缓存满了，则将切片中缓存的数据发送到最底层的writer中，因此可以保证每次写入的大小都是大于或等于缓存切片的大小。在conn结构中引入bufw成员：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> conn <span class="keyword">struct</span>&#123;</span><br><span class="line">	svr  *Server</span><br><span class="line">	rwc  net.Conn</span><br><span class="line">	bufw *bufio.Writer		<span class="comment">//带缓存的writer</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newConn</span><span class="params">(rwc net.Conn,svr *Server)</span></span>*conn&#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;conn&#123;</span><br><span class="line">		svr: svr,</span><br><span class="line">		rwc: rwc,</span><br><span class="line">		bufw: bufio.NewWriterSize(rwc,<span class="number">4</span>&lt;&lt;<span class="number">10</span>), <span class="comment">//缓存大小4kB</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *conn)</span></span> serve()&#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> err:=<span class="built_in">recover</span>();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;panic recoverred,err:%v\n&quot;</span>,err)</span><br><span class="line">		&#125;</span><br><span class="line">		c.<span class="built_in">close</span>()</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="comment">//http1.1支持keep-alive长连接，所以一个连接中可能读出</span></span><br><span class="line">	<span class="comment">//多个请求，因此实用for循环读取</span></span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		req,err:=c.readRequest()</span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			handleErr(err,c)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		resp:=c.setupResponse()</span><br><span class="line">		c.svr.Handler.ServeHTTP(resp,req)</span><br><span class="line">		<span class="comment">//将缓存中的剩余的数据发送到rwc中</span></span><br><span class="line">		<span class="keyword">if</span> err=c.bufw.Flush();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			<span class="keyword">return</span>	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们给conn加入了bufw属性，以后的写入操作都将直接操纵bufw，其缓存的默认大小为4KB。同时在serve方法中，在一个请求处理结束后，bufw的缓存切片中还缓存有部分数据，我们需要调用Flush保证数据全部发送。</p>
-<p><strong>2.读的改进</strong></p>
-<p>对于HTTP协议来说，一个请求报文分为三部分：请求行、首部字段以及报文主体，一个post请求的报文如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/<span class="number">1.1</span>\r\n						   	#请求行</span><br><span class="line">Content-Type: text/plain\r\n				#<span class="number">2</span>~<span class="number">7</span>行首部字段，首部字段为k-v对</span><br><span class="line">User-Agent: PostmanRuntime/<span class="number">7.28</span><span class="number">.0</span>\r\n</span><br><span class="line">Host: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span>\r\n</span><br><span class="line">Accept-Encoding: gzip, deflate, br\r\n</span><br><span class="line">Connection: keep-alive\r\n</span><br><span class="line">Content-Length: <span class="number">18</span>\r\n</span><br><span class="line">\r\n</span><br><span class="line">hello,I am client!							#报文主体</span><br></pre></td></tr></table></figure>
-
-
-<p>其中首部字段部分是由一个个key-value对组成，每一对之间通过\r\n分割，首部字段与报文主体之间则是利用两个连续的CRLF即\r\n\r\n作为分界。首部字段到底有多少个key-value对于服务端程序来说是无法预知的，因此我们想正确解析出所有的首部字段，我们必须一直解析到出现两个连续的\r\n为止。</p>
-<p>对于一个正常的http请求报文，其首部字段总长度不会超过1MB，所以直接不加限制的读到空行完全可行，但问题是无法保证所有的客户端都没有恶意。</p>
-<p>他可能在阅读框架源码后发现对首部字段的读取未采取任何限制措施，于是发送了一个首部字段无限长的http请求，导致服务器无限解析最终用掉了所有内存直至程序崩溃。因此我们应该为我们的reader限制最大读取量，这是第一个改进，改进用到了标准库的io.LimitedReader。</p>
-<p>除此之外，首部字段的每个key-value都占用一行(\r\n是换行符)，为了方便解析，我们的reader应该有ReadLine方法。这是第二个改进，改进用到了标准库的bufio.Reader。</p>
-<p>代码变动如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> conn <span class="keyword">struct</span>&#123;</span><br><span class="line">	svr  *Server</span><br><span class="line">	rwc  net.Conn</span><br><span class="line">	lr   *io.LimitedReader</span><br><span class="line">	bufr *bufio.Reader		<span class="comment">//bufr是对lr的封装</span></span><br><span class="line">	bufw *bufio.Writer</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newConn</span><span class="params">(rwc net.Conn,svr *Server)</span></span>*conn&#123;</span><br><span class="line">	lr:=&amp;io.LimitedReader&#123;R: rwc, N: <span class="number">1</span>&lt;&lt;<span class="number">20</span>&#125;</span><br><span class="line">	<span class="keyword">return</span> &amp;conn&#123;</span><br><span class="line">		svr: svr,</span><br><span class="line">		rwc: rwc,</span><br><span class="line">		bufw: bufio.NewWriterSize(rwc,<span class="number">4</span>&lt;&lt;<span class="number">10</span>),</span><br><span class="line">		lr:lr,</span><br><span class="line">		bufr: bufio.NewReaderSize(lr,<span class="number">4</span>&lt;&lt;<span class="number">10</span>),</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第一处改进：为conn增加了lr字段，它是一个io.LimitedReader，它包含一个属性N代表能够在这个reader上读取的最多字节数，如果在此reader上读取的总字节数超过了上限，则接下来对这个reader的读取都会返回io.EOF，从而有效终止读取过程，避免首部字段的无限读。</p>
-<p>第二处改进：为conn增加bufr字段，它是一个bufio.Reader，其底层的reader为上述的LimitedReader。对于一个io.Reader接口而言，它是无法提供ReadLine方法的，而将其封装程bufio.Reader后，就可以使用这个方法。</p>
-<blockquote>
-<p>bufio.Reader相较io.Reader来说多出了ReadLine方法的原因：</p>
-<p>io.Reader提供的Read方法需要传入一个切片，如果传入的切片太小了，可能导致一行未读完；如果传入的切片太大了，则可能导致读取超过了一行。首部字段中的任何一行其长度是不可预知的，所以单纯利用io.Reader的Read方法很难达成目的。当然你可以传入一个字节大小的切片，每次读取1B然后通过不断append的方式，但这样会带来多次的IO开销。</p>
-<p>bufio.Reader相较于io.Reader的改进就是，它会存在一个缓存切片，如果缓存切片中存在数据，我们对bufio.Reader进行Read优先会从这个缓存中取。我们平时会遇到一个使用场景就是，我们希望查看一下某个reader中的前多少B的数据，但又不希望我们这次查看之后后续的Read方法再也读不到这些数据，这时我们会将其转为一个bufio.Reader，通过其Peek方法就可以实现上述的要求。其原理就是Peek方法会将你peek出的数据暂存入切片缓存，尽管底层的reader流中不存在了这些数据，但对bufio.Reader进行Read会优先从缓存取，依旧可以将以前消费的数据读取出来。</p>
-<p>ReadLine方法就是借助了这个缓存，它会不断地读取数据，如果读取的数据不够一行，则会将这些数据暂存；如果读取的数据够了一行，则将这一行返回，并将剩余未够一行的数据继续缓存。这样不论是一次读多读少，都不会影响Read方法的调用，同时也能减少IO次数提升性能。具体实现可以查看标准库bufio.go源码。</p>
-</blockquote>
-<p>那么以后，我们直接操作的IO对象就是bufr和bufw：</p>
+<p>map又称为关联数组、字典、映射，是一个抽象的数组结构，用于存取1:1映射的<strong>键值对</strong>。其实数组也是一种映射结构，提供数组索引到值的映射，但数组的索引必须为整数类型，而map却可以让键为任何可比较类型如字符串。</p>
+<p>map一般会提供如下操作：<strong>增删改查</strong>键值对。map大致有两种底层数据结构实现：hash表以及红黑树。根据实现的不同，从而具有不同的特性以及存取效率。</p>
 <ul>
-<li><p>读数据时直接操作bufr，bufr进而读取io.LimitedReader，进而读取tcp连接。</p>
+<li><p>hash表也称散列表，实现采用空间换时间的思想，理想情况下能让hash map的平均存取效率达到O(1)，最坏情况下退化为O(n)，hash表采用哈希函数将键值对打散到不同的桶中，对桶的顺序遍历无法做到对键的排序。</p>
 </li>
-<li><p>写数据时直接操作bufw，bufw进而写入到tcp连接。</p>
+<li><p>红黑树是一种平衡二叉查找树结构，插入时保持左子树每个节点的key小于根节点，右子树每个节点的key大于根节点，这种特性使得红黑树实现的map能够进行排序。为了防止极端情况下可能出现单支树，从而使时间复杂度退化为O(n)，对二叉查找树的插入和删除都会使其保持平衡(非严格平衡条件)，因此红黑树的性能极为稳定，能够保持在O(logN)。</p>
 </li>
 </ul>
-<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><p>编写main.go：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;example/httpd&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(*myHandler)</span></span> ServeHTTP(w httpd.ResponseWriter,r *httpd.Request)&#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;hello world&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	svr:=httpd.Server&#123;</span><br><span class="line">		Addr: <span class="string">&quot;127.0.0.1:8080&quot;</span>,</span><br><span class="line">		Handler:<span class="built_in">new</span>(myHandler),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">panic</span>(svr.ListenAndServe())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>golang的map、python的dict以及c++的unordered_map采用hash实现，c++的map采用红黑树实现，在java1.8的哈希表的实现中采用的是红黑树与哈希结构混合的方式。</p>
+<p>不论是上述哪一种实现，都是面试的高频考点，时常被要求手写。本系列前两章就用这两种方式实现最简单的map结构，让你最快速地把握map的本质。在了解最核心原理后，会详解go语言的原生map结构以及其中的众多优化技巧。除此之外，我们会简单剖析下开源库concurrent-map，分析如何实现一个高性能的并发安全的map。</p>
+<h2 id="哈希表原理"><a href="#哈希表原理" class="headerlink" title="哈希表原理"></a>哈希表原理</h2><p>如果让你实现一个结构，能够提供键值对的增删改查，最容易想到的就是使用链表实现。欲插入键值对，只需要将键值对构成一个节点插入链表；给定Key查找Value，只需要从链表头开始迭代所有节点，比较节点的key即可。</p>
+<p>但问题是这样实现查找的效率很低，为O(N)。hash表采取了空间换时间的方式，其核心思想是开辟一个数组空间，数组中每个元素称为桶，我们用这些预先分配的桶存储键值对。</p>
+<p>那么问题就是如何组织键值对放入到这些有限桶中。对于hash表来说，都会存在一个哈希函数，输入一个key，通过某种hash(key)函数的计算能够输出一个确切的哈希值，且这个过程是幂等的。给定key就能得到哈希值，进而确定将这个KV(key-value)对存储在哪一个桶中。</p>
+<p>举个最简单的例子：我们现在拥有10个桶，现在插入一个key为21的键值对，hash函数为f(key)&#x3D;key%10​，则21得到的hash值为1，我们就将这个键值对存到第2(数组下标从0开始)个桶。当下次再查找21时，我们用同样的哈希函数得到同样的哈希值，立马定位到第2个桶，进而查找即可。这样进行就可以省略掉链表实现中遍历所有节点的过程，将查找效率提升到O(1)。</p>
+<p><strong>哈希冲突</strong>：桶是预分配且有限的，除此之外不同的key可能通过hash函数得到同样的hash值，如31和21通过上述的hash函数都得到1，两个不同键放入同一桶，这样就会导致冲突，这样哈希值相同的Key称为同义词。</p>
+<p>21和31就为同义词，一山不容二虎，那么如何去解决冲突问题呢？①开放地址法。②拉链法。</p>
+<h2 id="开放地址法"><a href="#开放地址法" class="headerlink" title="开放地址法"></a>开放地址法</h2><p>开发地址法的意思是一个桶并不一定只能存放符合哈希要求的键，如下标为2的桶不一定只能存求余为2的key。</p>
+<p>例如，目前要依次插入键21、31、23、41、47。key 21插入到桶1中；在准备插入31时，由于桶1已经被key 21占用，我们可以将31插入到桶1后遇到的第一个空桶即桶2；key 23插入到桶3中；在插入41时，本应存入桶1，但由于桶1、桶2、桶3都被占用，key 41就被迫存入空桶4；key 47存入桶7.</p>
+<p>对于查找也同理，给定key 31，我们先查看桶1，判断桶里的key与31是否相同，相同则找到目标值，不同则可能存在同义词，去依次查看桶2、桶3、桶4等后续桶，直至找到空桶或者目标key，找到空桶说明待查找的key并没有存于map中。如图所示：</p>
+<p>很明显的是，通过这种方式，一旦map的负载因子(键值对个数与桶个数比值)过大，查找需要线性遍历多个桶，性能会退化为O(n)，所以这种实现需要更频繁地对桶进行扩容，保持负载因子在低水平。</p>
+<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p>拉链法是大多数编程语言的选择，采用数组以及链表实现。依旧是预先开辟一定容量的桶(数组)，不过和开放地址法的区别是，每个桶后面跟上一个链表，所有的同义词通过链表中节点形式串联在一起。如上例中key 31、21和41就可以跟在桶1的链表中，查找时通过hash函数定位桶以区分非同义词，遍历桶的链表每个节点以及比较key来区分同义词。</p>
+<p>开放地址法存在堆积问题，比如key1可能因为同义词占用了key2的位置，导致key2插入时又不得不占用key3的位置，所以开发地址法对负载因子过于敏感。而拉链法通过链表方式解决冲突问题，非同义词之间不会相互影响。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>为了简便起见，我们map实现中键值都为int类型，因此hash函数直接利用求余函数即可。不同key类型只是对应的hash函数不同而已，不是map的核心思想，我们从简。</p>
+<blockquote>
+<p><strong>开放地址法</strong></p>
+</blockquote>
+<p>开放地址法的实现比较简单，但需要有一点注意，在删除操作中，被删除清空的桶不能直接标记为空桶。如上例中21、31、41为同义词，哈希值都为1，则按照开发地址法的原理，则它们分别存储的桶编号为1、2、3。如果在删除31时将桶2置为空，则查找41时，还没迭代到桶3就止步于空桶2，从而返回错误的结果。</p>
+<p>我们的解决方案：一个桶根据是否存储键值对分为空(E)状态以及占用(O)状态，除此之外我们引入第三种删除(D)状态，通过Del删除操作的桶将处于此状态。</p>
+<p>当执行查找或者删除操作时，我们将D状态桶以O状态处理，不会在D桶就停止向后迭代查询的过程；但当执行插入操作时，可以将此桶当做E状态处理，也即可以向此桶插入数据。</p>
+<p>数据结构以及宏定义：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	stateEmpty = <span class="literal">iota</span>	<span class="comment">//空状态</span></span><br><span class="line">	stateOccupied		<span class="comment">//占用状态</span></span><br><span class="line">	stateDeleted		<span class="comment">//删除状态</span></span><br><span class="line">	defaultSize = <span class="number">128</span>	<span class="comment">//初始默认桶的个数</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> pair <span class="keyword">struct</span> &#123;</span><br><span class="line">	state <span class="type">int</span> 		<span class="comment">//bucket状态</span></span><br><span class="line">	key   <span class="type">int</span>		<span class="comment">//键</span></span><br><span class="line">	value <span class="type">int</span>		<span class="comment">//值</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个桶存取一个键值对</span></span><br><span class="line"><span class="keyword">type</span> HashMap <span class="keyword">struct</span> &#123;</span><br><span class="line">	buckets []pair	<span class="comment">// 桶</span></span><br><span class="line">	count <span class="type">int</span>		<span class="comment">// 键值对个数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewHashMap</span><span class="params">()</span></span> *HashMap &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;HashMap&#123;</span><br><span class="line">		buckets: <span class="built_in">make</span>([]pair, defaultSize),</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>由于目前未解析request以及response，所以无法去真正写我们的业务代码，但可以测试我们的Handler是否能被正常触发。执行curl命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 127.0.0.1:8080</span><br></pre></td></tr></table></figure>
+<p>提供一个通用的access方法，这个方法将被Set、Get、Del方法使用：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hash函数采用最简单的取模</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> hash(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> key % <span class="built_in">len</span>(hm.buckets)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// inSet设为true代表执行Set操作</span></span><br><span class="line"><span class="comment">// 当执行Set操作时，找到存储key的桶、或者第一个空桶、或者Delete状态的桶，就结束遍历</span></span><br><span class="line"><span class="comment">// 当执行Get、Del操作时，碰到存储key的桶或者第一个空桶就结束遍历</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> access(key <span class="type">int</span>, inSet <span class="type">bool</span>) (p *pair) &#123;</span><br><span class="line">	h := hm.hash(key)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(hm.buckets); i++ &#123;</span><br><span class="line">		bucket := hm.buckets[h]</span><br><span class="line">		<span class="keyword">if</span> !inSet &amp;&amp; bucket.state == stateDeleted ||</span><br><span class="line">			bucket.state == stateOccupied &amp;&amp; bucket.key != key &#123;</span><br><span class="line">			h = (h + <span class="number">1</span>) % <span class="built_in">len</span>(hm.buckets)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		p = &amp;hm.buckets[h]</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>测试的执行流程为：框架使用者先指定一个myhandler结构体，给结构体绑定一个serverhttp方法，自己自定义实现serverhttp（其实是继承handler并重写）。</p>
-<p>然后在main函数里面初始化一个server服务器对象svr，然后调用服务器对象的listenandserve方法，然后转进入到conn的serve方法，serve方法最后调用服务器对象的handler属性，handler是一个接口，里面有serverhttp方法但没有去实现，故handler可以调用serverhttp方法。</p>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><p>这一章我们完成了httpd框架骨干的搭建，以及完成对conn的封装。下一章则正式开始HTTP协议的解析工作，我们将封装Request、完成请求行以及请求首部字段的解析。</p>
-<p>本篇到此结束，感谢你的阅读！</p>
+<p>前面提到，对map的操作，除了要查看哈希指向的桶外，还要因为同义词问题查看后续的一些桶。</p>
+<p>对于Get查找以及Del删除这两个查询操作，我们的线性迭代终止于碰到存储了对应key的目标桶或者碰到了空桶，前者代表map中保存了此key，后者表示未保存该key。</p>
+<p>对于Set方法，它有两种可能：①map中键已存在，我们将对应桶的value更新。②map中键不存在，我们找到一个空桶或者处于Delete状态的桶进行插入即可。</p>
+<p>access方法就是把上述各情况下终止迭代的桶返回，我们再判断桶的state成员即状态，就可以知道该做哪些操作。</p>
+<p>Set、Del以及Get方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> set(key <span class="type">int</span>, value <span class="type">int</span>) &#123;</span><br><span class="line">	p := hm.access(key, <span class="literal">true</span>)</span><br><span class="line">    <span class="comment">//如果终止迭代的桶为非占用桶，即为空桶或者已被删除的桶，我们需要插入KV</span></span><br><span class="line">	<span class="keyword">if</span> p.state != stateOccupied &#123;</span><br><span class="line">		hm.count++</span><br><span class="line">		p.state = stateOccupied</span><br><span class="line">		p.key = key</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//否则，只需要更新value</span></span><br><span class="line">	p.value = value</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> Set(key <span class="type">int</span>, value <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="comment">//如果负载因子过大，就需要扩容</span></span><br><span class="line">	<span class="keyword">if</span> hm.needGrow() &#123;</span><br><span class="line">		hm.grow()</span><br><span class="line">	&#125;</span><br><span class="line">	hm.set(key, value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> Del(key <span class="type">int</span>) &#123;</span><br><span class="line">	p := hm.access(key, <span class="literal">false</span>)</span><br><span class="line">    <span class="comment">//终止于空桶，说明map并未存取该key</span></span><br><span class="line">	<span class="keyword">if</span> p.state == stateEmpty &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	hm.count--</span><br><span class="line">	p.state = stateDeleted</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> Get(key <span class="type">int</span>) (val <span class="type">int</span>, ok <span class="type">bool</span>) &#123;</span><br><span class="line">	p := hm.access(key, <span class="literal">false</span>)</span><br><span class="line">    <span class="comment">//终止于空桶，说明map并未存取该key</span></span><br><span class="line">	<span class="keyword">if</span> p.state == stateEmpty &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p.value, <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面grow方法用于在负载因子过大情况下进行扩容，我们扩容采取桶倍增的方式：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 哈希表扩容</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> grow() &#123;</span><br><span class="line">	oldbuckets := hm.buckets</span><br><span class="line">	<span class="comment">//桶数量倍增</span></span><br><span class="line">	hm.buckets = <span class="built_in">make</span>([]pair, <span class="built_in">len</span>(oldbuckets)&lt;&lt;<span class="number">1</span>)</span><br><span class="line">	hm.count = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(oldbuckets); i++ &#123;</span><br><span class="line">		bucket := oldbuckets[i]</span><br><span class="line">		<span class="keyword">if</span> bucket.state == stateOccupied &#123;</span><br><span class="line">            <span class="comment">//将旧桶数据插入新桶</span></span><br><span class="line">			hm.set(oldbuckets[i].key, oldbuckets[i].value)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 负载因子&gt;0.25时就扩容</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(hm *HashMap)</span></span> needGrow() <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> hm.count*<span class="number">4</span> &gt;= <span class="built_in">len</span>(hm.buckets)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>整体比较简单，理清楚增删改查的过程即可。</p>
+<blockquote>
+<p><strong>拉链法</strong></p>
+</blockquote>
+<p>对于拉链法实现，我们让预先分配内存的桶作为链表的头结点，同义词存在同一个桶后链表中。</p>
+<p>欲查询键值对，只需要先通过hash定位到目标桶，然后遍历桶后的所有链表节点即可。欲插入键值对，还需要考虑已经存在键，需要覆盖value的情况。</p>
+<p>数据结构定义：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultSize = <span class="number">1024</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//存取键值对的链表节点，每个节点存取一个键值对</span></span><br><span class="line"><span class="keyword">type</span> node <span class="keyword">struct</span> &#123;</span><br><span class="line">	key   <span class="type">int</span></span><br><span class="line">	value <span class="type">int</span></span><br><span class="line">	next  *node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> bucket node</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> HashMap <span class="keyword">struct</span> &#123;</span><br><span class="line">	buckets []bucket	<span class="comment">//桶，每个桶还是链表的头结点，头结点实际不存取数据</span></span><br><span class="line">	count   <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewHashMap</span><span class="params">()</span></span> *HashMap &#123;</span><br><span class="line">	<span class="keyword">return</span> &amp;HashMap&#123;</span><br><span class="line">		buckets: <span class="built_in">make</span>([]bucket, defaultSize),</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>基础操作方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *HashMap)</span></span> hash(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> key % <span class="built_in">len</span>(m.buckets)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//头插法插入节点</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *HashMap)</span></span> set(key <span class="type">int</span>, value <span class="type">int</span>, hash <span class="type">int</span>) &#123;</span><br><span class="line">	m.count++</span><br><span class="line">	m.buckets[hash].next = &amp;node&#123;</span><br><span class="line">		key:   key,</span><br><span class="line">		value: value,</span><br><span class="line">		next:  m.buckets[hash].next,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *HashMap)</span></span> Set(key <span class="type">int</span>, value <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> m.needGrow() &#123;</span><br><span class="line">		m.grow()</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//先通过哈希值找到对应桶</span></span><br><span class="line">	h := m.hash(key)</span><br><span class="line">    <span class="comment">//再遍历桶后同义词链表，查找key是否存在，如果存在则只需更新value即可</span></span><br><span class="line">	<span class="keyword">for</span> n := m.buckets[h].next; n != <span class="literal">nil</span>; n = n.next &#123;</span><br><span class="line">		<span class="keyword">if</span> n.key == key &#123;</span><br><span class="line">			n.value = value</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//否则插入键值对</span></span><br><span class="line">	m.set(key, value, h)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *HashMap)</span></span> Get(key <span class="type">int</span>) (value <span class="type">int</span>, ok <span class="type">bool</span>) &#123;</span><br><span class="line">	h := m.hash(key)</span><br><span class="line">    <span class="comment">// 定位到桶后，顺序遍历桶后链表</span></span><br><span class="line">	<span class="keyword">for</span> n := m.buckets[h].next; n != <span class="literal">nil</span>; n = n.next &#123;</span><br><span class="line">		<span class="keyword">if</span> n.key == key &#123;</span><br><span class="line">			<span class="keyword">return</span> n.value, <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *HashMap)</span></span> Del(key <span class="type">int</span>) &#123;</span><br><span class="line">	h := m.hash(key)</span><br><span class="line">	<span class="keyword">for</span> n := (*node)(&amp;m.buckets[h]); n.next != <span class="literal">nil</span>; n = n.next &#123;</span><br><span class="line">		tmp := n.next</span><br><span class="line">		<span class="keyword">if</span> tmp.key == key &#123;</span><br><span class="line">			n.next = tmp.next</span><br><span class="line">			m.count--</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//负载因子&gt;=1就扩容</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *HashMap)</span></span> needGrow() <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> m.count &gt;= <span class="built_in">len</span>(m.buckets)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *HashMap)</span></span> grow() &#123;</span><br><span class="line">	oldbuckets := m.buckets</span><br><span class="line">    <span class="comment">//倍增</span></span><br><span class="line">	m.buckets = <span class="built_in">make</span>([]bucket, <span class="built_in">len</span>(m.buckets)&lt;&lt;<span class="number">1</span>)</span><br><span class="line">	m.count = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(oldbuckets); i++ &#123;</span><br><span class="line">		bucket := oldbuckets[i]</span><br><span class="line">		<span class="keyword">for</span> n := bucket.next; n != <span class="literal">nil</span>; n = n.next &#123;</span><br><span class="line">			m.set(n.key, n.value, m.hash(n.key))</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>逻辑方面比开放地址法更简单。如果负载因子过大，则会让每个桶后的链表过长，因此区分同义词还是需要遍历链表，从而使效率变低。甚至在极端情况，所有key都是同义词，查找时间效率最差为O(n)。</p>
+<p>我们这里采取的负载因子上限为1，也就说如果哈希均匀的情况下，每个桶后链表仅存储一个节点，查询的时间开销为O(1)。</p>
+<p>我们所写的均为最简实现，但已经把拉链法最核心的思想展现，其他的只是些优化技巧，比如哈希的取模操作转化为位运算、预先分配溢出桶、一个桶存取多个键值对减少节点数以优化内存占用以及gc等，这些我们会在go语言的map源码剖析中详解。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从最基本原理角度出发，抛开各种优化，其实实现一个基本能用的hash表也仅仅只需要100行左右代码。</p>
 
   </div>
   
@@ -2623,10 +2585,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-06T14:49:43+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-12-16T16:42:07+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 6, 2022</p>
+    <p>更新于：Dec 16, 2022</p>
   </a>
 </div>
 
@@ -2635,8 +2597,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>网络编程</p></a></div>
-  <span hidden itemprop="keywords">网络编程</span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Map/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Map</p></a></div>
+  <span hidden itemprop="keywords">Map</span>
 
 
         
@@ -2649,7 +2611,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（2） - 徐乔伟&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html&title=哈希表原理 - 徐乔伟&summary="
           
           >
           
@@ -2661,7 +2623,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（2） - 徐乔伟&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html&title=哈希表原理 - 徐乔伟&summary="
           
           >
           
@@ -2673,7 +2635,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html&title=从零实现Golang的HTTP标准库-（2） - 徐乔伟&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html&title=哈希表原理 - 徐乔伟&summary="
           
           >
           
@@ -2706,18 +2668,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>从零实现Golang的HTTP标准库-（3）</p>
-          <p class='content'>1.概述在正式开始HTTP协议的解析之前，我们先对几个包进行整理。
-在上一篇中，我们对conn结构体进行了改进。
-其中，提到了有关于标准库的bufio包的内容，包括bufio.Reader以及b...</p>
-        </a>
       
-      
-        <a class='next' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html'>
-          <p class='title'>从零实现Golang的HTTP标准库-（1）<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1.前言在正式开始我们对Golang的HTTP标准库的实现之前，我还是想先推荐几个学习资源！
-这几个学习资源不是我们实现HTTP标准库所需的必备知识，所以我没有将他们放在前文的预备知识篇中，但是...</p>
+        <a class='next' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html'>
+          <p class='title'>从零实现Golang的HTTP标准库-（6）<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1.概述前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipar...</p>
         </a>
       
     </div>
@@ -2733,7 +2687,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="discussionUrl" content="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html#comments">
+      <meta itemprop="discussionUrl" content="/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html#comments">
     </span>
     <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
@@ -2775,7 +2729,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1.概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BB%93%E6%9E%84%E4%BD%93%E6%9E%84%E5%BB%BA"><span class="toc-text">2.结构体构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AF%B9conn%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-text">3.对conn结构体的改进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95"><span class="toc-text">4.测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%80%BB%E7%BB%93"><span class="toc-text">5.总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFmap"><span class="toc-text">什么是map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E5%8E%9F%E7%90%86"><span class="toc-text">哈希表原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="toc-text">开放地址法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E9%93%BE%E6%B3%95"><span class="toc-text">拉链法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
@@ -3452,7 +3406,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/从零实现HTTP标准库/","name":"从零实现HTTP标准库"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/从零实现Golang的HTTP标准库-（2）.html","name":"从零实现Golang的HTTP标准库-（2）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"从零实现Golang的HTTP标准库-（2）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html","wordCount":0,"datePublished":"2022-10-05T14:20:00.000Z","dateModified":"2022-10-06T06:49:43.529Z","articleSection":"从零实现HTTP标准库","keywords":"网络编程","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/Map/","name":"Map"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/哈希表.html","name":"哈希表原理"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"哈希表原理","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html","wordCount":0,"datePublished":"2022-12-01T00:20:00.000Z","dateModified":"2022-12-16T08:42:07.667Z","articleSection":"Map","keywords":"Map","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
