@@ -1624,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1671181070909),
+    lastupdate: new Date(1674701526878),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2424,9 +2424,159 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/xin.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/xin.html"  itemprop="url">
+        分段锁实现并发安全Map
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        1.引言我们一般有两种方式来降低锁的竞争：
+
+第一种：减少锁的持有时间，sync.Map即是采用这种策略，通过冗余的数据结构，使得需要持有锁的时间，大大减少。
+第二种：降低锁的请求频率，锁分解和锁分段技术即是这种思想的体现。
+
+
+锁分段技术又可称为分段锁机制
+
+什么叫做分段锁机制？
+
+将数据分为一段一段的存储，然后给每一段数据配备一把锁.
+
+这样在多线程情况下，不同线程操作不同段的数据不会造...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-12-11T08:20:00+08:00">2022-12-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Map/">Map</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/Map/" itemprop="url"><span itemprop="name">Map</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/xin.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/x.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/x.html"  itemprop="url">
+        Golang - sync.Map
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        1.引言
+在Go v1.6之前，内置map是部分goroutine安全的，并发读没有问题，并发写可能有问题
+
+在Go v1.6之后，并发读写内置map会报错，在一些知名的开源库都有这个问题，所以在Go v1.9之前，解决方案是加一个额外的大锁，锁住map。
+
+在Go v1.9中，go官方提供了并发安全的map，sync.map。
+
+
+2.sync.Map的设计思想在map内数据非常大的时候，...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-12-10T08:20:00+08:00">2022-12-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Map/">Map</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/Map/" itemprop="url"><span itemprop="name">Map</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/x.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -2590,7 +2740,7 @@ In computer science, an associative array, map, symbol table, or dictiona...
           <li><a class="flat-box"
             title="/categories/Map/" href="/categories/Map/"
             active-action="action-categoriesMap"
-            ><div class='name'>Map</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>Map</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Markdown/" href="/categories/Markdown/"
@@ -2625,7 +2775,7 @@ In computer science, an associative array, map, symbol table, or dictiona...
 
 
     <div class='content'>
-      <a href="/tags/Map/" style="font-size: 14px; color: #999">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 19px; color: #777">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a>
+      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a>
     </div>
   </section>
 
