@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.7.6">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  
-  <link rel="canonical" href="http://example.com/post/xin.html"/>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="http://example.com/archives/2023/02/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,21 +31,18 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>分段锁实现并发安全Map - 徐乔伟</title>
-  <meta name="keywords" content="Map,null">
+  <title>Archive: 2023/2 - 徐乔伟</title>
+  <meta name="keywords" content="null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
-<meta property="og:type" content="article">
-<meta property="og:title" content="分段锁实现并发安全Map">
-<meta property="og:url" content="http://example.com/post/xin.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="徐乔伟">
+<meta property="og:url" content="http://example.com/archives/2023/02/index.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="1.引言我们一般有两种方式来降低锁的竞争：  第一种：减少锁的持有时间，sync.Map即是采用这种策略，通过冗余的数据结构，使得需要持有锁的时间，大大减少。 第二种：降低锁的请求频率，锁分解和锁分段技术即是这种思想的体现。   锁分段技术又可称为分段锁机制  什么叫做分段锁机制？  将数据分为一段一段的存储，然后给每一段数据配备一把锁.  这样在多线程情况下，不同线程操作不同段的数据不会造成冲突">
+<meta property="og:description" content="徐乔伟的个人博客">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2022-12-11T00:20:00.000Z">
-<meta property="article:modified_time" content="2023-01-26T02:51:01.561Z">
 <meta property="article:author" content="徐乔伟">
-<meta property="article:tag" content="Map">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1627,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1674701564757),
+    lastupdate: new Date(1677505640351),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2050,7 +2047,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin begin-->
     
     <!-- Custom Files bodyBegin end-->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2353,7 +2350,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper post search' style="display: none;">
+      <div id="half" class='cover-wrapper  search' style="display: ;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://s1.vika.cn/space/2022/09/25/ef48cd6971f14500a2d4cca1f847be62"></div>
 
@@ -2417,8 +2414,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/xin.html">
+	
+		
+  <section class="post-list">
+    
+      
+        
+          
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/自己总结的go网络模型知识点（仅供自己复习使用，难免有不严谨处）.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2427,261 +2440,131 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="徐乔伟的个人博客">
   </span>
   
-
-
+  
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  <div class="article-meta" id="top">
+  
     
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E8%87%AA%E5%B7%B1%E6%80%BB%E7%BB%93%E7%9A%84go%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BB%85%E4%BE%9B%E8%87%AA%E5%B7%B1%E5%A4%8D%E4%B9%A0%E4%BD%BF%E7%94%A8%EF%BC%8C%E9%9A%BE%E5%85%8D%E6%9C%89%E4%B8%8D%E4%B8%A5%E8%B0%A8%E5%A4%84%EF%BC%89.html"  itemprop="url">
+        自己总结的go网络模型知识点（仅供自己复习使用，难免有不严谨处）
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
     
-    
-      <h1 class="title" itemprop="name headline">
-        分段锁实现并发安全Map
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <a itemprop="url" class='author' href="/" rel="nofollow">
-    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-    <p itemprop="name">请设置文章作者</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/categories/Map/">Map</a>
-    
-      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/Map/" itemprop="url"><span itemprop="name">Map</span></a>
-      </span>
+      
+        常见网络IO模型及其优缺点1.阻塞阻塞IO的方案是建立几个线程，这几个线程都遵循如下逻辑：业务方会调用read这个系统调用读socket，如果此时内核没有准备好数据，那么这个线程会阻塞住，一直陷入内核态。一旦内核准备好数据，经过业务处理后，再将处理好后的数据写会到socket。阻塞等待的是「内核数据准备好」和「数据从内核态拷贝到用户态」这两个过程。阻塞IO特点：同步读写socket时，线程陷...
+      
     
   </div>
-
-
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-02-02T08:20:00+08:00">2023-02-02</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/">网络模型 golang</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/" itemprop="url"><span itemprop="name">网络模型 golang</span></a>
+            </span>
           
         
-          
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-12-11T08:20:00+08:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 11, 2022</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-
-
-          
-        
-        <!-- Custom Files topMeta begin-->
-        
-        <!-- Custom Files topMeta end-->
       </div>
-    
-  </div>
-
-
-  <div id="layoutHelper-page-plugins"></div>
-  <div id="post-body" itemprop="articleBody">
-    <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h2><p>我们一般有两种方式来降低锁的竞争：</p>
-<ul>
-<li>第一种：减少锁的持有时间，sync.Map即是采用这种策略，通过冗余的数据结构，使得需要持有锁的时间，大大减少。</li>
-<li>第二种：降低锁的请求频率，锁分解和锁分段技术即是这种思想的体现。</li>
-</ul>
-<blockquote>
-<p>锁分段技术又可称为分段锁机制</p>
-</blockquote>
-<p>什么叫做分段锁机制？</p>
-<blockquote>
-<p>将数据分为一段一段的存储，然后给每一段数据配备一把锁.</p>
-</blockquote>
-<p>这样在多线程情况下，不同线程操作不同段的数据不会造成冲突，线程之间也不会存在锁竞争，有效的提高了并发访问的效率.</p>
-<h2 id="2-实现原理"><a href="#2-实现原理" class="headerlink" title="2.实现原理"></a>2.实现原理</h2><p>首先我们需要给数据进行分段，属于同一个段的数据放在一起，我们采用golang原生的map来充当段的容器，用于存储元素，将key通过哈希映射的形式分配到不同的段中。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SharedMap 并发安全的小map,ShardCount 个这样的小map数组组成一个大map</span></span><br><span class="line"><span class="keyword">type</span> SharedMap <span class="keyword">struct</span> &#123;</span><br><span class="line">	items        <span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	sync.RWMutex <span class="comment">// 读写锁，保护items</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到，我们给每个段都配备了一个内置的读写锁，用于保护段内的数据安全</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ShardCount 底层小shareMap数量</span></span><br><span class="line"><span class="keyword">var</span> ShardCount = <span class="number">32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ConcurrentHashMap 并发安全的大map，由 ShardCount 个小mao数组组成，方便实现分段锁机制</span></span><br><span class="line"><span class="keyword">type</span> ConcurrentHashMap []*SharedMap</span><br></pre></td></tr></table></figure>
-
-<p>然后 ShardCount 个ShareMap就组成了一个大的并发安全的map。</p>
-<p>其哈希函数采用了著名的fnv函数</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fnv32 hash函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fnv32</span><span class="params">(key <span class="type">string</span>)</span></span> <span class="type">uint32</span> &#123;</span><br><span class="line">   <span class="comment">// 著名的fnv哈希函数，由 Glenn Fowler、Landon Curt Noll和 Kiem-Phong Vo 创建</span></span><br><span class="line">   hash := <span class="type">uint32</span>(<span class="number">2166136261</span>)</span><br><span class="line">   <span class="keyword">const</span> prime32 = <span class="type">uint32</span>(<span class="number">16777619</span>)</span><br><span class="line">   keyLength := <span class="built_in">len</span>(key)</span><br><span class="line">   <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; keyLength; i++ &#123;</span><br><span class="line">      hash *= prime32</span><br><span class="line">      hash ^= <span class="type">uint32</span>(key[i])</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> hash</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>1.New</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// New 创建一个新的concurrent map.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">()</span></span> ConcurrentHashMap &#123;</span><br><span class="line">   m := <span class="built_in">make</span>(ConcurrentHashMap, ShardCount)</span><br><span class="line">   <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; ShardCount; i++ &#123;</span><br><span class="line">      m[i] = &amp;SharedMap&#123;items: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">interface</span>&#123;&#125;)&#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> m</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>直接采用make初始化指定数量个ShareMap，并采用数组的形式保证这些初始化好的ShareMap</p>
-<p>**2.Set Get Delete Has</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// GetShardMap 返回给定key的sharedMap</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m ConcurrentHashMap)</span></span> GetShardMap(key <span class="type">string</span>) *SharedMap &#123;</span><br><span class="line">	<span class="keyword">return</span> m[<span class="type">uint</span>(fnv32(key))%<span class="type">uint</span>(ShardCount)]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Set 添加 key-value</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m ConcurrentHashMap)</span></span> Set(key <span class="type">string</span>, value <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">   <span class="comment">// Get map shard.</span></span><br><span class="line">   shard := m.GetShardMap(key)</span><br><span class="line">   shard.Lock()</span><br><span class="line">   shard.items[key] = value</span><br><span class="line">   shard.Unlock()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Get 返回指定key的value值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m ConcurrentHashMap)</span></span> Get(key <span class="type">string</span>) (<span class="keyword">interface</span>&#123;&#125;, <span class="type">bool</span>) &#123;</span><br><span class="line">   shard := m.GetShardMap(key)</span><br><span class="line">   shard.RLock()</span><br><span class="line">   val, ok := shard.items[key]</span><br><span class="line">   shard.RUnlock()</span><br><span class="line">   <span class="keyword">return</span> val, ok</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Remove 删除一个元素</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m ConcurrentHashMap)</span></span> Remove(key <span class="type">string</span>) &#123;</span><br><span class="line">   <span class="comment">// Try to get shard.</span></span><br><span class="line">   shard := m.GetShardMap(key)</span><br><span class="line">   shard.Lock()</span><br><span class="line">   <span class="built_in">delete</span>(shard.items, key)</span><br><span class="line">   shard.Unlock()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Has 判断元素是否存在</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m ConcurrentHashMap)</span></span> Has(key <span class="type">string</span>) <span class="type">bool</span> &#123;</span><br><span class="line">   <span class="comment">// Get shard</span></span><br><span class="line">   shard := m.GetShardMap(key)</span><br><span class="line">   shard.RLock()</span><br><span class="line">   <span class="comment">// See if element is within shard.</span></span><br><span class="line">   _, ok := shard.items[key]</span><br><span class="line">   shard.RUnlock()</span><br><span class="line">   <span class="keyword">return</span> ok</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>都是先将key通过hash函数确定和获取其所属的ShareMap，然后锁住该段，直接操作数据。</p>
-<p>**3.Count  Keys</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Count 统计元素总数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m ConcurrentHashMap)</span></span> Count() <span class="type">int</span> &#123;</span><br><span class="line">   count := <span class="number">0</span></span><br><span class="line">   <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; ShardCount; i++ &#123;</span><br><span class="line">      shard := m[i]</span><br><span class="line">      shard.RLock()</span><br><span class="line">      count += <span class="built_in">len</span>(shard.items)</span><br><span class="line">      shard.RUnlock()</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>遍历所有的ShareMap，逐个统计，注意，遍历的时候每个ShareMap时，都需要加锁.</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Keys 以字符串数组的形式返回所有key</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m ConcurrentHashMap)</span></span> Keys() []<span class="type">string</span> &#123;</span><br><span class="line">   count := m.Count()</span><br><span class="line">   ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">string</span>, count)</span><br><span class="line">   <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">      <span class="comment">// Foreach shard.</span></span><br><span class="line">      wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">      wg.Add(ShardCount)</span><br><span class="line">      <span class="keyword">for</span> _, shard := <span class="keyword">range</span> m &#123;</span><br><span class="line">         <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(shard *SharedMap)</span></span> &#123;</span><br><span class="line">            <span class="comment">// Foreach key, value pair.</span></span><br><span class="line">            shard.RLock()</span><br><span class="line">            <span class="keyword">for</span> key := <span class="keyword">range</span> shard.items &#123;</span><br><span class="line">               ch &lt;- key</span><br><span class="line">            &#125;</span><br><span class="line">            shard.RUnlock()</span><br><span class="line">            wg.Done()</span><br><span class="line">         &#125;(shard)</span><br><span class="line">      &#125;</span><br><span class="line">      wg.Wait()</span><br><span class="line">      <span class="built_in">close</span>(ch)</span><br><span class="line">   &#125;()</span><br><span class="line"></span><br><span class="line">   <span class="comment">// Generate keys</span></span><br><span class="line">   keys := <span class="built_in">make</span>([]<span class="type">string</span>, <span class="number">0</span>, count)</span><br><span class="line">   <span class="keyword">for</span> k := <span class="keyword">range</span> ch &#123;</span><br><span class="line">      keys = <span class="built_in">append</span>(keys, k)</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> keys</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每一个段都启动一个goroutine，往缓冲通道ch中塞入key，采用WaitGroup的方式等所有key都被塞入ch后，外部goroutine持续从ch中读取key放入keys数组中，然后直接返回keys。</p>
-
-  </div>
-  
-  
-    
-    <div class='footer'>
-       <!-- 参考资料、相关资料等 -->
       
-       <!-- 相关文章 -->
-      
-      <!-- 版权声明组件 -->
-      
-      <!-- 打赏组件 -->
+        <div>
+          <a class='readmore' href='/post/%E8%87%AA%E5%B7%B1%E6%80%BB%E7%BB%93%E7%9A%84go%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BB%85%E4%BE%9B%E8%87%AA%E5%B7%B1%E5%A4%8D%E4%B9%A0%E4%BD%BF%E7%94%A8%EF%BC%8C%E9%9A%BE%E5%85%8D%E6%9C%89%E4%B8%8D%E4%B8%A5%E8%B0%A8%E5%A4%84%EF%BC%89.html' itemprop="url">
+            Read More
+          </a>
+        </div>
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-01-26T10:51:01+08:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 26, 2023</p>
-  </a>
 </div>
 
+          </div>
         
       
         
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Map/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Map</p></a></div>
-  <span hidden itemprop="keywords">Map</span>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/xin.html&title=分段锁实现并发安全Map - 徐乔伟&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/xin.html&title=分段锁实现并发安全Map - 徐乔伟&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/xin.html&title=分段锁实现并发安全Map - 徐乔伟&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-    <!-- Custom Files bottomMeta begin -->
-    
-    <!-- Custom Files bottomMeta end -->
-  </div>
-
-
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/简易单机版godis逻辑结构图.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
   
   
-
   
-    <div class="prev-next">
-      
-      
-        <a class='next' href='/post/x.html'>
-          <p class='title'>Golang - sync.Map<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1.引言
-在Go v1.6之前，内置map是部分goroutine安全的，并发读没有问题，并发写可能有问题
-
-在Go v1.6之后，并发读写内置map会报错，在一些知名的开源库都有这个问题，所以...</p>
-        </a>
-      
-    </div>
-  
-  <!-- Custom Files postEnd begin-->
-  
-  <!-- Custom Files postEnd end-->
-</article>
-
-
-  
-
-
-  <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="discussionUrl" content="/post/xin.html#comments">
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
-    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
+  
+  
     
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E7%AE%80%E6%98%93%E5%8D%95%E6%9C%BA%E7%89%88godis%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E5%9B%BE.html"  itemprop="url">
+        (自己的理解，仅供参考)简易单机版godis逻辑结构图
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        单机版godis项目架构
+单机版goids执行逻辑结合上面的项目架构图来看更好理解！
 
-    <div id="layoutHelper-comments"></div>
+server监听每个客户端的TCP连接，并且获取连接交给handler进行处理。handler为每一个客户端连接单独开启一个goroutine处理。在每个goroutine里面，先将该客户端的连接交给解析器parser进行解析，获取了一个管道。业务层handler会持有每个客户端的管道，然后从管道内读取解...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-02-01T08:20:00+08:00">2023-02-01</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/godis/">godis</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/godis/" itemprop="url"><span itemprop="name">godis</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E7%AE%80%E6%98%93%E5%8D%95%E6%9C%BA%E7%89%88godis%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E5%9B%BE.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
 
-  </article>
+</div>
+
+          </div>
+        
+      
+    
+  </section>
+  
+    
+  
 
 
-
-
-
-
+	
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2690,52 +2573,176 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
+<section class="widget blogger desktop mobile pjax">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://s1.vika.cn/space/2022/09/25/6fad662f39e8414598d593072ef746cb'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>徐乔伟</h2>
+        
+        
+          <p>个人学习记录</p>
+
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fa-solid fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:1511189367@qq.com"
+              class="social fa-solid fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/Xuqiaowei/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+
+  
+    
+    
+      
+  
+  <section class="widget category desktop pjax">
+    
+  <header>
+    
+      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/Map/" href="/categories/Map/"
+            active-action="action-categoriesMap"
+            ><div class='name'>Map</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Markdown/" href="/categories/Markdown/"
+            active-action="action-categoriesMarkdown"
+            ><div class='name'>Markdown</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/godis/" href="/categories/godis/"
+            active-action="action-categoriesgodis"
+            ><div class='name'>godis</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/redis/" href="/categories/redis/"
+            active-action="action-categoriesredis"
+            ><div class='name'>redis</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
+            active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
+            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/"
+            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B-golang"
+            ><div class='name'>网络模型 golang</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/"
+            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B"
+            ><div class='name'>网络模型</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+    
+  
+
+  
+    
+    
+      
+  
+  <section class="widget tagcloud desktop mobile pjax">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/godis/" style="font-size: 17.33px; color: #828282">godis</a> <a href="/tags/netpoller-epoll/" style="font-size: 14px; color: #999">netpoller epoll</a> <a href="/tags/netpoller-redis/" style="font-size: 14px; color: #999">netpoller redis</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a> <a href="/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 17.33px; color: #828282">跳表</a>
+    </div>
+  </section>
+
+
+    
+  
+
+  
+    
+    
+      
+<section class="widget text desktop pjax">
+  
+  <header>
+    
+      <a target="_blank" rel="noopener" href='https://github.com/Xuqiaowei/'><i class="fab fa-github fa-fw" aria-hidden="true"></i><span class='name'>点个赞吧</span></a>
+    
+  </header>
+
+
+  <div class='content'>
+    
+  </div>
+</section>
+
     
   
 
 
 <div class="widget-sticky pjax">
 
-  
-  
-
-
-  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
-    
-  <header>
-    
-      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">2.实现原理</span></a></li></ol>
-    </div>
-  </section>
-
-  
-
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -2763,14 +2770,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
-
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=true;
+  pdata.ispage=false;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -2779,14 +2785,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     // header
     var l_header=document.getElementById("l_header");
     
-    l_header.classList.add("show");
+    l_header.classList.remove("show");
     
     
       // cover
       var cover_wrapper=document.querySelector('#l_cover .cover-wrapper');
       var scroll_down=document.getElementById('scroll-down');
-      cover_wrapper.id="none";
-      cover_wrapper.style.display="none";
+      cover_wrapper.id="half";
+      cover_wrapper.style.display="";
       scroll_down.style.display="none";
     
   
@@ -3387,7 +3393,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/Map/","name":"Map"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/xin.html","name":"分段锁实现并发安全Map"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"分段锁实现并发安全Map","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/xin.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/xin.html","wordCount":0,"datePublished":"2022-12-11T00:20:00.000Z","dateModified":"2023-01-26T02:51:01.561Z","articleSection":"Map","keywords":"Map","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/archives/","name":"Archive"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/archives/2023/","name":"2023"}},{"@type":"ListItem","position":4,"item":{"@id":"http://example.com/archives/2023/2/","name":"2"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

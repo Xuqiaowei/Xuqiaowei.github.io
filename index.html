@@ -1624,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1674701564757),
+    lastupdate: new Date(1677505640351),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2454,6 +2454,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
@@ -2461,7 +2473,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/xin.html">
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/自己总结的go网络模型知识点（仅供自己复习使用，难免有不严谨处）.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2479,7 +2491,402 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/xin.html"  itemprop="url">
+      <a href="/post/%E8%87%AA%E5%B7%B1%E6%80%BB%E7%BB%93%E7%9A%84go%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BB%85%E4%BE%9B%E8%87%AA%E5%B7%B1%E5%A4%8D%E4%B9%A0%E4%BD%BF%E7%94%A8%EF%BC%8C%E9%9A%BE%E5%85%8D%E6%9C%89%E4%B8%8D%E4%B8%A5%E8%B0%A8%E5%A4%84%EF%BC%89.html"  itemprop="url">
+        自己总结的go网络模型知识点（仅供自己复习使用，难免有不严谨处）
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        常见网络IO模型及其优缺点1.阻塞阻塞IO的方案是建立几个线程，这几个线程都遵循如下逻辑：业务方会调用read这个系统调用读socket，如果此时内核没有准备好数据，那么这个线程会阻塞住，一直陷入内核态。一旦内核准备好数据，经过业务处理后，再将处理好后的数据写会到socket。阻塞等待的是「内核数据准备好」和「数据从内核态拷贝到用户态」这两个过程。阻塞IO特点：同步读写socket时，线程陷...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-02-02T08:20:00+08:00">2023-02-02</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/">网络模型 golang</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/" itemprop="url"><span itemprop="name">网络模型 golang</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E8%87%AA%E5%B7%B1%E6%80%BB%E7%BB%93%E7%9A%84go%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BB%85%E4%BE%9B%E8%87%AA%E5%B7%B1%E5%A4%8D%E4%B9%A0%E4%BD%BF%E7%94%A8%EF%BC%8C%E9%9A%BE%E5%85%8D%E6%9C%89%E4%B8%8D%E4%B8%A5%E8%B0%A8%E5%A4%84%EF%BC%89.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/简易单机版godis逻辑结构图.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E7%AE%80%E6%98%93%E5%8D%95%E6%9C%BA%E7%89%88godis%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E5%9B%BE.html"  itemprop="url">
+        (自己的理解，仅供参考)简易单机版godis逻辑结构图
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        单机版godis项目架构
+单机版goids执行逻辑结合上面的项目架构图来看更好理解！
+
+server监听每个客户端的TCP连接，并且获取连接交给handler进行处理。handler为每一个客户端连接单独开启一个goroutine处理。在每个goroutine里面，先将该客户端的连接交给解析器parser进行解析，获取了一个管道。业务层handler会持有每个客户端的管道，然后从管道内读取解...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-02-01T08:20:00+08:00">2023-02-01</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/godis/">godis</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/godis/" itemprop="url"><span itemprop="name">godis</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E7%AE%80%E6%98%93%E5%8D%95%E6%9C%BA%E7%89%88godis%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E5%9B%BE.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/redis和go网络模型对比.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/redis%E5%92%8Cgo%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94.html"  itemprop="url">
+        (自己的理解，仅供参考)redis和go网络模型对比
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        redis和go的网络模型的对比：查阅了一些资料，结合自己的理解，总结了redis和go的网络模型的特点如下，仅供自己复习参考，难免有不严谨之处。
+Redis 6.0 版本之前的单线模式：
+
+当多个客户端连接过来后，统一进入io多路复用器里面注册，然后调用epoll_wait函数将可读可写的事件取出来，进入事件分发器，分发到各个事件处理器。（多个事件处理器是在一个单线程上运行的，这也是red...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-01-10T08:20:00+08:00">2023-01-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/">网络模型</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" itemprop="url"><span itemprop="name">网络模型</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/redis%E5%92%8Cgo%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/(自己的理解)报文的并发解析，业务异步逻辑的实现原理.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/(%E8%87%AA%E5%B7%B1%E7%9A%84%E7%90%86%E8%A7%A3)%E6%8A%A5%E6%96%87%E7%9A%84%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90%EF%BC%8C%E4%B8%9A%E5%8A%A1%E5%BC%82%E6%AD%A5%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html"  itemprop="url">
+        (自己的理解，仅供参考)报文的并发解析，业务异步逻辑的实现原理
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        resp报文的并发解析怎么实现的？
+这里通过两个函数ParseStream和parse0，这两个函数什么意思呢？
+
+
+就是上层通过io.reader来读取TCP字节流，并且将这个io.reader交给ParseStream去做一个解析，但是ParseStream不会自己直接去做解析，因为解析是需要时间的，如果上层调用ParseStream自己去做解析，需要完整得到解析出一条指令，指令才能返回...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-01-05T08:20:00+08:00">2023-01-05</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/godis/">godis</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/godis/" itemprop="url"><span itemprop="name">godis</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/(%E8%87%AA%E5%B7%B1%E7%9A%84%E7%90%86%E8%A7%A3)%E6%8A%A5%E6%96%87%E7%9A%84%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90%EF%BC%8C%E4%B8%9A%E5%8A%A1%E5%BC%82%E6%AD%A5%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/跳表代码.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E8%B7%B3%E8%A1%A8%E4%BB%A3%E7%A0%81.html"  itemprop="url">
+        手动实现一个跳表
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        设计跳表不使用任何库函数，设计一个 跳表 。
+跳表 是在 O(log(n)) 时间内完成增加、删除、搜索操作的数据结构。跳表相比于树堆与红黑树，其功能与性能相当，并且跳表的代码长度相较下更短，其设计思想与链表相似。
+例如，一个跳表包含 [30, 40, 50, 60, 70, 90] ，然后增加 80、45 到跳表中，以下图的方式操作：
+跳表中有很多层，每一层是一个短的链表。在第一层的作用下...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-01-01T08:20:00+08:00">2023-01-01</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/redis/">redis</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/redis/" itemprop="url"><span itemprop="name">redis</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E8%B7%B3%E8%A1%A8%E4%BB%A3%E7%A0%81.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/跳表.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E8%B7%B3%E8%A1%A8.html"  itemprop="url">
+        跳表实现原理
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        本文转载自：
+https://www.jianshu.com/p/9d8296562806
+理解跳表，从单链表开始说起下图是一个简单的有序单链表，单链表的特性就是每个元素存放下一个元素的引用。即：通过第一个元素可以找到第二个元素，通过第二个元素可以找到第三个元素，依次类推，直到找到最后一个元素。
+
+现在我们有个场景，想快速找到上图链表中的 10 这个元素，只能从头开始遍历链表，直到找到我们需...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-12-31T08:20:00+08:00">2022-12-31</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/redis/">redis</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/redis/" itemprop="url"><span itemprop="name">redis</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E8%B7%B3%E8%A1%A8.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/分段锁.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E5%88%86%E6%AE%B5%E9%94%81.html"  itemprop="url">
         分段锁实现并发安全Map
       </a>
     </h2>
@@ -2520,7 +2927,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/post/xin.html' itemprop="url">
+          <a class='readmore' href='/post/%E5%88%86%E6%AE%B5%E9%94%81.html' itemprop="url">
             Read More
           </a>
         </div>
@@ -2536,7 +2943,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/x.html">
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/sync.map.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2554,8 +2961,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/x.html"  itemprop="url">
-        Golang - sync.Map
+      <a href="/post/sync.map.html"  itemprop="url">
+        Golang - sync.Map原理
       </a>
     </h2>
   
@@ -2591,7 +2998,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/post/x.html' itemprop="url">
+          <a class='readmore' href='/post/sync.map.html' itemprop="url">
             Read More
           </a>
         </div>
@@ -2633,10 +3040,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md article-desc' itemprop="articleBody">
     
       
-        map映射结构频繁地运用在日常的开发之中，因此成为了面试中的高频考点，本系列将从map的两种实现(hash以及红黑树)出发，再详解go语言的map，最后讨论如何实现高性能的并发安全map，彻底搞懂map结构的奥秘。
+        map映射结构频繁地运用在日常的开发之中，是面试中的高频考点。
 什么是map维基百科的定义：
 
-In computer science, an associative array, map, symbol table, or dictiona...
+In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, ...
       
     
   </div>
@@ -2722,406 +3129,6 @@ In computer science, an associative array, map, symbol table, or dictiona...
       
         <div>
           <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（5）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（5）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述前文进行了Request首部字段的解析，已经完整的支持了GET请求。对于POST请求来说，其传送的表单数据在HTTP请求的报文主体body部分，服务端需要进一步IO操作才能读出，为了提高性能我们将POST表单的解析权交给用户，为此我们给Request结构体封装一个Body字段，作为IO的接口。
-2.如何知道报文主体的长度以下一段http协议post请求报文为例：
-1234567891...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-08T08:20:00+08:00">2022-10-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%885%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（4）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%884%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（4）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述本文将正式开始HTTP协议的解析，主要完成Request结构体的属性组成，HTTP请求报文首部字段以及请求行的解析。
-2.项目结构因为在这一章中，我们会完成客户端请求报文中首部字段的解析，首部字段为一个个键值对，显而易见的是使用map结构进行一个存储，所以增加header.go文件，其中存在Header结构体，专门用于存放请求报文中请求行的键值对。此处并非重点也极为简单，所以直接从标...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-07T08:20:00+08:00">2022-10-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%884%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（3）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（3）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述在正式开始HTTP协议的解析之前，我们先对几个包进行整理。
-在上一篇中，我们对conn结构体进行了改进。
-其中，提到了有关于标准库的bufio包的内容，包括bufio.Reader以及bufio.Writer等。
-在上一篇中，对于这部分内容只是做了一个简单的介绍，在本篇中，我将单独对这部分内容进行一个梳理，并额外扩充了ioutil包以及io包等相关的内容。
-这部分内容并不难，通常只是...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-06T08:20:00+08:00">2022-10-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%883%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（2）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（2）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述在上一篇中，我们介绍了如何启动一个Web服务，
-在本篇中，我们主要构建框架的基本结构，即所需要的一些结构体。
-我们暂时需要4个结构体：
-
-①  Server：代表WEB服务器，属性包含监听地址Addr以及Handler，负责服务器的启动逻辑。
-
-
-②  conn：代表HTTP连接，net.Conn表达能力过弱，故将其封装成conn。仅服务于框架内部，不应由用户使用，包内不可导出。
-
-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-05T22:20:00+08:00">2022-10-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%882%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-（1）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-（1）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.前言在正式开始我们对Golang的HTTP标准库的实现之前，我还是想先推荐几个学习资源！
-这几个学习资源不是我们实现HTTP标准库所需的必备知识，所以我没有将他们放在前文的预备知识篇中，但是这几个资料的实现过程都和HTTP标准库有着一定相同的地方。
-但如果你能够提前对以下推荐的几个学习资源事先做了阅读与研究，那么在实现Golang的HTTP标准库的过程中一定会如鱼得水，得心应手。
-
-B站...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-05T10:21:31+08:00">2022-10-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%881%EF%BC%89.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-预备知识（2）.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89.html"  itemprop="url">
-        从零实现Golang的HTTP标准库-预备知识（2）
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.概述在预备知识（1）中，我们介绍了三个学习内容，其中前两个学习内容：go语言的基础语法以及计算机网络的概念了解，我们不再详细介绍与梳理，请读者自行完成这两个部分的学习。
-在本篇中，我将对socket编程流程做一个简单的介绍，同时梳理一下go语言的socket编程。
-本篇默认你已经对socket有所了解，故基本的概念性问题将不再被提及。如果你在阅读以下内容的过程中，有任何不明白的地方，去看...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-10-04T22:17:12+08:00">2022-10-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89.html' itemprop="url">
             Read More
           </a>
         </div>
@@ -3251,9 +3258,29 @@ B站...
             ><div class='name'>Markdown</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/godis/" href="/categories/godis/"
+            active-action="action-categoriesgodis"
+            ><div class='name'>godis</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/redis/" href="/categories/redis/"
+            active-action="action-categoriesredis"
+            ><div class='name'>redis</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
             active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
             ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/"
+            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B-golang"
+            ><div class='name'>网络模型 golang</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/"
+            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B"
+            ><div class='name'>网络模型</div><div class='badge'>(1)</div></a></li>
         
       </ul>
     </div>
@@ -3278,7 +3305,7 @@ B站...
 
 
     <div class='content'>
-      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a>
+      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/godis/" style="font-size: 17.33px; color: #828282">godis</a> <a href="/tags/netpoller-epoll/" style="font-size: 14px; color: #999">netpoller epoll</a> <a href="/tags/netpoller-redis/" style="font-size: 14px; color: #999">netpoller redis</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a> <a href="/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 17.33px; color: #828282">跳表</a>
     </div>
   </section>
 

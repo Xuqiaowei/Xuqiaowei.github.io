@@ -39,11 +39,11 @@
 <meta property="og:title" content="哈希表原理">
 <meta property="og:url" content="http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="map映射结构频繁地运用在日常的开发之中，因此成为了面试中的高频考点，本系列将从map的两种实现(hash以及红黑树)出发，再详解go语言的map，最后讨论如何实现高性能的并发安全map，彻底搞懂map结构的奥秘。 什么是map维基百科的定义：  In computer science, an associative array, map, symbol table, or dictionary">
+<meta property="og:description" content="map映射结构频繁地运用在日常的开发之中，是面试中的高频考点。 什么是map维基百科的定义：  In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, suc">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-12-01T00:20:00.000Z">
-<meta property="article:modified_time" content="2022-12-16T08:42:07.667Z">
+<meta property="article:modified_time" content="2023-02-27T13:46:13.926Z">
 <meta property="article:author" content="徐乔伟">
 <meta property="article:tag" content="Map">
 <meta name="twitter:card" content="summary">
@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1674701564757),
+    lastupdate: new Date(1677505640351),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2496,7 +2496,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>map映射结构频繁地运用在日常的开发之中，因此成为了面试中的高频考点，本系列将从map的两种实现(hash以及红黑树)出发，再详解go语言的map，最后讨论如何实现高性能的并发安全map，彻底搞懂map结构的奥秘。</p>
+    <p>map映射结构频繁地运用在日常的开发之中，是面试中的高频考点。</p>
 <h2 id="什么是map"><a href="#什么是map" class="headerlink" title="什么是map"></a>什么是map</h2><p>维基百科的定义：</p>
 <blockquote>
 <p>In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears at most once in the collection.</p>
@@ -2516,18 +2516,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>那么问题就是如何组织键值对放入到这些有限桶中。对于hash表来说，都会存在一个哈希函数，输入一个key，通过某种hash(key)函数的计算能够输出一个确切的哈希值，且这个过程是幂等的。给定key就能得到哈希值，进而确定将这个KV(key-value)对存储在哪一个桶中。</p>
 <p>举个最简单的例子：我们现在拥有10个桶，现在插入一个key为21的键值对，hash函数为f(key)&#x3D;key%10​，则21得到的hash值为1，我们就将这个键值对存到第2(数组下标从0开始)个桶。当下次再查找21时，我们用同样的哈希函数得到同样的哈希值，立马定位到第2个桶，进而查找即可。这样进行就可以省略掉链表实现中遍历所有节点的过程，将查找效率提升到O(1)。</p>
 <p><strong>哈希冲突</strong>：桶是预分配且有限的，除此之外不同的key可能通过hash函数得到同样的hash值，如31和21通过上述的hash函数都得到1，两个不同键放入同一桶，这样就会导致冲突，这样哈希值相同的Key称为同义词。</p>
+<p><img src="https://s1.vika.cn/space/2023/02/27/659b15449e584764b3dbf96e31f02348" class="lazyload" data-srcset="https://s1.vika.cn/space/2023/02/27/659b15449e584764b3dbf96e31f02348" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
 <p>21和31就为同义词，一山不容二虎，那么如何去解决冲突问题呢？①开放地址法。②拉链法。</p>
 <h2 id="开放地址法"><a href="#开放地址法" class="headerlink" title="开放地址法"></a>开放地址法</h2><p>开发地址法的意思是一个桶并不一定只能存放符合哈希要求的键，如下标为2的桶不一定只能存求余为2的key。</p>
 <p>例如，目前要依次插入键21、31、23、41、47。key 21插入到桶1中；在准备插入31时，由于桶1已经被key 21占用，我们可以将31插入到桶1后遇到的第一个空桶即桶2；key 23插入到桶3中；在插入41时，本应存入桶1，但由于桶1、桶2、桶3都被占用，key 41就被迫存入空桶4；key 47存入桶7.</p>
-<p>对于查找也同理，给定key 31，我们先查看桶1，判断桶里的key与31是否相同，相同则找到目标值，不同则可能存在同义词，去依次查看桶2、桶3、桶4等后续桶，直至找到空桶或者目标key，找到空桶说明待查找的key并没有存于map中。如图所示：</p>
+<p>对于查找也同理，给定key 31，我们先查看桶1，判断桶里的key与31是否相同，相同则找到目标值，不同则可能存在同义词，去依次查看桶2、桶3、桶4等后续桶，直至找到空桶或者目标key，找到空桶说明待查找的key并没有存于map中。如图所示：<br><img src="https://s1.vika.cn/space/2023/02/27/aac65844793d40379cf2bb30026c47a2" class="lazyload" data-srcset="https://s1.vika.cn/space/2023/02/27/aac65844793d40379cf2bb30026c47a2" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
 <p>很明显的是，通过这种方式，一旦map的负载因子(键值对个数与桶个数比值)过大，查找需要线性遍历多个桶，性能会退化为O(n)，所以这种实现需要更频繁地对桶进行扩容，保持负载因子在低水平。</p>
-<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p>拉链法是大多数编程语言的选择，采用数组以及链表实现。依旧是预先开辟一定容量的桶(数组)，不过和开放地址法的区别是，每个桶后面跟上一个链表，所有的同义词通过链表中节点形式串联在一起。如上例中key 31、21和41就可以跟在桶1的链表中，查找时通过hash函数定位桶以区分非同义词，遍历桶的链表每个节点以及比较key来区分同义词。</p>
+<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p>拉链法是大多数编程语言的选择，采用数组以及链表实现。依旧是预先开辟一定容量的桶(数组)，不过和开放地址法的区别是，每个桶后面跟上一个链表，所有的同义词通过链表中节点形式串联在一起。如上例中key 31、21和41就可以跟在桶1的链表中，查找时通过hash函数定位桶以区分非同义词，遍历桶的链表每个节点以及比较key来区分同义词。<br><img src="https://s1.vika.cn/space/2023/02/27/e56c296e37b44105806344cc96508b64" class="lazyload" data-srcset="https://s1.vika.cn/space/2023/02/27/e56c296e37b44105806344cc96508b64" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
 <p>开放地址法存在堆积问题，比如key1可能因为同义词占用了key2的位置，导致key2插入时又不得不占用key3的位置，所以开发地址法对负载因子过于敏感。而拉链法通过链表方式解决冲突问题，非同义词之间不会相互影响。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>为了简便起见，我们map实现中键值都为int类型，因此hash函数直接利用求余函数即可。不同key类型只是对应的hash函数不同而已，不是map的核心思想，我们从简。</p>
 <blockquote>
 <p><strong>开放地址法</strong></p>
 </blockquote>
-<p>开放地址法的实现比较简单，但需要有一点注意，在删除操作中，被删除清空的桶不能直接标记为空桶。如上例中21、31、41为同义词，哈希值都为1，则按照开发地址法的原理，则它们分别存储的桶编号为1、2、3。如果在删除31时将桶2置为空，则查找41时，还没迭代到桶3就止步于空桶2，从而返回错误的结果。</p>
+<p>开放地址法的实现比较简单，但需要有一点注意，在删除操作中，被删除清空的桶不能直接标记为空桶。如上例中21、31、41为同义词，哈希值都为1，则按照开发地址法的原理，则它们分别存储的桶编号为1、2、3。如果在删除31时将桶2置为空，则查找41时，还没迭代到桶3就止步于空桶2，从而返回错误的结果。<br><img src="https://s1.vika.cn/space/2023/02/27/bf49aa624fbd43f7a7a5584088fb6a40" class="lazyload" data-srcset="https://s1.vika.cn/space/2023/02/27/bf49aa624fbd43f7a7a5584088fb6a40" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
 <p>我们的解决方案：一个桶根据是否存储键值对分为空(E)状态以及占用(O)状态，除此之外我们引入第三种删除(D)状态，通过Del删除操作的桶将处于此状态。</p>
 <p>当执行查找或者删除操作时，我们将D状态桶以O状态处理，不会在D桶就停止向后迭代查询的过程；但当执行插入操作时，可以将此桶当做E状态处理，也即可以向此桶插入数据。</p>
 <p>数据结构以及宏定义：</p>
@@ -2585,10 +2586,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-12-16T16:42:07+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-02-27T21:46:13+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Dec 16, 2022</p>
+    <p>更新于：Feb 27, 2023</p>
   </a>
 </div>
 
@@ -2668,8 +2669,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/x.html'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Golang - sync.Map</p>
+        <a class='prev' href='/post/sync.map.html'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Golang - sync.Map原理</p>
           <p class='content'>1.引言
 在Go v1.6之前，内置map是部分goroutine安全的，并发读没有问题，并发写可能有问题
 
@@ -3414,7 +3415,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/Map/","name":"Map"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/哈希表.html","name":"哈希表原理"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"哈希表原理","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html","wordCount":0,"datePublished":"2022-12-01T00:20:00.000Z","dateModified":"2022-12-16T08:42:07.667Z","articleSection":"Map","keywords":"Map","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/Map/","name":"Map"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/哈希表.html","name":"哈希表原理"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"哈希表原理","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html","wordCount":0,"datePublished":"2022-12-01T00:20:00.000Z","dateModified":"2023-02-27T13:46:13.926Z","articleSection":"Map","keywords":"Map","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

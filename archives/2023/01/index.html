@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.7.6">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  
-  <link rel="canonical" href="http://example.com/post/x.html"/>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="http://example.com/archives/2023/01/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,21 +31,18 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Golang - sync.Map - 徐乔伟</title>
-  <meta name="keywords" content="Map,null">
+  <title>Archive: 2023/1 - 徐乔伟</title>
+  <meta name="keywords" content="null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
-<meta property="og:type" content="article">
-<meta property="og:title" content="Golang - sync.Map">
-<meta property="og:url" content="http://example.com/post/x.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="徐乔伟">
+<meta property="og:url" content="http://example.com/archives/2023/01/index.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="1.引言 在Go v1.6之前，内置map是部分goroutine安全的，并发读没有问题，并发写可能有问题  在Go v1.6之后，并发读写内置map会报错，在一些知名的开源库都有这个问题，所以在Go v1.9之前，解决方案是加一个额外的大锁，锁住map。  在Go v1.9中，go官方提供了并发安全的map，sync.map。   2.sync.Map的设计思想在map内数据非常大的时候，采用一">
+<meta property="og:description" content="徐乔伟的个人博客">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2022-12-10T00:20:00.000Z">
-<meta property="article:modified_time" content="2023-01-26T02:40:50.027Z">
 <meta property="article:author" content="徐乔伟">
-<meta property="article:tag" content="Map">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1627,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1674701564757),
+    lastupdate: new Date(1677505640351),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2050,7 +2047,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin begin-->
     
     <!-- Custom Files bodyBegin end-->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2353,7 +2350,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper post search' style="display: none;">
+      <div id="half" class='cover-wrapper  search' style="display: ;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://s1.vika.cn/space/2022/09/25/ef48cd6971f14500a2d4cca1f847be62"></div>
 
@@ -2417,8 +2414,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/x.html">
+	
+		
+  <section class="post-list">
+    
+      
+        
+          
+        
+          
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/redis和go网络模型对比.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2427,376 +2442,201 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="徐乔伟的个人博客">
   </span>
   
-
-
+  
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  <div class="article-meta" id="top">
+  
     
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/redis%E5%92%8Cgo%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94.html"  itemprop="url">
+        (自己的理解，仅供参考)redis和go网络模型对比
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
     
-    
-      <h1 class="title" itemprop="name headline">
-        Golang - sync.Map
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <a itemprop="url" class='author' href="/" rel="nofollow">
-    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-    <p itemprop="name">请设置文章作者</p>
-  </a>
-</div>
+      
+        redis和go的网络模型的对比：查阅了一些资料，结合自己的理解，总结了redis和go的网络模型的特点如下，仅供自己复习参考，难免有不严谨之处。
+Redis 6.0 版本之前的单线模式：
 
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/categories/Map/">Map</a>
-    
-      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/Map/" itemprop="url"><span itemprop="name">Map</span></a>
-      </span>
+当多个客户端连接过来后，统一进入io多路复用器里面注册，然后调用epoll_wait函数将可读可写的事件取出来，进入事件分发器，分发到各个事件处理器。（多个事件处理器是在一个单线程上运行的，这也是red...
+      
     
   </div>
-
-
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-01-10T08:20:00+08:00">2023-01-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/">网络模型</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" itemprop="url"><span itemprop="name">网络模型</span></a>
+            </span>
           
         
-          
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-12-10T08:20:00+08:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 10, 2022</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-
-
-          
-        
-        <!-- Custom Files topMeta begin-->
-        
-        <!-- Custom Files topMeta end-->
       </div>
-    
-  </div>
-
-
-  <div id="layoutHelper-page-plugins"></div>
-  <div id="post-body" itemprop="articleBody">
-    <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h2><ul>
-<li><p>在Go v1.6之前，内置map是部分goroutine安全的，并发读没有问题，并发写可能有问题</p>
-</li>
-<li><p>在Go v1.6之后，并发读写内置map会报错，在一些知名的开源库都有这个问题，所以在Go v1.9之前，解决方案是加一个额外的大锁，锁住map。</p>
-</li>
-<li><p>在Go v1.9中，go官方提供了并发安全的map，sync.map。</p>
-</li>
-</ul>
-<h2 id="2-sync-Map的设计思想"><a href="#2-sync-Map的设计思想" class="headerlink" title="2.sync.Map的设计思想"></a>2.sync.Map的设计思想</h2><p>在map内数据非常大的时候，采用一个大锁，会使得锁的竞争十分激烈，存在性能问题。</p>
-<ul>
-<li>Java内的解决方案是分段锁机制，比如ConcurrentHashMap,内部使用多个锁，每个区间共用一把锁，这样锁的粒度更小了，减少了数据共享一把大锁带来的性能影响。</li>
-</ul>
-<p>但是由于其实现的复杂性和其他因素，Go官方并没有采用上述方案，而是另辟蹊径，采用读写分离的形式，来实现了一个并发安全的map</p>
-<blockquote>
-<p><strong>1.空间换时间</strong></p>
-</blockquote>
-<p>如果采用传统的大锁方案，其锁的竞争十分激烈，也就意味着需要花在锁上的时间很多，我们要尽可能的减少时间消耗，针对耗时太长的情况，算法中有一种常见的解决方案，空间换时间，采用冗余的数据结构，来减少时间的消耗。</p>
-<p>sync.map中冗余的数据结构就是dirty和read，二者存放的都是key-entry，entry其实是一个指针，指向value，read和dirty各自维护一套key，key指向的都是同一个value，也就是说，只要修改了这个entry，对read和dirty都是可见的</p>
-<p>那空间换时间策略在sync.map中到底是如何体现的呢？到底在哪些地方减少了耗时？</p>
-<ul>
-<li><p>遍历操作：只需遍历read即可，而read是并发读安全的，没有锁，相比于加锁方案，性能大为提升</p>
-</li>
-<li><p>查找操作：先在read中查找，read中找不到再去dirty中找</p>
-</li>
-</ul>
-<p>核心思想就是一切操作先去read中执行，因为read是并发读安全的，无需锁，实在在read中找不到，再去dirty中。read在sycn.map中是一种冗余的数据结构，因为read和dirty中数据有很大一部分是重复的，而且二者还会进行数据同步。</p>
-<blockquote>
-<p><strong>2.读写分离</strong></p>
-</blockquote>
-<p>sync.map中有专门用于读的数据结构：read，将其和写操作分离开来，可以避免读写冲突。<br>而采用读写分离策略的代价就是冗余的数据结构，其实还是空间换时间的思想。</p>
-<blockquote>
-<p><strong>3.双检查机制</strong></p>
-</blockquote>
-<ul>
-<li>通过额外的一次检查操作，来避免在第一次检查操作完成后，其他的操作使得检查条件产生突然符合要求的可能。</li>
-</ul>
-<p>在sync.map中，每次当read不符合要求要去操作dirty前，都会上锁，上锁后再次判断是否符合要求，因为read有可能在上锁期间，产生了变化，突然又符合要求了，read符合要求了，尽量还是在read中操作，因为read并发读安全。</p>
-<blockquote>
-<p><strong>4.延迟删除</strong></p>
-</blockquote>
-<ul>
-<li>在删除操作中，删除kv，仅仅只是先将需要删除的kv打一个标记，这样可以尽快的让delete操作先返回，减少耗时，在后面提升dirty时，再一次性的删除需要删除的kv。</li>
-</ul>
-<blockquote>
-<p><strong>5.read优先</strong></p>
-</blockquote>
-<ul>
-<li><p>需要进行读取，删除，更新操作时，优先操作read，因为read无锁的，更快，实在在read中得不到结果，再去dirty中。</p>
-</li>
-<li><p>read的修改操作需要加锁，read只是并发读安全，并发写并不安全。</p>
-</li>
-</ul>
-<blockquote>
-<p><strong>6.状态机机制</strong></p>
-</blockquote>
-<p>entry的指针p，是有状态的，nil，expunged(指向被删除的元素)，正常，三种状态.<br>那其状态在sync.map各个操作间又是怎么变化的呢？</p>
-<p>主要是两个操作会引起p状态的变化：Store(新增&#x2F;修改) 和 删除</p>
-<p>我们先来看看第一个操作 Store(新增&#x2F;修改)：</p>
-<blockquote>
-<ul>
-<li><p>在Store更新时，如果key在read中存在，并且被标记为已删除，会将kv加入dirty，此时read中key的p指向的是expunged，经过unexpungeLocked函数，read中的key的p指向会从expunged改为nil，然后经过storeLocked更新value值，p从指向nil，改为指向正常。</p>
-</li>
-<li><p>(p-&gt;expunged) &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt; (p-&gt;nil) &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt; (p-&gt;正常)。</p>
-</li>
-<li><p>在Store增加时，如果需要从read中刷新dirty数据，会将read中未删除的元素加入dirty，此时会将所有指向nil的p指针，改为指向expunged。</p>
-</li>
-</ul>
-<p>(p-&gt;nil) &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt; (p-&gt;expunged).</p>
-</blockquote>
-<p>我们再来看看第二个操作：</p>
-<blockquote>
-<ul>
-<li><p>在Delete时，删除value时，p从指向正常值，改为指向nil.</p>
-</li>
-<li><p>(p-&gt;正常) &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt; (p-&gt;nil).</p>
-</li>
-</ul>
-</blockquote>
-<p>p的状态转换如下：</p>
-<p><img src="https://s1.vika.cn/space/2023/01/26/650178d36c4644f2bbbe489e9fb3c9b6" class="lazyload" data-srcset="https://s1.vika.cn/space/2023/01/26/650178d36c4644f2bbbe489e9fb3c9b6" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
-<p>从上图我们可以看出:</p>
-<ul>
-<li>update时：p的状态从expunged转为nil，然后又转为正常值.</li>
-<li>add时：当需要刷新dirty，p的状态从nil转为expunged.</li>
-<li>delete时：p的状态从正常值转为nil.</li>
-</ul>
-<h2 id="3-sync-Map源码分析"><a href="#3-sync-Map源码分析" class="headerlink" title="3.sync.Map源码分析"></a>3.sync.Map源码分析</h2><h3 id="基础数据结构"><a href="#基础数据结构" class="headerlink" title="基础数据结构"></a>基础数据结构</h3><ul>
-<li>entry</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// entry 键值对中的值结构体</span></span><br><span class="line"><span class="keyword">type</span> entry <span class="keyword">struct</span> &#123;</span><br><span class="line">	p unsafe.Pointer <span class="comment">// 指针，指向实际存储value值的地方</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>sync.map中key和value是分开存放的，key通过内置map指向entry，entry通过指针，指向value实际内存地址.</p>
-</blockquote>
-<ul>
-<li>Map</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Map 并发安全的map结构体</span></span><br><span class="line"><span class="keyword">type</span> Map <span class="keyword">struct</span> &#123;</span><br><span class="line">	mu sync.Mutex <span class="comment">// 锁，保护read和dirty字段</span></span><br><span class="line"></span><br><span class="line">	read atomic.Value <span class="comment">// 存仅读数据，原子操作，并发读安全，实际存储readOnly类型的数据</span></span><br><span class="line"></span><br><span class="line">	dirty <span class="keyword">map</span>[<span class="keyword">interface</span>&#123;&#125;]*entry <span class="comment">// 存最新写入的数据</span></span><br><span class="line"></span><br><span class="line">	misses <span class="type">int</span> <span class="comment">// 计数器，每次在read字段中没找所需数据时，+1</span></span><br><span class="line">	<span class="comment">// 当此值到达一定阈值时，将dirty字段赋值给read</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// readOnly 存储mao中仅读数据的结构体</span></span><br><span class="line"><span class="keyword">type</span> readOnly <span class="keyword">struct</span> &#123;</span><br><span class="line">	m       <span class="keyword">map</span>[<span class="keyword">interface</span>&#123;&#125;]*entry <span class="comment">// 其底层依然是个最简单的map</span></span><br><span class="line">	amended <span class="type">bool</span>                   <span class="comment">// 标志位，标识m.dirty中存储的数据是否和m.read中的不一样，flase 相同，true不相同</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的地方：</p>
-<ul>
-<li>read在进行非读操作时，需要锁mu进行保护</li>
-<li>写入的数据，都是直接写到dirty，后面根据read miss次数达到阈值，会进行read和dirty数据的同步</li>
-<li>readOnly中专门有一个标志位，用来标注read和dirty中是否有不同，以便进行read和dirty数据同步</li>
-</ul>
-<h3 id="sync-Map中查找k-v"><a href="#sync-Map中查找k-v" class="headerlink" title="sync.Map中查找k-v"></a>sync.Map中查找k-v</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load 查询key是否存在</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span></span> Load(key <span class="keyword">interface</span>&#123;&#125;) (value <span class="keyword">interface</span>&#123;&#125;, ok <span class="type">bool</span>) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 1.先在read中查找key</span></span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	e, ok := read.m[key]</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2. 在read中没有找到，并且read和dirty数据不一样(dirty中有read中不存在的数据，因为写数据是直接往dirty中写的)</span></span><br><span class="line">	<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">		m.mu.Lock() <span class="comment">// 锁住，因为要操作dirty中数据</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 3.双检查机制，再次在read中查找key，因为有可能read从dirty中更新了数据</span></span><br><span class="line">		read, _ = m.read.Load().(readOnly)</span><br><span class="line">		e, ok = read.m[key]</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 4.在read中还是没有找到，并且read和dirty数据仍然不一致</span></span><br><span class="line">		<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">			e, ok = m.dirty[key] <span class="comment">// 直接从dirty获取数据</span></span><br><span class="line"></span><br><span class="line">			<span class="comment">// read 不命中次数 +1，到达阈值后，为避免read命中率太低，会从dirty中更新read数据</span></span><br><span class="line">			m.missLocked()</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		m.mu.Unlock() <span class="comment">// 解锁，后续不再操作dirty数据</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 5.最后仍然没有找到key，说明key在map中确实不存在，返回nil</span></span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 6.找到key了，返回value</span></span><br><span class="line">	<span class="keyword">return</span> e.load()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// missLocked readmiss次数+1 ,并且判断dirty是否需要晋升(dirty置给read）</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span></span> missLocked() &#123;</span><br><span class="line">	m.misses++ <span class="comment">// read 没命中次数统计+1</span></span><br><span class="line">	<span class="keyword">if</span> m.misses &lt; <span class="built_in">len</span>(m.dirty) &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// dirty 置给read ，因为read没有命中的次数太多了，原子操作</span></span><br><span class="line">	m.read.Store(readOnly&#123;m: m.dirty&#125;)</span><br><span class="line">	m.dirty = <span class="literal">nil</span> <span class="comment">// dirty 也置空</span></span><br><span class="line">	m.misses = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过对源码的分析，我们可以在宏观上总结一下搜索的流程：先在read中搜，搜不到再去dirty中搜，但是这个太宏观了，有些东西没有讨论到，比如</p>
-<ul>
-<li>双检查机制</li>
-<li>read miss次数达到阈值，刷新read数据</li>
-</ul>
-<p>上面两项操作，其实归根结底都是为了提升搜索的效率，比如read miss的统计和read数据的刷新，都是为了让直接可以在read中找到key，尽可能不去dirty中找，因为read并发读是安全的，性能很高，而去dirty中找，则需要加锁，耗时就增加了.</p>
-<blockquote>
-<p>调用Load或LoadOrStore函数时，如果在read中没有找到key，则会将miss值原子增加1，当miss值增加到和dirty长度相等时，会将dirty提升为read，以期望减少 “读 miss”。</p>
-</blockquote>
-<h3 id="sync-Map中添加或修改k-v"><a href="#sync-Map中添加或修改k-v" class="headerlink" title="sync.Map中添加或修改k-v"></a>sync.Map中添加或修改k-v</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Store 添加/修改 key-value</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span></span> Store(key, value <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	<span class="comment">// 1. 在read中查找key，找到了则尝试更新value</span></span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	<span class="keyword">if</span> e, ok := read.m[key]; ok &amp;&amp; e.tryStore(&amp;value) &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	m.mu.Lock() <span class="comment">// 操作dirty，锁住先</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2. 双检查机制，再次在read中查找key</span></span><br><span class="line">	read, _ = m.read.Load().(readOnly)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 3. key在read中存在</span></span><br><span class="line">	<span class="keyword">if</span> e, ok := read.m[key]; ok &#123;</span><br><span class="line">		<span class="keyword">if</span> e.unexpungeLocked() &#123; <span class="comment">// key被标记为已删除，则将k/v加入dirty中</span></span><br><span class="line">			m.dirty[key] = e</span><br><span class="line">		&#125;</span><br><span class="line">		e.storeLocked(&amp;value) <span class="comment">// 无论key是否为已删除状态，都要更新key的value值</span></span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> e, ok := m.dirty[key]; ok &#123;</span><br><span class="line">		<span class="comment">// 4. key在dirty中存在，则直接在dirty中更新value值</span></span><br><span class="line">		e.storeLocked(&amp;value)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// 5. key在read和dirty中都不存在，则走新增逻辑</span></span><br><span class="line">		<span class="comment">// read和dirty中数据相同，则从read中刷新dirty的数据(因为dirty为nil，有可能是初始化或dirty之前提升过了)，并将amended标识为read和dirty不相同，因为后面即将走新增逻辑</span></span><br><span class="line">		<span class="keyword">if</span> !read.amended &#123; 		</span><br><span class="line">			m.dirtyLocked()</span><br><span class="line">			m.read.Store(readOnly&#123;m: read.m, amended: <span class="literal">true</span>&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">		m.dirty[key] = newEntry(value) <span class="comment">// 新增逻辑，直接在dirty中加入kv键值对</span></span><br><span class="line">	&#125;</span><br><span class="line">	m.mu.Unlock() <span class="comment">// 不再操作dirty数据，解锁啦</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// tryStore 尝试更新value 原子操作</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *entry)</span></span> tryStore(i *<span class="keyword">interface</span>&#123;&#125;) <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		p := atomic.LoadPointer(&amp;e.p)</span><br><span class="line">		<span class="keyword">if</span> p == expunged &#123; <span class="comment">// 被删除状态，无法更新</span></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> atomic.CompareAndSwapPointer(&amp;e.p, p, unsafe.Pointer(i)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// unexpungeLocked 判断是否指向expunged，如果指向expunged则修改为指向nil</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *entry)</span></span> unexpungeLocked() (wasExpunged <span class="type">bool</span>) &#123;</span><br><span class="line">	<span class="comment">// 之所以需要将指向expunged的修改为指向nil ，是因为后续会将k/v加入dirty中，都已经加入dirty中，并且不是未删除状态，当然需要指向nil啦</span></span><br><span class="line">	<span class="comment">// 此value在read中暂时指向nil，但后续会更新value值，这样read中和dirty中都是指向同一个value的 ( Store中第四步，更新value值)</span></span><br><span class="line">	<span class="keyword">return</span> atomic.CompareAndSwapPointer(&amp;e.p, expunged, <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// storeLocked 更新指向的value值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *entry)</span></span> storeLocked(i *<span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line">	atomic.StorePointer(&amp;e.p, unsafe.Pointer(i))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// dirtyLocked 刷新dirty数据逻辑,将read中未删除的数据加入到dirty中</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span></span> dirtyLocked() &#123;</span><br><span class="line">	<span class="comment">// 此函数仅在以下情况会执行： read和dirty相同时，比如初始化或dirty刚提升到read，dirty肯定是nil</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// dirty 非nil，则没必要走刷新dirty数据逻辑</span></span><br><span class="line">	<span class="keyword">if</span> m.dirty != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	m.dirty = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">interface</span>&#123;&#125;]*entry, <span class="built_in">len</span>(read.m)) <span class="comment">// dirty 申请内存空间</span></span><br><span class="line">	<span class="comment">// 1.遍历read，将read中未删除元素加入dirty中（加入的其实不是真正的底层数据副本，而是指向底层数据的指针）</span></span><br><span class="line">	<span class="keyword">for</span> k, e := <span class="keyword">range</span> read.m &#123;</span><br><span class="line">		<span class="keyword">if</span> !e.tryExpungeLocked() &#123; <span class="comment">// 保证加入dirty中都是read中未删除的元素，read中被删除状态的元素则没必要加入dirty</span></span><br><span class="line">			m.dirty[k] = e</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tryExpungeLocked 判断元素是否为被删除状态</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *entry)</span></span> tryExpungeLocked() (isExpunged <span class="type">bool</span>) &#123;</span><br><span class="line">	<span class="comment">// 进入此函数的指针，有三种指向： 指向正常value，指向nil，指向expunged，本函数的目的就是在判断是否指向expunged之余，将指向nil的都改为指向expunged</span></span><br><span class="line"></span><br><span class="line">	p := atomic.LoadPointer(&amp;e.p) <span class="comment">// 原子操作，载入指针</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 将指向nil的指针，改为指向expunged</span></span><br><span class="line">	<span class="keyword">for</span> p == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> atomic.CompareAndSwapPointer(&amp;e.p, <span class="literal">nil</span>, expunged) &#123; <span class="comment">// 原子操作，比较和交换</span></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">		p = atomic.LoadPointer(&amp;e.p) <span class="comment">// 原子操作，重新载入指针</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 有可能是正常元素，判断是否指向expunged</span></span><br><span class="line">	<span class="keyword">return</span> p == expunged</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>大致总结一下上述流程：</p>
-<ul>
-<li>在read中查找key，找到了则通过原子操作，尝试更新value</li>
-<li>key在read中存在，但是被标记为已删除，则kv加入dirty中，并更新value值</li>
-<li>key在read中不存在，但在dirty中存在，则直接在dirty中更新value</li>
-<li>key在read和dirty中都不存在，则直接在dirty中加入kv，需要注意的是，此时dirty可能为nil(因为之前可能没有初始化或之前dirty提升过),需要将read中未删除的元素加入dirty</li>
-</ul>
-<blockquote>
-<p>新写入的key会保存到dirty中，如果此时dirty为nil，就会先创建一个dirty，并将read中未删除的数据拷贝到dirty.</p>
-<p>当dirty为nil时，read就代表map所有数据，当dirty不为nil的时候，dirty才代表map所有数据。</p>
-</blockquote>
-<h3 id="sync-Map中删除k-v"><a href="#sync-Map中删除k-v" class="headerlink" title="sync.Map中删除k-v"></a>sync.Map中删除k-v</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Delete 删除元素</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span></span> Delete(key <span class="keyword">interface</span>&#123;&#125;) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 1.先在read中查找key</span></span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line">	e, ok := read.m[key]</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2.在read中没有找到key，并且read和dirty中数据不相同(即dirty中有read中没有的数据，因为插入数据都是直接插入到dirty中的，read还来不及根据dirty数据进行刷新)</span></span><br><span class="line">	<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">		m.mu.Lock() <span class="comment">// 操作dirty，锁住先</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 3.双检查机制，继续在read中查找key</span></span><br><span class="line">		read, _ = m.read.Load().(readOnly)</span><br><span class="line">		e, ok = read.m[key]</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 4. 在read中没有找到key，并且read和dirty中数据不相同，则在dirty中删除key</span></span><br><span class="line">		<span class="keyword">if</span> !ok &amp;&amp; read.amended &#123;</span><br><span class="line">			<span class="built_in">delete</span>(m.dirty, key)</span><br><span class="line">		&#125;</span><br><span class="line">		m.mu.Unlock() <span class="comment">// 解锁，不再操作dirty</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 5. 通过key，找到了value，则删除value</span></span><br><span class="line">	<span class="keyword">if</span> ok &#123;</span><br><span class="line">		e.<span class="built_in">delete</span>()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// delete 删除value</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *entry)</span></span> <span class="built_in">delete</span>() (hadValue <span class="type">bool</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		p := atomic.LoadPointer(&amp;e.p)  <span class="comment">// 原子操作方式加载指针</span></span><br><span class="line">		<span class="keyword">if</span> p == <span class="literal">nil</span> || p == expunged &#123; <span class="comment">// p 指向nil或已删除元素，删除失败</span></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 将p指向nil</span></span><br><span class="line">		<span class="comment">// 为何不将p设置为expunged ? 因为p为expunged时，表示其已经不在dirty中了，这是由p的状态机决定的！</span></span><br><span class="line">		<span class="keyword">if</span> atomic.CompareAndSwapPointer(&amp;e.p, p, <span class="literal">nil</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>大致总结一下删除操作的流程：</p>
-<ul>
-<li>在read中查key，找到了则直接删除value(修改entry的指针p，改为指向nil，因为是指针，所以在read和dirty中都是可见的)。</li>
-<li>在read中没有找到key，但read数据和dirty数据有不同，则去dirty中直接删除key(不管dirty中有无key，都是直接删除，不会返回任何响应)，最后也是entry的delete直接删除value。</li>
-</ul>
-<p>此函数的特点就是不会有任何的返回值，存在就删除了，没存在就不会删，也删不了，这些对函数外部的调用者都是不可见的</p>
-<h3 id="sync-Map中遍历k-v"><a href="#sync-Map中遍历k-v" class="headerlink" title="sync.Map中遍历k-v"></a>sync.Map中遍历k-v</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Range 回调方式遍历map</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Map)</span></span> Range(f <span class="function"><span class="keyword">func</span><span class="params">(key, value <span class="keyword">interface</span>&#123;&#125;)</span></span> <span class="type">bool</span>) &#123;</span><br><span class="line"></span><br><span class="line">	read, _ := m.read.Load().(readOnly)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 1.dirty中有新数据，则提升dirty，然后再遍历</span></span><br><span class="line">	<span class="keyword">if</span> read.amended &#123;</span><br><span class="line">		m.mu.Lock() <span class="comment">//操作dirty，锁住</span></span><br><span class="line">		read, _ = m.read.Load().(readOnly)</span><br><span class="line">		<span class="keyword">if</span> read.amended &#123; <span class="comment">// 双检查机制，再次检测dirty中是否有新数据</span></span><br><span class="line">			read = readOnly&#123;m: m.dirty&#125; <span class="comment">// 提升dirty为read，重置dirty和miss计数器</span></span><br><span class="line">			m.read.Store(read)</span><br><span class="line">			m.dirty = <span class="literal">nil</span></span><br><span class="line">			m.misses = <span class="number">0</span></span><br><span class="line">		&#125;</span><br><span class="line">		m.mu.Unlock()</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 到这就代表，read中的数据和dirty中数据是一致的，直接遍历read即可</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2.回调的方式遍历read</span></span><br><span class="line">	<span class="keyword">for</span> k, e := <span class="keyword">range</span> read.m &#123;</span><br><span class="line">		v, ok := e.load()</span><br><span class="line">		<span class="keyword">if</span> !ok &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> !f(k, v) &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意事项：</p>
-<ul>
-<li>底层遍历的其实是read，而如果dirty中有不同于read的新数据，则需要先提升dirty再进行遍历，这样数据才能一致</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li>sync.map 是并发安全的.</li>
-<li>通过读写分离，降低锁时间来提高效率，适用于读多写少的场景。</li>
-<li>sync.map底层其实是两个map，一个read map，一个dirty map，read map 并发读安全，所有读操作优先read map，所有写操作直接在dirty map中，read map和dirty map在需要时间会进行数据同步。</li>
-</ul>
-
-  </div>
-  
-  
-    
-    <div class='footer'>
-       <!-- 参考资料、相关资料等 -->
       
-       <!-- 相关文章 -->
-      
-      <!-- 版权声明组件 -->
-      
-      <!-- 打赏组件 -->
+        <div>
+          <a class='readmore' href='/post/redis%E5%92%8Cgo%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94.html' itemprop="url">
+            Read More
+          </a>
+        </div>
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-01-26T10:40:50+08:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 26, 2023</p>
-  </a>
 </div>
 
+          </div>
         
       
         
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Map/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Map</p></a></div>
-  <span hidden itemprop="keywords">Map</span>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
-    
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/x.html&title=Golang - sync.Map - 徐乔伟&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/x.html&title=Golang - sync.Map - 徐乔伟&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/x.html&title=Golang - sync.Map - 徐乔伟&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-    <!-- Custom Files bottomMeta begin -->
-    
-    <!-- Custom Files bottomMeta end -->
-  </div>
-
-
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/(自己的理解)报文的并发解析，业务异步逻辑的实现原理.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
   
   
-
   
-    <div class="prev-next">
-      
-        <a class='prev' href='/post/xin.html'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>分段锁实现并发安全Map</p>
-          <p class='content'>1.引言我们一般有两种方式来降低锁的竞争：
-
-第一种：减少锁的持有时间，sync.Map即是采用这种策略，通过冗余的数据结构，使得需要持有锁的时间，大大减少。
-第二种：降低锁的请求频率，锁分解和...</p>
-        </a>
-      
-      
-        <a class='next' href='/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html'>
-          <p class='title'>哈希表原理<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>map映射结构频繁地运用在日常的开发之中，因此成为了面试中的高频考点，本系列将从map的两种实现(hash以及红黑树)出发，再详解go语言的map，最后讨论如何实现高性能的并发安全map，彻底搞...</p>
-        </a>
-      
-    </div>
-  
-  <!-- Custom Files postEnd begin-->
-  
-  <!-- Custom Files postEnd end-->
-</article>
-
-
-  
-
-
-  <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="discussionUrl" content="/post/x.html#comments">
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
-    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
+  
+  
     
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/(%E8%87%AA%E5%B7%B1%E7%9A%84%E7%90%86%E8%A7%A3)%E6%8A%A5%E6%96%87%E7%9A%84%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90%EF%BC%8C%E4%B8%9A%E5%8A%A1%E5%BC%82%E6%AD%A5%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html"  itemprop="url">
+        (自己的理解，仅供参考)报文的并发解析，业务异步逻辑的实现原理
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        resp报文的并发解析怎么实现的？
+这里通过两个函数ParseStream和parse0，这两个函数什么意思呢？
 
-    <div id="layoutHelper-comments"></div>
 
-  </article>
+就是上层通过io.reader来读取TCP字节流，并且将这个io.reader交给ParseStream去做一个解析，但是ParseStream不会自己直接去做解析，因为解析是需要时间的，如果上层调用ParseStream自己去做解析，需要完整得到解析出一条指令，指令才能返回...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-01-05T08:20:00+08:00">2023-01-05</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/godis/">godis</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/godis/" itemprop="url"><span itemprop="name">godis</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/(%E8%87%AA%E5%B7%B1%E7%9A%84%E7%90%86%E8%A7%A3)%E6%8A%A5%E6%96%87%E7%9A%84%E5%B9%B6%E5%8F%91%E8%A7%A3%E6%9E%90%EF%BC%8C%E4%B8%9A%E5%8A%A1%E5%BC%82%E6%AD%A5%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/跳表代码.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E8%B7%B3%E8%A1%A8%E4%BB%A3%E7%A0%81.html"  itemprop="url">
+        手动实现一个跳表
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        设计跳表不使用任何库函数，设计一个 跳表 。
+跳表 是在 O(log(n)) 时间内完成增加、删除、搜索操作的数据结构。跳表相比于树堆与红黑树，其功能与性能相当，并且跳表的代码长度相较下更短，其设计思想与链表相似。
+例如，一个跳表包含 [30, 40, 50, 60, 70, 90] ，然后增加 80、45 到跳表中，以下图的方式操作：
+跳表中有很多层，每一层是一个短的链表。在第一层的作用下...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-01-01T08:20:00+08:00">2023-01-01</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/redis/">redis</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/redis/" itemprop="url"><span itemprop="name">redis</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E8%B7%B3%E8%A1%A8%E4%BB%A3%E7%A0%81.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+    
+  </section>
+  
+    
+  
 
 
-
-
-
-
+	
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2805,52 +2645,176 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
+<section class="widget blogger desktop mobile pjax">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://s1.vika.cn/space/2022/09/25/6fad662f39e8414598d593072ef746cb'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>徐乔伟</h2>
+        
+        
+          <p>个人学习记录</p>
+
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fa-solid fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:1511189367@qq.com"
+              class="social fa-solid fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/Xuqiaowei/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+
+  
+    
+    
+      
+  
+  <section class="widget category desktop pjax">
+    
+  <header>
+    
+      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/Map/" href="/categories/Map/"
+            active-action="action-categoriesMap"
+            ><div class='name'>Map</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Markdown/" href="/categories/Markdown/"
+            active-action="action-categoriesMarkdown"
+            ><div class='name'>Markdown</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/godis/" href="/categories/godis/"
+            active-action="action-categoriesgodis"
+            ><div class='name'>godis</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/redis/" href="/categories/redis/"
+            active-action="action-categoriesredis"
+            ><div class='name'>redis</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
+            active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
+            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/"
+            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B-golang"
+            ><div class='name'>网络模型 golang</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/"
+            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B"
+            ><div class='name'>网络模型</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+    
+  
+
+  
+    
+    
+      
+  
+  <section class="widget tagcloud desktop mobile pjax">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/godis/" style="font-size: 17.33px; color: #828282">godis</a> <a href="/tags/netpoller-epoll/" style="font-size: 14px; color: #999">netpoller epoll</a> <a href="/tags/netpoller-redis/" style="font-size: 14px; color: #999">netpoller redis</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a> <a href="/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 17.33px; color: #828282">跳表</a>
+    </div>
+  </section>
+
+
+    
+  
+
+  
+    
+    
+      
+<section class="widget text desktop pjax">
+  
+  <header>
+    
+      <a target="_blank" rel="noopener" href='https://github.com/Xuqiaowei/'><i class="fab fa-github fa-fw" aria-hidden="true"></i><span class='name'>点个赞吧</span></a>
+    
+  </header>
+
+
+  <div class='content'>
+    
+  </div>
+</section>
+
     
   
 
 
 <div class="widget-sticky pjax">
 
-  
-  
-
-
-  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
-    
-  <header>
-    
-      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-sync-Map%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3"><span class="toc-text">2.sync.Map的设计思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-sync-Map%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">3.sync.Map源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">基础数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-Map%E4%B8%AD%E6%9F%A5%E6%89%BEk-v"><span class="toc-text">sync.Map中查找k-v</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-Map%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%88%96%E4%BF%AE%E6%94%B9k-v"><span class="toc-text">sync.Map中添加或修改k-v</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-Map%E4%B8%AD%E5%88%A0%E9%99%A4k-v"><span class="toc-text">sync.Map中删除k-v</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-Map%E4%B8%AD%E9%81%8D%E5%8E%86k-v"><span class="toc-text">sync.Map中遍历k-v</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol>
-    </div>
-  </section>
-
-  
-
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -2878,14 +2842,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
-
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=true;
+  pdata.ispage=false;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -2894,14 +2857,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     // header
     var l_header=document.getElementById("l_header");
     
-    l_header.classList.add("show");
+    l_header.classList.remove("show");
     
     
       // cover
       var cover_wrapper=document.querySelector('#l_cover .cover-wrapper');
       var scroll_down=document.getElementById('scroll-down');
-      cover_wrapper.id="none";
-      cover_wrapper.style.display="none";
+      cover_wrapper.id="half";
+      cover_wrapper.style.display="";
       scroll_down.style.display="none";
     
   
@@ -3502,7 +3465,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/Map/","name":"Map"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/x.html","name":"Golang - sync.Map"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang - sync.Map","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/x.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/x.html","wordCount":0,"datePublished":"2022-12-10T00:20:00.000Z","dateModified":"2023-01-26T02:40:50.027Z","articleSection":"Map","keywords":"Map","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/archives/","name":"Archive"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com/archives/2023/","name":"2023"}},{"@type":"ListItem","position":4,"item":{"@id":"http://example.com/archives/2023/1/","name":"1"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
