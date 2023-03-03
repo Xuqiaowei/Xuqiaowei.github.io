@@ -1624,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1677505640351),
+    lastupdate: new Date(1677816670637),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2424,9 +2424,78 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/go垃圾回收机制总结.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html"  itemprop="url">
+        （复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比）
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        引言go和java都有着比较优秀的垃圾回收机制，而GC问题也是面试的重点，所以自己通过查阅资料总结了go的垃圾回收机制，也和java进行了一些对比。
+注：基于整个go的gc发展，来研究其gc的演变过程，不单针对某个版本的gc，因为go的gc一直在演变
+GO GC的发展历史go v1.1 : 标记清除法，整个过程都需要STW
+
+go v1.3 : 标记清除法，标记过程仍然需要STW，但是清除过...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-02-05T08:20:00+08:00">2023-02-05</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/golang/">golang</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/golang/" itemprop="url"><span itemprop="name">golang</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -2665,6 +2734,11 @@ server监听每个客户端的TCP连接，并且获取连接交给handler进行�
             ><div class='name'>godis</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
+            title="/categories/golang/" href="/categories/golang/"
+            active-action="action-categoriesgolang"
+            ><div class='name'>golang</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
             title="/categories/redis/" href="/categories/redis/"
             active-action="action-categoriesredis"
             ><div class='name'>redis</div><div class='badge'>(2)</div></a></li>
@@ -2707,7 +2781,7 @@ server监听每个客户端的TCP连接，并且获取连接交给handler进行�
 
 
     <div class='content'>
-      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/godis/" style="font-size: 17.33px; color: #828282">godis</a> <a href="/tags/netpoller-epoll/" style="font-size: 14px; color: #999">netpoller epoll</a> <a href="/tags/netpoller-redis/" style="font-size: 14px; color: #999">netpoller redis</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a> <a href="/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 17.33px; color: #828282">跳表</a>
+      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/godis/" style="font-size: 17.33px; color: #828282">godis</a> <a href="/tags/netpoller-epoll/" style="font-size: 14px; color: #999">netpoller epoll</a> <a href="/tags/netpoller-redis/" style="font-size: 14px; color: #999">netpoller redis</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 14px; color: #999">垃圾回收</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a> <a href="/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 17.33px; color: #828282">跳表</a>
     </div>
   </section>
 

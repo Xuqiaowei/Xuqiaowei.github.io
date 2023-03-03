@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.7.6">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="http://example.com/categories/网络模型/"/>
+  
+  <link rel="canonical" href="http://example.com/post/go垃圾回收机制总结.html"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,18 +31,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>Category: 网络模型 - 徐乔伟</title>
-  <meta name="keywords" content="null">
+  <title>（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比） - 徐乔伟</title>
+  <meta name="keywords" content="垃圾回收,null">
   <meta desc name="description" content="徐乔伟的个人博客 - 徐乔伟 - 徐乔伟">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="徐乔伟">
-<meta property="og:url" content="http://example.com/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比）">
+<meta property="og:url" content="http://example.com/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html">
 <meta property="og:site_name" content="徐乔伟">
-<meta property="og:description" content="徐乔伟的个人博客">
+<meta property="og:description" content="引言go和java都有着比较优秀的垃圾回收机制，而GC问题也是面试的重点，所以自己通过查阅资料总结了go的垃圾回收机制，也和java进行了一些对比。 注：基于整个go的gc发展，来研究其gc的演变过程，不单针对某个版本的gc，因为go的gc一直在演变 GO GC的发展历史go v1.1 : 标记清除法，整个过程都需要STW  go v1.3 : 标记清除法，标记过程仍然需要STW，但是清除过程并行">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2023-02-05T00:20:00.000Z">
+<meta property="article:modified_time" content="2023-03-03T04:08:49.746Z">
 <meta property="article:author" content="徐乔伟">
+<meta property="article:tag" content="垃圾回收">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2350,7 +2353,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper  search' style="display: none;">
+      <div id="none" class='cover-wrapper post search' style="display: none;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://s1.vika.cn/space/2022/09/25/ef48cd6971f14500a2d4cca1f847be62"></div>
 
@@ -2413,25 +2416,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/redis和go网络模型对比.html">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/go垃圾回收机制总结.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
   </span>
@@ -2440,69 +2427,326 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="徐乔伟的个人博客">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/redis%E5%92%8Cgo%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94.html"  itemprop="url">
-        (自己的理解，仅供参考)redis和go网络模型对比
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
-        redis和go的网络模型的对比：查阅了一些资料，结合自己的理解，总结了redis和go的网络模型的特点如下，仅供自己复习参考，难免有不严谨之处。
-Redis 6.0 版本之前的单线模式：
+    
+      <h1 class="title" itemprop="name headline">
+        （复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比）
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">请设置文章作者</p>
+  </a>
+</div>
 
-当多个客户端连接过来后，统一进入io多路复用器里面注册，然后调用epoll_wait函数将可读可写的事件取出来，进入事件分发器，分发到各个事件处理器。（多个事件处理器是在一个单线程上运行的，这也是red...
-      
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/golang/">golang</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/golang/" itemprop="url"><span itemprop="name">golang</span></a>
+      </span>
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-01-10T08:20:00+08:00">2023-01-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/">网络模型</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" itemprop="url"><span itemprop="name">网络模型</span></a>
-            </span>
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2023-02-05T08:20:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Feb 5, 2023</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>go和java都有着比较优秀的垃圾回收机制，而GC问题也是面试的重点，所以自己通过查阅资料总结了go的垃圾回收机制，也和java进行了一些对比。</p>
+<p>注：基于整个go的gc发展，来研究其gc的演变过程，不单针对某个版本的gc，因为go的gc一直在演变</p>
+<h1 id="GO-GC的发展历史"><a href="#GO-GC的发展历史" class="headerlink" title="GO GC的发展历史"></a>GO GC的发展历史</h1><pre><code>go v1.1 : 标记清除法，整个过程都需要STW
+
+go v1.3 : 标记清除法，标记过程仍然需要STW，但是清除过程并行化，gc pause约为几百ms
+
+go v1.5 : 引入插入写屏障技术的三色标记法，仅在堆空间启动插入写屏障，全部扫描后需要STW重新扫描栈空间，gc pause耗时降到10ms以下
+
+go v1.8 : 引入混合写屏障技术的三色标记法，仅在堆空间启动混合写屏障，不需要在GC 结束后对栈空间重新扫描，gc pause时间降至0.5ms以下
+
+go 1.1.4 引入新的页分配器用于优化内存分配的速度
+</code></pre>
+<h1 id="go-GC具体版本详解"><a href="#go-GC具体版本详解" class="headerlink" title="go GC具体版本详解"></a>go GC具体版本详解</h1><blockquote>
+<p>首先了解一个概念，叫作STW。</p>
+<p>STW（Stop The World）。STW的过程中，CPU不执行用户代码，全部用于垃圾回收，这个过程的影响很大，所以STW也是一些回收机制最大的难题和希望优化的点。</p>
+</blockquote>
+<h2 id="go-1-3版本"><a href="#go-1-3版本" class="headerlink" title="go 1.3版本"></a>go 1.3版本</h2><p>go 1.3版本采用标记清除的方式来进行垃圾回收，执行的时候会开启stw，其执行过程可以分成标记和清除两个阶段，具体可参照标记清除算法。Go垃圾收集器从根结点开始遍历，执行可达性分析算法，递归标记所有被引用的对象为存活状态；标记阶段结束后，垃圾收集器会依次遍历堆中的对象并清除其中的未被标记为存活的对象。</p>
+<p><strong>缺点：</strong><br>标记需要扫描整个堆空间；标记清除会产生内存碎片，导致程序在运行时无法为大对象分配内存空间，从而导致提前进行下一次GC；最大的问题是stw，让程序暂停，出现卡顿。</p>
+<h2 id="go-1-5版本"><a href="#go-1-5版本" class="headerlink" title="go 1.5版本"></a>go 1.5版本</h2><p>go 1.5版本采用三色标记法的方式来进行垃圾回收，前面的标记-x类算法都有一个问题，那就是STW(即gc时暂停整个应用程序)，三色标记法是对标记阶段进行改进的算法，目的是在不暂停程序的情况下即可完成对象的可达性分析。</p>
+<p>三色可达性分析标记算法按“是否被访问过”将程序中的对象分成白色、黑色和灰色：</p>
+<blockquote>
+<p>白色对象 — 对象尚未被垃圾收集器访问过，在可达性分析刚开始的阶段，所有的对象都是白色的，若在分析结束阶段，仍然是白色的对象，即代表不可达。</p>
+</blockquote>
+<blockquote>
+<p>黑色对象 — 表示对象已经被垃圾收集器访问过，且这个对象的所有引用都已经被扫描过，黑色的对象代表已经被扫描过而且是安全存活的。黑色对象不可能直接（不经过灰色对象）指向某个白色对象（在非并发下，并发有可能指向白色对象）。</p>
+</blockquote>
+<blockquote>
+<p>灰色对象 — 表示对象已经被垃圾收集器访问过，但是这个对象上至少存在一个引用还没有被扫描过，因为存在指向白色对象的外部指针，垃圾收集器会扫描这些对象的子对象。</p>
+</blockquote>
+<p><strong>三色可达性分析算法大致的流程是（初始状态所有对象都是白色）:</strong></p>
+<ol>
+<li>从GC Roots开始枚举，它们所有的直接引用变为灰色（移入灰色集合），GC Roots变为黑色。</li>
+<li>从灰色集合中取出一个灰色对象进行分析：<br>将这个对象所有的直接引用变为灰色，放入灰色集合中，<br>将这个对象变为黑色；</li>
+<li>重复步骤2，一直重复直到灰色集合为空</li>
+<li>分析完成，仍然是白色的对象就是GC Roots不可达的对象，可以作为垃圾被清理</li>
+</ol>
+<p><strong>三色标记清除算法本身是不可以并发或者增量执行的，它需要STW才能并发执行。而如果不开stw且并发执行，用户程序可能在标记执行的过程中修改对象的指针。</strong></p>
+<p>这种情况一般会有2种：</p>
+<blockquote>
+<p>一种是把原本应该垃圾回收的死亡对象错误的标记为存活，虽然这不好，但是不会导致严重后果，只不过本次没有完全清理，那下次清理就可以。</p>
+<p>一种是把原本存活的对象错误的标记为已死亡，导致“对象消失”，这在内存管理中是非常严重的错误。体现在一个白色对象突然被黑色对象引用（黑色本身不会去扫描），且一个灰色对象同时丢失了该白色（丢失了后灰色扫描不到该白色了）。导致白色对象被错误的回收，我们将这种错误称为悬挂指针，即指针没有指向特定类型的合法对象，影响了内存的安全性。</p>
+</blockquote>
+<p><strong>为了解决上述问题，引入了强弱三色不变式。</strong></p>
+<p>强三色不变式：强制性的不允许黑色对象引用白色对象。<br>弱三色不变式：在一定条件下允许黑色对象引用白色对象，即该白色对象必须要有灰色对象直接引用或者白色对象的可达链路上有灰色对象，此时允许黑色对象引用白色对象。<br>故满足强弱之一，即可保证对象不丢失。</p>
+<p><strong>后面又提出了屏障技术来解决对象丢失问题。</strong></p>
+<p>内存屏障技术是一种屏障指令，它可以让 CPU 或者编译器在执行内存相关操作时遵循特定的约束，简单来说，就是增加了一个额外的判断机制。根据操作类型的不同，我们可以将它们分成读屏障（Read barrier）和写屏障（Write barrier）两种，因为读屏障需要在读操作中加入代码片段，对用户程序的性能影响很大，所以编程语言往往都会采用写屏障保证三色不变性。</p>
+<h2 id="go-1-5版本-1"><a href="#go-1-5版本-1" class="headerlink" title="go 1.5版本"></a>go 1.5版本</h2><p>go 1.5版本使用插入写屏障技术的三色标记法，仅在堆空间启动插入写屏障，全部扫描后需要STW重新扫描栈空间，gc pause耗时降到10ms以下。</p>
+<p>插入屏障是对象被引用的时候触发的一种机制。在A对象引用B对象的时候，B对象会被标记为灰色。解决了黑色对象引用白色对象的情况。</p>
+<p><strong>缺点：</strong><br>插入写屏障不会在栈上使用，只会在堆上用。那么栈上的黑色对象就有可能指向堆上的白色对象。对栈上对象来说，要么在用户程序执行内存写操作时为栈上对象插入写屏障，要么在一轮三色标记完成后使用STW重新对栈上对象进行三色标记，前者会降低栈空间响应速度，后者会暂停应用程序。</p>
+<p>删除屏障是对象被删除的时候触发的一种机制。当删除对象A指向对象B的指针时，将被删除对象B标记为灰色。解决了灰色对象丢失白色对象的情况。</p>
+<p><strong>缺点：</strong><br>由于会将有存活可能的对象都标记成灰色，因此最后可能会导致应该回收的对象未被回收，这个对象只有在下一个循环才会被回收。</p>
+<blockquote>
+<p>注：go GC未曾单独采用删除写屏障。</p>
+</blockquote>
+<h2 id="go-1-8版本"><a href="#go-1-8版本" class="headerlink" title="go 1.8版本"></a>go 1.8版本</h2><p>go 1.8版本使用混合写屏障技术的三色标记法，仅在堆空间启动混合写屏障，不需要在GC 结束后对栈空间重新扫描，gc pause时间降至0.5ms以下。</p>
+<p><strong>引入混合写屏障的原因：</strong></p>
+<p>在go v1.8引入混合写屏障之前，由于GC root对象包括了栈对象，如果运行时所有GC root对象上开启插入写屏障，意味着需要在数量庞大的Goroutine的栈上都开启迪杰斯特拉写屏障从而严重影响用户程序的性能，<br>之前的做法是在标记阶段结束后暂停整个程序，对栈上对象重新进行三色标记。</p>
+<p><strong>混合写屏障逻辑：</strong></p>
+<p>GC 开始将栈上的对象全部扫描并标记为黑色；GC 期间，任何在栈上创建的新对象，均为黑色；被删除的堆对象标记为灰色；被添加的堆对象标记为灰色；</p>
+<blockquote>
+<p>优点：在垃圾收集的标记阶段，将创建的所有新对象都标记成黑色，防止新分配的栈内存和堆内存中的对象被错误地回收，因为栈内存在标记阶段最终都会变为黑色，所以不再需要重新扫描栈空间。</p>
+</blockquote>
+<h1 id="go-和-java-垃圾回收机制简单对比"><a href="#go-和-java-垃圾回收机制简单对比" class="headerlink" title="go 和 java 垃圾回收机制简单对比"></a>go 和 java 垃圾回收机制简单对比</h1><h2 id="垃圾回收区域"><a href="#垃圾回收区域" class="headerlink" title="垃圾回收区域"></a>垃圾回收区域</h2><p><img src="https://s1.vika.cn/space/2023/03/03/1ae2540103a442d390537109467b14f5" class="lazyload" data-srcset="https://s1.vika.cn/space/2023/03/03/1ae2540103a442d390537109467b14f5" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<blockquote>
+<p>Java划分新生代、老年代来存储对象。对象通常会在新生代分配内存，多次存活的对象会被移到老年代。Java内存运行时区域的各个部分，其中程序计数器、虚拟机栈、本地方法栈3个区域随着线程而生，随着线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈的操作，每个栈帧中分配多少内存基本是在类结构确定下来时就已知的。而Java堆和方法区则不同，一个接口中的多个实现类需要的内存可能不同，一个方法中的多个分支需要的内存也可能不一样，我们只有在程序处于运行期间时才能知道会创建哪些对象，这部分内存的分配和回收都是动态的。</p>
+</blockquote>
+<p><strong>因此，Java堆和方法区是Java垃圾收集器管理的主要区域。</strong></p>
+<p><img src="https://s1.vika.cn/space/2023/03/03/b2d2883e49714f25b342ee346ff8632c" class="lazyload" data-srcset="https://s1.vika.cn/space/2023/03/03/b2d2883e49714f25b342ee346ff8632c" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<blockquote>
+<p>go内存会分成堆区（Heap）和栈区（Stack）两个部分，程序在运行期间可以主动从堆区申请内存空间，这些内存由内存分配器分配并由垃圾收集器负责回收。栈区的内存由编译器自动进行分配和释放，栈区中存储着函数的参数以及局部变量，它们会随着函数的创建而创建，函数的返回而销毁。如果只申请和分配内存，内存终将枯竭。<br>Go将内存划分为页（Page），这和Java的内存结构完全不同，没有分代内存，java是分代内存，这样的原因是Go的内存分配器采用了TCMalloc的设计思想。<br>Go使用垃圾回收收集不再使用的span，把span释放交给mheap，mheap对span进行span的合并，把合并后的span加入scav树中，等待再分配内存时，由mheap进行内存再分配。</p>
+</blockquote>
+<p><strong>因此，Go堆是Go垃圾收集器管理的主要区域。</strong></p>
+<h2 id="收集算法"><a href="#收集算法" class="headerlink" title="收集算法"></a>收集算法</h2><blockquote>
+<p>当前Java虚拟机的垃圾收集采用分代收集算法，根据对象存活周期的不同将内存分为几块。比如在新生代中，每次收集都会有大量对象死去，所以可以选择“标记-复制”算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。 而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
+</blockquote>
+<blockquote>
+<p>当前Go的都是基于标记清除算法进行垃圾回收。</p>
+</blockquote>
+<h2 id="触发垃圾回收的时机"><a href="#触发垃圾回收的时机" class="headerlink" title="触发垃圾回收的时机"></a>触发垃圾回收的时机</h2><blockquote>
+<p>Java 当应用程序空闲时,即没有应用线程在运行时,GC会被调用。因为GC在优先级最低的线程中进行,所以当应用忙时,GC线程就不会被调用,但以下条件除外：Java堆内存不足时,GC会被调用；当Eden区空间不足时Minor GC；对象年龄增加到一定程度时Young GC；新生代对象转入老年代及创建为大对象时会导致老年代空间不足，触发Old GC；System.gc()调用触发Full GC；</p>
+</blockquote>
+<blockquote>
+<p>Go则会根据以下条件进行触发：runtime.mallocgc 申请内存时根据堆大小触发GC；runtime.GC 用户程序手动触发GC；runtime.forcegchelper 后台运行定时检查触发GC。</p>
+</blockquote>
+<h2 id="垃圾碎片的处理"><a href="#垃圾碎片的处理" class="headerlink" title="垃圾碎片的处理"></a>垃圾碎片的处理</h2><blockquote>
+<p>由于Java的内存管理划分，因此容易产生垃圾对象，JVM在处理内存碎片问题上更多采用空间压缩和分代收集的思想，例如在新生代使用“标记-复制”算法，G1收集器支持了对象移动以消减长时间运行的内存碎片问题，划分region的设计更容易把空闲内存归还给OS等设计。</p>
+</blockquote>
+<blockquote>
+<p>由于Go的内存管理的实现，很难实现分代，而移动对象也可能会导致runtime更庞大复杂，因此Go在关于内存碎片的处理方案和Java并不太一样。</p>
+</blockquote>
+<blockquote>
+<p>1.Go语言span内存池的设计，减轻了很多内存碎片的问题<br>    Go内存释放的过程如下：当 mcache 中存在较多空闲 span 时，会归还给 mcentral；而     mcentral 中存在较多空闲 span 时，会归还给 mheap；mheap 再归还给操作系统。</p>
+</blockquote>
+<blockquote>
+<p>2.tcmalloc分配机制，Tiny对象和大对象分配优化，在某种程度上也导致基本没有内存碎片会     出现。</p>
+<p>3.Go的对象(即struct类型)是可以分配在栈上的。Go会在编译时做静态逃逸分析(Escape       Analysis), 如果发现某个对象并没有逃出当前作用域，则会将对象分配在栈上而不是堆       上，从而减轻了GC内存碎片回收压力。</p>
+</blockquote>
+<h2 id="“GC-Roots”-的对象的选择"><a href="#“GC-Roots”-的对象的选择" class="headerlink" title="“GC Roots” 的对象的选择"></a>“GC Roots” 的对象的选择</h2><blockquote>
+<p>在Java中由于内存运行时区域的划分，通常会选择以下几种作为“GC Roots” 的对象：<br>虚拟机栈(栈帧中的本地变量表)中引用的对象<br>本地方法栈(Native 方法)中引用的对象<br>方法区中类静态属性引用的对象<br>方法区中常量引用的对象<br>Java虚拟机内部引用<br>所有被同步锁持有的对象</p>
+</blockquote>
+<blockquote>
+<p>Go的选择就相对简单一点，通常是全局量和go程中的引用指针。因为Go中没有类的封装概念，因而Gc Root选择也相对简单一些。</p>
+</blockquote>
+<h2 id="写屏障"><a href="#写屏障" class="headerlink" title="写屏障"></a>写屏障</h2><blockquote>
+<p>在java中，对上述2种方法都有应用，比如CMS是基于Dijkstra插入写屏障做并发标记的，G1、Shenandoah则是使用Yuasa删除写屏障来实现的。</p>
+</blockquote>
+<blockquote>
+<p>在 Go 语言 v1.7 版本之前，运行时会使用 Dijkstra 插入写屏障保证强三色不变性，Go 语言在 v1.8 组合 Dijkstra 插入写屏障和 Yuasa 删除写屏障构成了混合写屏障。</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><strong>从垃圾回收的角度来说，经过多代发展，Java的垃圾回收机制较为完善，Java划分新生代、老年代来存储对象。对象通常会在新生代分配内存，多次存活的对象会被移到老年代，由于新生代存活率低，产生空间碎片的可能性高，通常选用“标记-复制”作为回收算法，而老年代存活率高，通常选用“标记-清除”或“标记-整理”作为回收算法，压缩整理空间。</strong></p>
+<p><strong>Go是非分代的、并发的、基于三色标记和清除的垃圾回收器，它的优势要结合它tcmalloc内存分配策略才能体现出来，因为小微对象的分配均有自己的内存池，所有的碎片都能被完美复用，所以GC不用考虑空间碎片的问题。</strong></p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/post/redis%E5%92%8Cgo%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94.html' itemprop="url">
-            Read More
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-03-03T12:08:49+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Mar 3, 2023</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>垃圾回收</p></a></div>
+  <span hidden itemprop="keywords">垃圾回收</span>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html&title=（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html&title=（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html&title=（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比） - 徐乔伟&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/post/%E8%87%AA%E5%B7%B1%E6%80%BB%E7%BB%93%E7%9A%84go%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%BB%85%E4%BE%9B%E8%87%AA%E5%B7%B1%E5%A4%8D%E4%B9%A0%E4%BD%BF%E7%94%A8%EF%BC%8C%E9%9A%BE%E5%85%8D%E6%9C%89%E4%B8%8D%E4%B8%A5%E8%B0%A8%E5%A4%84%EF%BC%89.html'>
+          <p class='title'>自己总结的go网络模型知识点（仅供自己复习使用，难免有不严谨处）<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>常见网络IO模型及其优缺点1.阻塞阻塞IO的方案是建立几个线程，这几个线程都遵循如下逻辑：业务方会调用read这个系统调用读socket，如果此时内核没有准备好数据，那么这个线程会阻塞住，一直陷...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
   
 
 
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-  
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2511,181 +2755,52 @@ Redis 6.0 版本之前的单线模式：
     
     
       
-<section class="widget blogger desktop mobile pjax">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://s1.vika.cn/space/2022/09/25/6fad662f39e8414598d593072ef746cb'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>徐乔伟</h2>
-        
-        
-          <p>个人学习记录</p>
-
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fa-solid fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:1511189367@qq.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/Xuqiaowei/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop pjax">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Map/" href="/categories/Map/"
-            active-action="action-categoriesMap"
-            ><div class='name'>Map</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Markdown/" href="/categories/Markdown/"
-            active-action="action-categoriesMarkdown"
-            ><div class='name'>Markdown</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/godis/" href="/categories/godis/"
-            active-action="action-categoriesgodis"
-            ><div class='name'>godis</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/golang/" href="/categories/golang/"
-            active-action="action-categoriesgolang"
-            ><div class='name'>golang</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/redis/" href="/categories/redis/"
-            active-action="action-categoriesredis"
-            ><div class='name'>redis</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/"
-            active-action="action-categoriesE4BB8EE99BB6E5AE9EE78EB0HTTPE6A087E58786E5BA93"
-            ><div class='name'>从零实现HTTP标准库</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B-golang/"
-            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B-golang"
-            ><div class='name'>网络模型 golang</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" href="/categories/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/"
-            active-action="action-categoriesE7BD91E7BB9CE6A8A1E59E8B"
-            ><div class='name'>网络模型</div><div class='badge'>(1)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile pjax">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Map/" style="font-size: 20.67px; color: #6c6c6c">Map</a> <a href="/tags/Markdown%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">Markdown语法基础</a> <a href="/tags/godis/" style="font-size: 17.33px; color: #828282">godis</a> <a href="/tags/netpoller-epoll/" style="font-size: 14px; color: #999">netpoller epoll</a> <a href="/tags/netpoller-redis/" style="font-size: 14px; color: #999">netpoller redis</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 14px; color: #999">垃圾回收</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">基础知识</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 24px; color: #555">网络编程</a> <a href="/tags/%E8%B7%B3%E8%A1%A8/" style="font-size: 17.33px; color: #828282">跳表</a>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-<section class="widget text desktop pjax">
-  
-  <header>
-    
-      <a target="_blank" rel="noopener" href='https://github.com/Xuqiaowei/'><i class="fab fa-github fa-fw" aria-hidden="true"></i><span class='name'>点个赞吧</span></a>
-    
-  </header>
-
-
-  <div class='content'>
-    
-  </div>
-</section>
-
     
   
 
 
 <div class="widget-sticky pjax">
 
+  
+  
+
+
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#go-1-3%E7%89%88%E6%9C%AC"><span class="toc-text">go 1.3版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#go-1-5%E7%89%88%E6%9C%AC"><span class="toc-text">go 1.5版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#go-1-5%E7%89%88%E6%9C%AC-1"><span class="toc-text">go 1.5版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#go-1-8%E7%89%88%E6%9C%AC"><span class="toc-text">go 1.8版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%8C%BA%E5%9F%9F"><span class="toc-text">垃圾回收区域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="toc-text">收集算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E6%97%B6%E6%9C%BA"><span class="toc-text">触发垃圾回收的时机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E7%A2%8E%E7%89%87%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">垃圾碎片的处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9CGC-Roots%E2%80%9D-%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">“GC Roots” 的对象的选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%B1%8F%E9%9A%9C"><span class="toc-text">写屏障</span></a></li></ol>
+    </div>
+  </section>
+
+  
+
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -2713,13 +2828,14 @@ Redis 6.0 版本之前的单线模式：
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3336,7 +3452,7 @@ Redis 6.0 版本之前的单线模式：
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/网络模型/","name":"网络模型"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/golang/","name":"golang"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/go垃圾回收机制总结.html","name":"（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比）"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比）","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html","wordCount":0,"datePublished":"2023-02-05T00:20:00.000Z","dateModified":"2023-03-03T04:08:49.746Z","articleSection":"golang","keywords":"垃圾回收","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
