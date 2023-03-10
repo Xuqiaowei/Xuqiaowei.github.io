@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678271981450),
+    lastupdate: new Date(1678414623753),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2756,21 +2756,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/%E5%88%86%E6%AE%B5%E9%94%81.html'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>分段锁实现并发安全Map</p>
-          <p class='content'>1.引言我们一般有两种方式来降低锁的竞争：
-
-第一种：减少锁的持有时间，sync.Map即是采用这种策略，通过冗余的数据结构，使得需要持有锁的时间，大大减少。
-第二种：降低锁的请求频率，锁分解和...</p>
+        <a class='prev' href='/post/%E8%B7%B3%E8%A1%A8%E4%BB%A3%E7%A0%81.html'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>手动实现一个跳表</p>
+          <p class='content'>设计跳表不使用任何库函数，设计一个 跳表 。
+跳表 是在 O(log(n)) 时间内完成增加、删除、搜索操作的数据结构。跳表相比于树堆与红黑树，其功能与性能相当，并且跳表的代码长度相较下更短，其...</p>
         </a>
       
       
-        <a class='next' href='/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html'>
-          <p class='title'>哈希表原理<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>map映射结构频繁地运用在日常的开发之中，是面试中的高频考点。
-什么是map维基百科的定义：
-
-In computer science, an associative array, map, s...</p>
+        <a class='next' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%EF%BC%886%EF%BC%89.html'>
+          <p class='title'>从零实现Golang的HTTP标准库-（6）<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1.概述前文对Body进行了设置，不论客户端是使用Content-Type还是chunk编码的方式，服务端都能够正确的解析。本文将在Body功能的基础上，着重完成form表单中的multipar...</p>
         </a>
       
     </div>

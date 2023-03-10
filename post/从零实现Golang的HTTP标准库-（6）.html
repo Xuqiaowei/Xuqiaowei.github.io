@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678271981450),
+    lastupdate: new Date(1678414623753),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2730,12 +2730,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>哈希表原理</p>
-          <p class='content'>map映射结构频繁地运用在日常的开发之中，是面试中的高频考点。
-什么是map维基百科的定义：
+        <a class='prev' href='/post/sync.map.html'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>Golang - sync.Map原理</p>
+          <p class='content'>1.引言
+在Go v1.6之前，内置map是部分goroutine安全的，并发读没有问题，并发写可能有问题
 
-In computer science, an associative array, map, s...</p>
+在Go v1.6之后，并发读写内置map会报错，在一些知名的开源库都有这个问题，所以...</p>
         </a>
       
       

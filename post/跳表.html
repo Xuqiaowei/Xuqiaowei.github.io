@@ -42,8 +42,8 @@
 <meta property="og:description" content="本文转载自： https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;9d8296562806 理解跳表，从单链表开始说起下图是一个简单的有序单链表，单链表的特性就是每个元素存放下一个元素的引用。即：通过第一个元素可以找到第二个元素，通过第二个元素可以找到第三个元素，依次类推，直到找到最后一个元素。  现在我们有个场景，想快速找到上图链表中的 10 这个元素，只能从头开始遍历链表，直到找到我们需要找的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2022-12-31T00:20:00.000Z">
-<meta property="article:modified_time" content="2023-02-27T12:49:01.586Z">
+<meta property="article:published_time" content="2023-02-05T00:20:00.000Z">
+<meta property="article:modified_time" content="2023-03-10T02:11:12.869Z">
 <meta property="article:author" content="徐乔伟">
 <meta property="article:tag" content="跳表">
 <meta name="twitter:card" content="summary">
@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678271981450),
+    lastupdate: new Date(1678414623753),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2470,10 +2470,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-12-31T08:20:00+08:00">
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2023-02-05T08:20:00+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Dec 31, 2022</p>
+    <p>发布于：Feb 5, 2023</p>
   </a>
 </div>
 
@@ -2607,10 +2607,10 @@ randomLevel() 方法返回 1 不建索引、返回2建一级索引、返回 3 �
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-02-27T20:49:01+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-03-10T10:11:12+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Feb 27, 2023</p>
+    <p>更新于：Mar 10, 2023</p>
   </a>
 </div>
 
@@ -2690,19 +2690,19 @@ randomLevel() 方法返回 1 不建索引、返回2建一级索引、返回 3 �
   
     <div class="prev-next">
       
-        <a class='prev' href='/post/%E8%B7%B3%E8%A1%A8%E4%BB%A3%E7%A0%81.html'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>手动实现一个跳表</p>
-          <p class='content'>设计跳表不使用任何库函数，设计一个 跳表 。
-跳表 是在 O(log(n)) 时间内完成增加、删除、搜索操作的数据结构。跳表相比于树堆与红黑树，其功能与性能相当，并且跳表的代码长度相较下更短，其...</p>
+        <a class='prev' href='/post/go%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93.html'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>（复习自用、易理解）go垃圾回收机制总结（与java GC的简单对比）</p>
+          <p class='content'>引言go和java都有着比较优秀的垃圾回收机制，而GC问题也是面试的重点，所以自己通过查阅资料总结了go的垃圾回收机制，也和java进行了一些对比。
+注：基于整个go的gc发展，来研究其gc的演...</p>
         </a>
       
       
-        <a class='next' href='/post/%E5%88%86%E6%AE%B5%E9%94%81.html'>
-          <p class='title'>分段锁实现并发安全Map<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1.引言我们一般有两种方式来降低锁的竞争：
+        <a class='next' href='/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html'>
+          <p class='title'>拉链法实现简易map<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>map映射结构频繁地运用在日常的开发之中，是面试中的高频考点。
+什么是map维基百科的定义：
 
-第一种：减少锁的持有时间，sync.Map即是采用这种策略，通过冗余的数据结构，使得需要持有锁的时间，大大减少。
-第二种：降低锁的请求频率，锁分解和...</p>
+In computer science, an associative array, map, s...</p>
         </a>
       
     </div>
@@ -3437,7 +3437,7 @@ randomLevel() 方法返回 1 不建索引、返回2建一级索引、返回 3 �
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/redis/","name":"redis"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/跳表.html","name":"跳表实现原理"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"跳表实现原理","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E8%B7%B3%E8%A1%A8.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E8%B7%B3%E8%A1%A8.html","wordCount":0,"datePublished":"2022-12-31T00:20:00.000Z","dateModified":"2023-02-27T12:49:01.586Z","articleSection":"redis","keywords":"跳表","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","sameAs":["https://github.com/volantis-x"],"description":"徐乔伟的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://example.com/","name":"徐乔伟"}},{"@type":"ListItem","position":2,"item":{"@id":"http://example.com/categories/redis/","name":"redis"}},{"@type":"ListItem","position":3,"item":{"@id":"http://example.com//post/跳表.html","name":"跳表实现原理"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"徐乔伟","url":"http://example.com/","keywords":null,"description":"徐乔伟的个人博客","author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/","description":"徐乔伟的个人博客"},"publisher":{"@type":"Organization","name":"徐乔伟","url":"http://example.com/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://example.com?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"跳表实现原理","description":"徐乔伟的个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/%E8%B7%B3%E8%A1%A8.html"},"author":{"@type":"Person","name":"徐乔伟","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://example.com/"},"publisher":{"@type":"Organization","name":"徐乔伟","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://example.com/post/%E8%B7%B3%E8%A1%A8.html","wordCount":0,"datePublished":"2023-02-05T00:20:00.000Z","dateModified":"2023-03-10T02:11:12.869Z","articleSection":"redis","keywords":"跳表","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

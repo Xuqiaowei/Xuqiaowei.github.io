@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678271981450),
+    lastupdate: new Date(1678414623753),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2627,11 +2627,12 @@ bool erase(int num): 在跳表中删除一个值，如果 num 不存在，直接
         </a>
       
       
-        <a class='next' href='/post/%E8%B7%B3%E8%A1%A8.html'>
-          <p class='title'>跳表实现原理<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>本文转载自：
-https://www.jianshu.com/p/9d8296562806
-理解跳表，从单链表开始说起下图是一个简单的有序单链表，单链表的特性就是每个元素存放下一个元素的引用。即...</p>
+        <a class='next' href='/post/sync.map.html'>
+          <p class='title'>Golang - sync.Map原理<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1.引言
+在Go v1.6之前，内置map是部分goroutine安全的，并发读没有问题，并发写可能有问题
+
+在Go v1.6之后，并发读写内置map会报错，在一些知名的开源库都有这个问题，所以...</p>
         </a>
       
     </div>

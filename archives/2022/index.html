@@ -1624,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1678271981450),
+    lastupdate: new Date(1678414623753),
     sidebar: {
       for_page: ["blogger","category","tagcloud","text"],
       for_post: ["toc"],
@@ -2447,148 +2447,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/跳表.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E8%B7%B3%E8%A1%A8.html"  itemprop="url">
-        跳表实现原理
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        本文转载自：
-https://www.jianshu.com/p/9d8296562806
-理解跳表，从单链表开始说起下图是一个简单的有序单链表，单链表的特性就是每个元素存放下一个元素的引用。即：通过第一个元素可以找到第二个元素，通过第二个元素可以找到第三个元素，依次类推，直到找到最后一个元素。
-
-现在我们有个场景，想快速找到上图链表中的 10 这个元素，只能从头开始遍历链表，直到找到我们需...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-12-31T08:20:00+08:00">2022-12-31</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/redis/">redis</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/redis/" itemprop="url"><span itemprop="name">redis</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E8%B7%B3%E8%A1%A8.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/分段锁.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E5%88%86%E6%AE%B5%E9%94%81.html"  itemprop="url">
-        分段锁实现并发安全Map
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        1.引言我们一般有两种方式来降低锁的竞争：
-
-第一种：减少锁的持有时间，sync.Map即是采用这种策略，通过冗余的数据结构，使得需要持有锁的时间，大大减少。
-第二种：降低锁的请求频率，锁分解和锁分段技术即是这种思想的体现。
-
-
-锁分段技术又可称为分段锁机制
-
-什么叫做分段锁机制？
-
-将数据分为一段一段的存储，然后给每一段数据配备一把锁.
-
-这样在多线程情况下，不同线程操作不同段的数据不会造...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-12-11T08:20:00+08:00">2022-12-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Map/">Map</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/Map/" itemprop="url"><span itemprop="name">Map</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E5%88%86%E6%AE%B5%E9%94%81.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
   <link itemprop="mainEntityOfPage" href="http://example.com/post/sync.map.html">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="徐乔伟">
@@ -2645,72 +2503,6 @@ https://www.jianshu.com/p/9d8296562806
       
         <div>
           <a class='readmore' href='/post/sync.map.html' itemprop="url">
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="http://example.com/post/哈希表.html">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="徐乔伟">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="徐乔伟">
-    <meta itemprop="description" content="徐乔伟的个人博客">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html"  itemprop="url">
-        哈希表原理
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        map映射结构频繁地运用在日常的开发之中，是面试中的高频考点。
-什么是map维基百科的定义：
-
-In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time itemprop="dateCreated datePublished" datetime="2022-12-01T08:20:00+08:00">2022-12-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Map/">Map</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/Map/" itemprop="url"><span itemprop="name">Map</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/post/%E5%93%88%E5%B8%8C%E8%A1%A8.html' itemprop="url">
             Read More
           </a>
         </div>
@@ -3122,24 +2914,204 @@ B站...
           </div>
         
       
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-预备知识（2）.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89.html"  itemprop="url">
+        从零实现Golang的HTTP标准库-预备知识（2）
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        1.概述在预备知识（1）中，我们介绍了三个学习内容，其中前两个学习内容：go语言的基础语法以及计算机网络的概念了解，我们不再详细介绍与梳理，请读者自行完成这两个部分的学习。
+在本篇中，我将对socket编程流程做一个简单的介绍，同时梳理一下go语言的socket编程。
+本篇默认你已经对socket有所了解，故基本的概念性问题将不再被提及。如果你在阅读以下内容的过程中，有任何不明白的地方，去看...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-10-04T22:17:12+08:00">2022-10-04</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/从零实现Golang的HTTP标准库-预备知识（1）.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89.html"  itemprop="url">
+        从零实现Golang的HTTP标准库-预备知识（1）
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        1.概述在我们从零实现Golang的HTTP标准库之前，我们首先需要学习一些预备知识，学习了这些预备知识作为基础以后，我们才能更好的理解Golang的HTTTP标准库的代码，也有利于我们后面自己动手实现它。
+在预备知识中，我不会过多介绍关于Golang的HTTP标准库有关的内容，这一部分的介绍等我们学习完预备知识以后，会更新在后续的真正实现HTTP标准库的文章中。
+2.所需要的预备知识以及学...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-09-25T22:09:40+08:00">2022-09-25</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/">从零实现HTTP标准库</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0HTTP%E6%A0%87%E5%87%86%E5%BA%93/" itemprop="url"><span itemprop="name">从零实现HTTP标准库</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0Golang%E7%9A%84HTTP%E6%A0%87%E5%87%86%E5%BA%93-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://example.com/post/markdown语法.html">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="徐乔伟">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="徐乔伟">
+    <meta itemprop="description" content="徐乔伟的个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/post/markdown%E8%AF%AD%E6%B3%95.html"  itemprop="url">
+        Markdown语法学习，博客记录的开始~
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        1.标题一共会有6个等级的标题，用#号表示，#数量越多，越小，一般情况下不要使用第一级标题，从二级标题开始用。
+titlel1 我是一级titlel2 我是二级titlel3 我是三级titlel4 我是四级titlel5 我是五级titlel6 我是六级2.段落想要分段，在段尾输入至少两个以上的空格再回车；或者直接空一行再输入。  
+如：祝爷爷奶奶身体健康  祝我的家人生活幸福  这两句想...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-09-24T23:08:35+08:00">2022-09-24</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Markdown/">Markdown</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/Markdown/" itemprop="url"><span itemprop="name">Markdown</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/post/markdown%E8%AF%AD%E6%B3%95.html' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
     
   </section>
   
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 2
-        </p>
-        
-          <a class="next" rel="next" href="/archives/2022/page/2/">
-            <section class="post next white-box shadow floatable blur">
-              &nbsp;Next&nbsp;<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
     
   
 
